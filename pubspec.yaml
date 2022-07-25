@@ -1,0 +1,55 @@
+name: kohilan_s_application1
+description: A new Flutter project.
+version: 1.0.0+1
+environment: 
+  sdk: '>=2.12.0 <3.0.0'
+dependencies: 
+  flutter: 
+    sdk: flutter
+  get: ^4.6.1
+  pull_to_refresh: ^2.0.0
+  cupertino_icons: ^1.0.0
+  connectivity_plus: ^1.4.0
+  shared_preferences: ^2.0.7
+  cached_network_image: ^3.1.0
+  flutter_login_facebook: ^1.1.0
+  http: ^0.13.3
+  google_sign_in: ^5.0.7
+  flutter_svg: ^0.22.0
+  carousel_slider: ^4.0.0
+  smooth_page_indicator: ^1.0.0+2
+dev_dependencies: 
+  flutter_test: 
+    sdk: flutter
+flutter: 
+  uses-material-design: true
+  assets: 
+    - assets/
+    - assets/images/
+  fonts: 
+    - family: Vollkorn
+      fonts: 
+        - asset: assets/fonts/VollkornRomanRegular.ttf
+          weight: 400
+        - asset: assets/fonts/VollkornRomanBold.ttf
+          weight: 700
+    - family: Assistant
+      fonts: 
+        - asset: assets/fonts/AssistantRegular.ttf
+          weight: 400
+    - family: Poppins
+      fonts: 
+        - asset: assets/fonts/PoppinsRegular.ttf
+          weight: 400
+        - asset: assets/fonts/PoppinsLight.ttf
+          weight: 300
+        - asset: assets/fonts/PoppinsMedium.ttf
+          weight: 500
+    - family: Mulish
+      fonts: 
+        - asset: assets/fonts/MulishSemiBold.ttf
+          weight: 600
+    - family: Roboto
+      fonts: 
+        - asset: assets/fonts/RobotoRomanRegular.ttf
+          weight: 400
