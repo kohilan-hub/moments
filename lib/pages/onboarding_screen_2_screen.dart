@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kohilan_s_application1/core/app_export.dart';
 import 'package:kohilan_s_application1/widgets/custom_button.dart';
 
+import 'onboarding_screen_3_screen.dart';
+
 class OnboardingScreen2Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class OnboardingScreen2Screen extends StatelessWidget {
                                 Align(
                                     alignment: Alignment.centerRight,
                                     child: Container(
-                                        height: getVerticalSize(368.00),
+                                        // height: getVerticalSize(255.00),
                                         width: getHorizontalSize(255.00),
                                         margin: getMargin(left: 10, top: 42),
                                         child: Stack(
@@ -56,8 +58,8 @@ class OnboardingScreen2Screen extends StatelessWidget {
                                                   alignment:
                                                       Alignment.bottomRight,
                                                   child: Container(
-                                                      height: getVerticalSize(
-                                                          263.00),
+                                                      // height: getVerticalSize(
+                                                      //     263.00),
                                                       width: getHorizontalSize(
                                                           99.00),
                                                       margin: getMargin(
@@ -82,25 +84,6 @@ class OnboardingScreen2Screen extends StatelessWidget {
                                                                 offset: Offset(
                                                                     0, 4))
                                                           ]))),
-                                              // CustomButton(
-                                              //     width: 122,
-                                              //     text: "Next",
-                                              //     margin: getMargin(
-                                              //         left: 34,
-                                              //         top: 60,
-                                              //         right: 34,
-                                              //         bottom: 60),
-                                              //     variant: ButtonVariant
-                                              //         .FillWhiteA700,
-                                              //     shape: ButtonShape
-                                              //         .RoundedBorder8,
-                                              //     padding: ButtonPadding
-                                              //         .PaddingAll14,
-                                              //     fontStyle: ButtonFontStyle
-                                              //         .PoppinsRegular13,
-                                              //     onTap: onTapBtnNext,
-                                              //     alignment:
-                                              //         Alignment.bottomLeft),
                                               Align(
                                                   alignment: Alignment.topLeft,
                                                   child: Container(
@@ -117,35 +100,85 @@ class OnboardingScreen2Screen extends StatelessWidget {
                                                             Align(
                                                                 alignment: Alignment
                                                                     .centerLeft,
-                                                                child:
-                                                                    Container(
-                                                                        height: getVerticalSize(
-                                                                            173.00),
-                                                                        width: getHorizontalSize(
-                                                                            205.00),
-                                                                        child: Stack(
-                                                                            alignment:
-                                                                                Alignment.bottomRight,
-                                                                            children: [
-                                                                              // Container(height: getVerticalSize(94.00), width: getHorizontalSize(5.00), margin: getMargin(left: 14, top: 10, right: 14), decoration: BoxDecoration(color: ColorConstant.gray300)),
-                                                                              // Container(height: getVerticalSize(149.00), width: getHorizontalSize(5.00), margin: getMargin(left: 10, top: 10, right: 2), decoration: BoxDecoration(color: ColorConstant.whiteA700)),
-                                                                              // Container(height: getVerticalSize(5.00), width: getHorizontalSize(131.00), margin: getMargin(left: 10, top: 24, right: 4, bottom: 24), decoration: BoxDecoration(color: ColorConstant.whiteA700)),
-                                                                              Align(
-                                                                                  alignment: Alignment.centerLeft,
-                                                                                  child: Container(
-                                                                                      width: getHorizontalSize(205.00),
-                                                                                      margin: getMargin(bottom: 4),
-                                                                                      child: RichText(
-                                                                                          text: TextSpan(children: [
-                                                                                            TextSpan(text: "W", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(64), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                            TextSpan(text: "e will plan", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                            TextSpan(text: ' ', style: TextStyle(color: ColorConstant.black900, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                            TextSpan(text: "your wedding", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                            TextSpan(text: ' ', style: TextStyle(color: ColorConstant.black900, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                            TextSpan(text: "of your dream".tr, style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400))
-                                                                                          ]),
-                                                                                          textAlign: TextAlign.left)))
-                                                                            ]))),
+                                                                child: Container(
+                                                                    decoration: const BoxDecoration(
+                                                                        border: Border(
+                                                                      top: BorderSide(
+                                                                          width:
+                                                                              2.0,
+                                                                          color:
+                                                                              Color(0xFFFFFFFFFF)),
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              2.0,
+                                                                          color:
+                                                                              Color(0xFFFFFFFFFF)),
+                                                                      right: BorderSide(
+                                                                          width:
+                                                                              2.0,
+                                                                          color:
+                                                                              Color(0xFFFFFFFFFF)),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              2.0,
+                                                                          color:
+                                                                              Color(0xFFFFFFFFFF)),
+                                                                    )),
+                                                                    height: getVerticalSize(173.00),
+                                                                    width: getHorizontalSize(205.00),
+                                                                    child: Stack(alignment: Alignment.bottomRight, children: [
+                                                                      // Container(height: getVerticalSize(94.00), width: getHorizontalSize(5.00), margin: getMargin(left: 14, top: 10, right: 14), decoration: BoxDecoration(color: ColorConstant.gray300)),
+                                                                      // Container(height: getVerticalSize(149.00), width: getHorizontalSize(5.00), margin: getMargin(left: 10, top: 10, right: 2), decoration: BoxDecoration(color: ColorConstant.whiteA700)),
+                                                                      // Container(height: getVerticalSize(5.00), width: getHorizontalSize(131.00), margin: getMargin(left: 10, top: 24, right: 4, bottom: 24), decoration: BoxDecoration(color: ColorConstant.whiteA700)),
+                                                                      Align(
+                                                                          alignment:
+                                                                              Alignment.centerLeft,
+                                                                          child: Container(
+                                                                              width: getHorizontalSize(205.00),
+                                                                              margin: getMargin(bottom: 4),
+                                                                              child: RichText(
+                                                                                  text: TextSpan(children: [
+                                                                                    TextSpan(text: "W", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(64), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
+                                                                                    TextSpan(text: "e will plan", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
+                                                                                    TextSpan(text: ' ', style: TextStyle(color: ColorConstant.black900, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
+                                                                                    TextSpan(text: "your wedding", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
+                                                                                    TextSpan(text: ' ', style: TextStyle(color: ColorConstant.black900, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
+                                                                                    TextSpan(text: "of your dream".tr, style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400))
+                                                                                  ]),
+                                                                                  textAlign: TextAlign.left)))
+                                                                    ]))),
+                                                            CustomButton(
+                                                                width: 122,
+                                                                text: "Next",
+                                                                margin:
+                                                                    getMargin(
+                                                                        left:
+                                                                            34,
+                                                                        top: 60,
+                                                                        right:
+                                                                            34,
+                                                                        bottom:
+                                                                            60),
+                                                                variant:
+                                                                    ButtonVariant
+                                                                        .FillWhiteA700,
+                                                                shape: ButtonShape
+                                                                    .RoundedBorder8,
+                                                                padding:
+                                                                    ButtonPadding
+                                                                        .PaddingAll14,
+                                                                fontStyle:
+                                                                    ButtonFontStyle
+                                                                        .PoppinsRegular13,
+                                                                onTap: () => Navigator
+                                                                        .of(
+                                                                            context)
+                                                                    .pushReplacement(MaterialPageRoute(
+                                                                        builder:
+                                                                            (_) =>
+                                                                                OnboardingScreen3Screen())),
+                                                                alignment: Alignment
+                                                                    .bottomLeft),
                                                             // Container(
                                                             //     height:
                                                             //         getVerticalSize(
@@ -164,10 +197,8 @@ class OnboardingScreen2Screen extends StatelessWidget {
                                                             //             color: ColorConstant
                                                             //                 .gray100))
                                                           ])))
-                                            ])))
+                                            ]))),
                               ])))
                 ]))));
   }
-
-  onTapBtnNext() {}
 }
