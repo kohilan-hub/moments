@@ -17,8 +17,6 @@ export 'package:kohilan_s_application1/theme/app_decoration.dart';
 
 export 'package:connectivity_plus/connectivity_plus.dart';
 
-export 'package:kohilan_s_application1/routes/app_routes.dart';
-
 export 'package:kohilan_s_application1/data/models/selectionPopupModel/selection_popup_model.dart';
 
 export 'package:kohilan_s_application1/widgets/common_network_image.dart';
