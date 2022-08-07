@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:kohilan_s_application1/core/app_export.dart';
 import 'package:kohilan_s_application1/widgets/custom_button.dart';
 
-class RegisterScreen extends GetWidget<RegisterController> {
+import 'choose_role_screen.dart';
+
+class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -73,7 +74,7 @@ class RegisterScreen extends GetWidget<RegisterController> {
                                             top: 17,
                                             right: 20,
                                             bottom: 17),
-                                        child: Text("msg_lets_do_our_fan".tr,
+                                        child: Text("Lets do our fantasy...",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.center,
                                             style: AppStyle
@@ -88,7 +89,8 @@ class RegisterScreen extends GetWidget<RegisterController> {
                                             top: 53,
                                             right: 17,
                                             bottom: 53),
-                                        child: Text("msg_moments_offeri".tr,
+                                        child: Text(
+                                            "Moments  Offering wedding planning, styling and catering all under one roof.",
                                             maxLines: null,
                                             textAlign: TextAlign.left,
                                             style: AppStyle
@@ -107,16 +109,16 @@ class RegisterScreen extends GetWidget<RegisterController> {
                               children: [
                                 CustomButton(
                                     width: 177,
-                                    text: "msg_register_with_u".tr,
+                                    text: "Register with us",
                                     margin:
                                         getMargin(left: 49, top: 52, right: 49),
                                     shape: ButtonShape.CircleBorder17,
                                     fontStyle: ButtonFontStyle.PoppinsRegular14,
-                                    onTap: onTapBtnRegisterwithu),
+                                    onTap: () => Navigator.of(context)
+                                        .pushReplacement(MaterialPageRoute(
+                                            builder: (_) =>
+                                                ChooseRoleScreen()))),
                                 GestureDetector(
-                                    onTap: () {
-                                      onTapTxtAlreadyhavean2();
-                                    },
                                     child: Container(
                                         margin: getMargin(
                                             left: 49,
@@ -127,7 +129,7 @@ class RegisterScreen extends GetWidget<RegisterController> {
                                             text: TextSpan(children: [
                                               TextSpan(
                                                   text:
-                                                      "msg_already_have_an".tr,
+                                                      "Already have an account?",
                                                   style: TextStyle(
                                                       color: ColorConstant
                                                           .black900,
@@ -136,7 +138,7 @@ class RegisterScreen extends GetWidget<RegisterController> {
                                                       fontWeight:
                                                           FontWeight.w400)),
                                               TextSpan(
-                                                  text: "lbl_login".tr,
+                                                  text: "Login",
                                                   style: TextStyle(
                                                       color:
                                                           ColorConstant.red901,
@@ -150,11 +152,7 @@ class RegisterScreen extends GetWidget<RegisterController> {
                     ]))))));
   }
 
-  onTapBtnRegisterwithu() {
-    Get.toNamed(AppRoutes.chooseRoleScreen);
-  }
+  onTapBtnRegisterwithu() {}
 
-  onTapTxtAlreadyhavean2() {
-    Get.toNamed(AppRoutes.loginScreen);
-  }
+  onTapTxtAlreadyhavean2() {}
 }

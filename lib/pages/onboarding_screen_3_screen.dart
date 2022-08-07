@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kohilan_s_application1/core/app_export.dart';
 import 'package:kohilan_s_application1/widgets/custom_button.dart';
 
+import 'register_screen.dart';
+
 class OnboardingScreen3Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,9 @@ class OnboardingScreen3Screen extends StatelessWidget {
                           shape: ButtonShape.RoundedBorder8,
                           padding: ButtonPadding.PaddingAll14,
                           fontStyle: ButtonFontStyle.PoppinsRegular13,
-                          onTap: onTapBtnDone,
+                          onTap: () => Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (_) => RegisterScreen())),
                           alignment: Alignment.bottomCenter)
                     ])))));
   }
