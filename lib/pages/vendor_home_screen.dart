@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kohilan_s_application1/core/app_export.dart';
 
+import 'vendor_adding_new_service_screen.dart';
+
 class VendorHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -141,45 +143,23 @@ class VendorHomeScreen extends StatelessWidget {
                                                                       .fill)))
                                                     ])))
                                       ])))),
-                      GestureDetector(
-                          onTap: () {
-                            onTapRowplus();
-                          },
-                          child: Container(
-                              margin: getMargin(
-                                  left: 82, top: 207, right: 80, bottom: 261),
-                              decoration: AppDecoration.fillRed901.copyWith(
-                                  borderRadius:
-                                      BorderRadiusStyle.roundedBorder3),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Padding(
-                                        padding: getPadding(
-                                            left: 19, top: 13, bottom: 13),
-                                        child: Container(
-                                            height: getSize(20.00),
-                                            width: getSize(20.00),
-                                            child: SvgPicture.asset(
-                                                ImageConstant.imgPlus10X10,
-                                                fit: BoxFit.fill))),
-                                    Padding(
-                                        padding: getPadding(
-                                            left: 6,
-                                            top: 13,
-                                            right: 22,
-                                            bottom: 13),
-                                        child: Text("Add Service",
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: TextAlign.left,
-                                            style: AppStyle
-                                                .txtMulishSemiBold16WhiteA700
-                                                .copyWith()))
-                                  ])))
+                      Container(
+                        margin: getMargin(
+                            left: 82, top: 207, right: 80, bottom: 261),
+                        child: RaisedButton.icon(
+                            padding: EdgeInsets.fromLTRB(19, 13, 19, 13),
+                            color: Color(0xffAF0B2C),
+                            onPressed: () => Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (_) => VendorAddingNewServiceScreen())),
+                            icon: Icon(
+                              Icons.add_circle_outline,
+                              color: Colors.white,
+                            ),
+                            label: Text('Add Service',
+                                style: AppStyle.txtMulishSemiBold16WhiteA700
+                                    .copyWith())),
+                      ),
                     ]))))));
   }
-
-  onTapRowplus() {}
 }

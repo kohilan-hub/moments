@@ -4,8 +4,7 @@ import 'package:kohilan_s_application1/core/app_export.dart';
 import 'package:kohilan_s_application1/widgets/custom_button.dart';
 import 'package:kohilan_s_application1/widgets/custom_icon_button.dart';
 
-class VendorAddingNewServiceScreen
-    extends GetWidget<VendorAddingNewServiceController> {
+class VendorAddingNewServiceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,68 +30,6 @@ class VendorAddingNewServiceScreen
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Container(
-                                                height: getVerticalSize(20.00),
-                                                width: size.width,
-                                                child: Stack(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    children: [
-                                                      Align(
-                                                          alignment:
-                                                              Alignment.topLeft,
-                                                          child: Container(
-                                                              height:
-                                                                  getVerticalSize(
-                                                                      14.00),
-                                                              width: size.width,
-                                                              margin: getMargin(
-                                                                  bottom: 10),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      color: ColorConstant
-                                                                          .red901))),
-                                                      Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Container(
-                                                              height:
-                                                                  getVerticalSize(
-                                                                      20.00),
-                                                              width: size.width,
-                                                              child: Stack(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .topCenter,
-                                                                  children: [
-                                                                    Align(
-                                                                        alignment:
-                                                                            Alignment
-                                                                                .topLeft,
-                                                                        child: Container(
-                                                                            height:
-                                                                                getVerticalSize(15.00),
-                                                                            width: size.width,
-                                                                            margin: getMargin(bottom: 10),
-                                                                            decoration: BoxDecoration(color: ColorConstant.black90063))),
-                                                                    Align(
-                                                                        alignment:
-                                                                            Alignment.topCenter,
-                                                                        child: Padding(
-                                                                            padding: getPadding(left: 4, right: 4, bottom: 10),
-                                                                            child: Row(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.max, children: [
-                                                                              Row(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.max, children: [
-                                                                                Padding(padding: getPadding(top: 2, bottom: 3), child: Container(height: getVerticalSize(9.00), width: getHorizontalSize(14.00), child: SvgPicture.asset(ImageConstant.imgSignal, fit: BoxFit.fill))),
-                                                                                Padding(padding: getPadding(left: 3, bottom: 2), child: Text("lbl_figma".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtAssistantRegular12.copyWith(height: 1.17))),
-                                                                                Padding(padding: getPadding(left: 8, top: 1, bottom: 3), child: Container(height: getVerticalSize(10.00), width: getHorizontalSize(13.00), child: SvgPicture.asset(ImageConstant.imgSignal12X13, fit: BoxFit.fill))),
-                                                                                Padding(padding: getPadding(left: 67, top: 1), child: Text("lbl_3_12_pm".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtAssistantRegular12.copyWith(height: 1.17)))
-                                                                              ]),
-                                                                              Padding(padding: getPadding(left: 113, top: 3, bottom: 2), child: Container(height: getVerticalSize(9.00), width: getHorizontalSize(22.00), child: SvgPicture.asset(ImageConstant.imgBattery, fit: BoxFit.fill)))
-                                                                            ])))
-                                                                  ])))
-                                                    ]))),
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: GestureDetector(
@@ -136,7 +73,7 @@ class VendorAddingNewServiceScreen
                                                 CrossAxisAlignment.center,
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Text("lbl_add_service2".tr,
+                                              Text("Add service",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
@@ -160,7 +97,8 @@ class VendorAddingNewServiceScreen
                                         width: getHorizontalSize(268.00),
                                         margin: getMargin(
                                             left: 2, top: 5, right: 10),
-                                        child: Text("msg_to_start_adding".tr,
+                                        child: Text(
+                                            "To start adding any service, you need the name, category, price and picture",
                                             maxLines: null,
                                             textAlign: TextAlign.left,
                                             style: AppStyle
@@ -172,7 +110,7 @@ class VendorAddingNewServiceScreen
                                         child: RichText(
                                             text: TextSpan(children: [
                                               TextSpan(
-                                                  text: "lbl_name2".tr,
+                                                  text: "Name",
                                                   style: TextStyle(
                                                       color: ColorConstant
                                                           .black900,
@@ -181,7 +119,7 @@ class VendorAddingNewServiceScreen
                                                       fontWeight:
                                                           FontWeight.w400)),
                                               TextSpan(
-                                                  text: "lbl".tr,
+                                                  text: "*",
                                                   style: TextStyle(
                                                       color: ColorConstant
                                                           .deepOrange600,
@@ -215,7 +153,7 @@ class VendorAddingNewServiceScreen
                                                           right: 21,
                                                           bottom: 14),
                                                       child: Text(
-                                                          "msg_enter_your_bran"
+                                                          "Enter Your Brand Name"
                                                               .tr,
                                                           overflow: TextOverflow
                                                               .ellipsis,
@@ -261,10 +199,10 @@ class VendorAddingNewServiceScreen
                                                                     child: RichText(
                                                                         text: TextSpan(children: [
                                                                           TextSpan(
-                                                                              text: "lbl_price2".tr,
+                                                                              text: "Price".tr,
                                                                               style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
                                                                           TextSpan(
-                                                                              text: "lbl".tr,
+                                                                              text: "*".tr,
                                                                               style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
                                                                         ]),
                                                                         textAlign: TextAlign.left)),
@@ -288,7 +226,7 @@ class VendorAddingNewServiceScreen
                                                                         children: [
                                                                           Align(
                                                                               alignment: Alignment.centerLeft,
-                                                                              child: Padding(padding: getPadding(left: 21, top: 18, right: 21, bottom: 14), child: Text("msg_enter_the_price".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
+                                                                              child: Padding(padding: getPadding(left: 21, top: 18, right: 21, bottom: 14), child: Text("Enter the price here".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
                                                                         ]))
                                                               ]))),
                                                   Align(
@@ -318,7 +256,7 @@ class VendorAddingNewServiceScreen
                                                                         child: Row(crossAxisAlignment: CrossAxisAlignment.end, mainAxisSize: MainAxisSize.max, children: [
                                                                           Padding(
                                                                               padding: getPadding(left: 21, top: 18, bottom: 14),
-                                                                              child: Text("msg_select_your_cat".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())),
+                                                                              child: Text("Select Your Category".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())),
                                                                           Padding(
                                                                               padding: getPadding(left: 43, top: 33, right: 19, bottom: 13),
                                                                               child: Container(height: getVerticalSize(10.00), width: getHorizontalSize(15.00), child: SvgPicture.asset(ImageConstant.imgArrowdown, fit: BoxFit.fill)))
@@ -331,8 +269,8 @@ class VendorAddingNewServiceScreen
                                                                         margin: getMargin(right: 10, bottom: 10),
                                                                         child: RichText(
                                                                             text: TextSpan(children: [
-                                                                              TextSpan(text: "lbl_category2".tr, style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                                                                              TextSpan(text: "lbl".tr, style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
+                                                                              TextSpan(text: "Category".tr, style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                                                                              TextSpan(text: "*".tr, style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
                                                                             ]),
                                                                             textAlign: TextAlign.left)))
                                                               ]))),
@@ -364,7 +302,7 @@ class VendorAddingNewServiceScreen
                                                                         child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.start, children: [
                                                                           Align(
                                                                               alignment: Alignment.centerLeft,
-                                                                              child: Padding(padding: getPadding(left: 21, top: 18, right: 21, bottom: 14), child: Text("msg_enter_your_addr".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
+                                                                              child: Padding(padding: getPadding(left: 21, top: 18, right: 21, bottom: 14), child: Text("Enter your address".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
                                                                         ]))),
                                                                 Align(
                                                                     alignment:
@@ -374,8 +312,8 @@ class VendorAddingNewServiceScreen
                                                                         margin: getMargin(right: 10, bottom: 10),
                                                                         child: RichText(
                                                                             text: TextSpan(children: [
-                                                                              TextSpan(text: "lbl_address2".tr, style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                                                                              TextSpan(text: "lbl".tr, style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
+                                                                              TextSpan(text: "Address".tr, style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                                                                              TextSpan(text: "*".tr, style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
                                                                             ]),
                                                                             textAlign: TextAlign.left)))
                                                               ]))),
@@ -407,7 +345,7 @@ class VendorAddingNewServiceScreen
                                                                         child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.start, children: [
                                                                           Align(
                                                                               alignment: Alignment.centerLeft,
-                                                                              child: Padding(padding: getPadding(left: 21, top: 18, right: 21), child: Text("msg_select_your_dis".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith()))),
+                                                                              child: Padding(padding: getPadding(left: 21, top: 18, right: 21), child: Text("Select Your District".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith()))),
                                                                           Align(
                                                                               alignment: Alignment.centerRight,
                                                                               child: Padding(padding: getPadding(left: 27, top: 2, right: 27, bottom: 2), child: Container(height: getVerticalSize(10.00), width: getHorizontalSize(15.00), child: SvgPicture.asset(ImageConstant.imgArrowdown, fit: BoxFit.fill))))
@@ -420,8 +358,8 @@ class VendorAddingNewServiceScreen
                                                                         margin: getMargin(right: 10, bottom: 10),
                                                                         child: RichText(
                                                                             text: TextSpan(children: [
-                                                                              TextSpan(text: "lbl_district2".tr, style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                                                                              TextSpan(text: "lbl".tr, style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
+                                                                              TextSpan(text: "District".tr, style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                                                                              TextSpan(text: "*".tr, style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
                                                                             ]),
                                                                             textAlign: TextAlign.left)))
                                                               ]))),
@@ -461,11 +399,11 @@ class VendorAddingNewServiceScreen
                                                                                   margin: getMargin(left: 1, top: 10),
                                                                                   decoration: AppDecoration.outlineGray400.copyWith(borderRadius: BorderRadiusStyle.roundedBorder3),
                                                                                   child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.start, children: [
-                                                                                    Align(alignment: Alignment.centerLeft, child: Padding(padding: getPadding(left: 21, top: 18, right: 21, bottom: 70), child: Text("msg_tell_about_your".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
+                                                                                    Align(alignment: Alignment.centerLeft, child: Padding(padding: getPadding(left: 21, top: 18, right: 21, bottom: 70), child: Text("Tell about your service".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
                                                                                   ]))),
                                                                           Align(
                                                                               alignment: Alignment.topLeft,
-                                                                              child: Padding(padding: getPadding(right: 10, bottom: 10), child: Text("lbl_description".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Black902.copyWith())))
+                                                                              child: Padding(padding: getPadding(right: 10, bottom: 10), child: Text("Description".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Black902.copyWith())))
                                                                         ])),
                                                                 Container(
                                                                     width: getHorizontalSize(
@@ -480,10 +418,10 @@ class VendorAddingNewServiceScreen
                                                                     child: RichText(
                                                                         text: TextSpan(children: [
                                                                           TextSpan(
-                                                                              text: "msg_drop_images_her2".tr,
+                                                                              text: "Drop images here,\n",
                                                                               style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
                                                                           TextSpan(
-                                                                              text: "msg_tap_below_boxes".tr,
+                                                                              text: "Tap below boxes to browse",
                                                                               style: TextStyle(color: ColorConstant.red901, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
                                                                         ]),
                                                                         textAlign: TextAlign.left))
@@ -528,7 +466,8 @@ class VendorAddingNewServiceScreen
                                     Container(
                                         width: getHorizontalSize(285.00),
                                         margin: getMargin(top: 7, right: 10),
-                                        child: Text("msg_use_quality_pic".tr,
+                                        child: Text(
+                                            "Use quality pictures for the product. It will be used for products adverts",
                                             maxLines: null,
                                             textAlign: TextAlign.left,
                                             style: AppStyle
@@ -536,7 +475,7 @@ class VendorAddingNewServiceScreen
                                                 .copyWith())),
                                     CustomButton(
                                         width: 263,
-                                        text: "lbl_save".tr,
+                                        text: "Save",
                                         margin: getMargin(
                                             left: 11, top: 17, right: 11),
                                         padding: ButtonPadding.PaddingAll14,
@@ -551,7 +490,5 @@ class VendorAddingNewServiceScreen
     Get.back();
   }
 
-  onTapBtnSave() {
-    Get.toNamed(AppRoutes.vendorHomeScreenWithServicesScreen);
-  }
+  onTapBtnSave() {}
 }
