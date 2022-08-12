@@ -348,40 +348,6 @@ class UserHomeScreen extends StatelessWidget {
                                             ],
                                           ),
                                         )
-                                        //child:
-                                        // Obx(() => GridView.builder(
-                                        //     shrinkWrap: true,
-                                        //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                        //         mainAxisExtent:
-                                        //             getVerticalSize(96.00),
-                                        //         crossAxisCount: 2,
-                                        //         mainAxisSpacing:
-                                        //             getHorizontalSize(7.00),
-                                        //         crossAxisSpacing:
-                                        //             getHorizontalSize(
-                                        //                 7.00)),
-                                        //     physics:
-                                        //         BouncingScrollPhysics(),
-                                        //     itemCount: controller
-                                        //         .userHomeModelObj
-                                        //         .value
-                                        //         .gridpngegg1ItemList
-                                        //         .length,
-                                        //     itemBuilder: (context, index) {
-                                        //       Gridpngegg1ItemModel model =
-                                        //           controller
-                                        //                   .userHomeModelObj
-                                        //                   .value
-                                        //                   .gridpngegg1ItemList[
-                                        //               index];
-                                        //       return Gridpngegg1ItemWidget(
-                                        //           model,
-                                        //           onTapTxtMakeupartist:
-                                        //               onTapTxtMakeupartist);
-                                        //     }
-                                        //     )
-                                        //     )
-                                        //)
                                       ])))
                         ]))))));
   }
