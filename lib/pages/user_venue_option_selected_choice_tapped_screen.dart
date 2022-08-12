@@ -5,7 +5,7 @@ import 'package:kohilan_s_application1/core/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class UserVenueOptionSelectedChoiceTappedScreen
-    extends GetWidget<UserVenueOptionSelectedChoiceTappedController> {
+    extends GetWidget<UserMakeupArtistOptionSelectedChoiceTappedController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -90,7 +90,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                                                 getPadding(top: 3, bottom: 5),
                                                                             child: Container(height: getVerticalSize(19.00), width: getHorizontalSize(11.00), child: SvgPicture.asset(ImageConstant.imgArrowleftWhiteA700, fit: BoxFit.fill)))),
                                                                     Text(
-                                                                        "lbl_venue"
+                                                                        "lbl_makeup_artist"
                                                                             .tr,
                                                                         overflow:
                                                                             TextOverflow
@@ -154,7 +154,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                         Align(
                                             alignment: Alignment.center,
                                             child: Container(
-                                                height: getVerticalSize(196.00),
+                                                height: getVerticalSize(184.00),
                                                 width:
                                                     getHorizontalSize(305.00),
                                                 margin: getMargin(
@@ -190,7 +190,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                           child: Container(
                                                               height:
                                                                   getVerticalSize(
-                                                                      196.00),
+                                                                      184.00),
                                                               width:
                                                                   getHorizontalSize(
                                                                       305.00),
@@ -201,7 +201,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                                   children: [
                                                                     Obx(() => CarouselSlider.builder(
                                                                         options: CarouselOptions(
-                                                                            height: getVerticalSize(196.00),
+                                                                            height: getVerticalSize(184.00),
                                                                             initialPage: 0,
                                                                             autoPlay: true,
                                                                             viewportFraction: 1.0,
@@ -210,13 +210,13 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                                             onPageChanged: (index, reason) {
                                                                               controller.silderIndex.value = index;
                                                                             }),
-                                                                        itemCount: controller.userVenueOptionSelectedChoiceTappedModelObj.value.sliderselva1ItemList.length,
+                                                                        itemCount: controller.userMakeupArtistOptionSelectedChoiceTappedModelObj.value.sliderselva2ItemList.length,
                                                                         itemBuilder: (context, index, realIndex) {
-                                                                          Sliderselva1ItemModel model = controller
-                                                                              .userVenueOptionSelectedChoiceTappedModelObj
+                                                                          Sliderselva2ItemModel model = controller
+                                                                              .userMakeupArtistOptionSelectedChoiceTappedModelObj
                                                                               .value
-                                                                              .sliderselva1ItemList[index];
-                                                                          return Sliderselva1ItemWidget(
+                                                                              .sliderselva2ItemList[index];
+                                                                          return Sliderselva2ItemWidget(
                                                                               model);
                                                                         })),
                                                                     Align(
@@ -228,10 +228,10 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                                                 5.00),
                                                                             margin: getMargin(
                                                                                 left: 112,
-                                                                                top: 36,
+                                                                                top: 24,
                                                                                 right: 112,
-                                                                                bottom: 36),
-                                                                            child: AnimatedSmoothIndicator(activeIndex: controller.silderIndex.value, count: controller.userVenueOptionSelectedChoiceTappedModelObj.value.sliderselva1ItemList.length, axisDirection: Axis.horizontal, effect: ScrollingDotsEffect(spacing: 33, activeDotColor: ColorConstant.red901, dotColor: ColorConstant.gray401, dotHeight: getVerticalSize(5.00), dotWidth: getHorizontalSize(5.00))))))
+                                                                                bottom: 24),
+                                                                            child: AnimatedSmoothIndicator(activeIndex: controller.silderIndex.value, count: controller.userMakeupArtistOptionSelectedChoiceTappedModelObj.value.sliderselva2ItemList.length, axisDirection: Axis.horizontal, effect: ScrollingDotsEffect(spacing: 33, activeDotColor: ColorConstant.red901, dotColor: ColorConstant.gray401, dotHeight: getVerticalSize(5.00), dotWidth: getHorizontalSize(5.00))))))
                                                                   ])))
                                                     ]))),
                                         Align(
@@ -239,7 +239,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                             child: Padding(
                                                 padding: getPadding(
                                                     left: 19,
-                                                    top: 20,
+                                                    top: 32,
                                                     right: 19),
                                                 child: Row(
                                                     mainAxisAlignment:
@@ -280,13 +280,14 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                     ]))),
                                         Align(
                                             alignment: Alignment.centerLeft,
-                                            child: Padding(
-                                                padding: getPadding(
+                                            child: Container(
+                                                width:
+                                                    getHorizontalSize(121.00),
+                                                margin: getMargin(
                                                     left: 17, right: 17),
                                                 child: Text(
-                                                    "msg_no_1229_poon".tr,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
+                                                    "msg_no_31_vivekan".tr,
+                                                    maxLines: null,
                                                     textAlign: TextAlign.left,
                                                     style: AppStyle
                                                         .txtPoppinsRegular12Black900
@@ -296,10 +297,10 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                             child: Padding(
                                                 padding: getPadding(
                                                     left: 17,
-                                                    top: 54,
+                                                    top: 32,
                                                     right: 17),
                                                 child: Text(
-                                                    "lbl_meal_details".tr,
+                                                    "lbl_service_charges".tr,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     textAlign: TextAlign.left,

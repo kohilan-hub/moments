@@ -2,32 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kohilan_s_application1/core/app_export.dart';
 
-class UserVenueOptionSelectedScreen
-    extends GetWidget<UserVenueOptionSelectedController> {
+class UserVenueOptionSelectedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             backgroundColor: ColorConstant.whiteA700,
             body: Container(
+                margin: getMargin(bottom: 19),
                 child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                  Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                          height: getVerticalSize(56.00),
-                          width: size.width,
-                          child: Stack(alignment: Alignment.topLeft, children: [
+                      Expanded(
+                          child: SingleChildScrollView(
+                              child: Container(
+                                  child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Container(
-                                    width: size.width,
-                                    margin: getMargin(top: 2),
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.red900),
+                                    decoration: AppDecoration.fillRed900,
                                     child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -41,7 +42,9 @@ class UserVenueOptionSelectedScreen
                                               },
                                               child: Padding(
                                                   padding: getPadding(
-                                                      top: 4, bottom: 4),
+                                                      left: 18,
+                                                      top: 12,
+                                                      bottom: 11),
                                                   child: Container(
                                                       height: getVerticalSize(
                                                           19.00),
@@ -49,173 +52,97 @@ class UserVenueOptionSelectedScreen
                                                           11.00),
                                                       child: SvgPicture.asset(
                                                           ImageConstant
-                                                              .imgArrowleft,
+                                                              .imgArrowleftWhiteA700,
                                                           fit: BoxFit.fill)))),
-                                          Text("lbl_venue".tr,
-                                              overflow: TextOverflow.ellipsis,
-                                              textAlign: TextAlign.center,
-                                              style: AppStyle
-                                                  .txtVollkornRomanRegular20
-                                                  .copyWith()),
                                           Padding(
                                               padding:
-                                                  getPadding(top: 5, bottom: 5),
+                                                  getPadding(top: 8, bottom: 7),
+                                              child: Text("Makeup Artist",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.center,
+                                                  style: AppStyle
+                                                      .txtVollkornRomanRegular20
+                                                      .copyWith())),
+                                          Padding(
+                                              padding: getPadding(
+                                                  top: 13,
+                                                  right: 11,
+                                                  bottom: 12),
                                               child: Container(
                                                   height: getSize(17.00),
                                                   width: getSize(17.00),
                                                   child: SvgPicture.asset(
-                                                      ImageConstant.imgSearch,
+                                                      ImageConstant
+                                                          .imgSearch17X17,
                                                       fit: BoxFit.fill)))
                                         ]))),
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Container(
-                                    margin: getMargin(bottom: 10),
-                                    decoration: AppDecoration.fillRed901,
-                                    child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Container(
-                                                  decoration: AppDecoration
-                                                      .fillBlack90063,
-                                                  child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                            padding: getPadding(
-                                                                left: 4,
-                                                                top: 1,
-                                                                bottom: 2),
-                                                            child: Row(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Padding(
-                                                                      padding: getPadding(
-                                                                          top:
-                                                                              2),
-                                                                      child: Container(
-                                                                          height: getVerticalSize(
-                                                                              11.00),
-                                                                          width: getHorizontalSize(
-                                                                              14.00),
-                                                                          child: SvgPicture.asset(
-                                                                              ImageConstant.imgSignal,
-                                                                              fit: BoxFit.fill))),
-                                                                  Padding(
-                                                                      padding: getPadding(
-                                                                          left:
-                                                                              3),
-                                                                      child: Text(
-                                                                          "lbl_figma"
-                                                                              .tr,
-                                                                          overflow: TextOverflow
-                                                                              .ellipsis,
-                                                                          textAlign: TextAlign
-                                                                              .left,
-                                                                          style: AppStyle
-                                                                              .txtAssistantRegular12
-                                                                              .copyWith(height: 1.17))),
-                                                                  Padding(
-                                                                      padding: getPadding(
-                                                                          left:
-                                                                              8,
-                                                                          top:
-                                                                              1),
-                                                                      child: Container(
-                                                                          height: getVerticalSize(
-                                                                              12.00),
-                                                                          width: getHorizontalSize(
-                                                                              13.00),
-                                                                          child: SvgPicture.asset(
-                                                                              ImageConstant.imgSignal12X13,
-                                                                              fit: BoxFit.fill))),
-                                                                  Padding(
-                                                                      padding: getPadding(
-                                                                          left:
-                                                                              67),
-                                                                      child: Text(
-                                                                          "lbl_3_12_pm"
-                                                                              .tr,
-                                                                          overflow: TextOverflow
-                                                                              .ellipsis,
-                                                                          textAlign: TextAlign
-                                                                              .center,
-                                                                          style: AppStyle
-                                                                              .txtAssistantRegular12
-                                                                              .copyWith(height: 1.17)))
-                                                                ])),
-                                                        Padding(
-                                                            padding: getPadding(
-                                                                top: 2,
-                                                                right: 4,
-                                                                bottom: 1),
-                                                            child: Container(
-                                                                height:
-                                                                    getVerticalSize(
-                                                                        13.00),
-                                                                width:
-                                                                    getHorizontalSize(
-                                                                        22.00),
-                                                                child: SvgPicture.asset(
-                                                                    ImageConstant
-                                                                        .imgBattery,
-                                                                    fit: BoxFit
-                                                                        .fill)))
-                                                      ])))
-                                        ])))
-                          ]))),
-                  Container(
-                      width: double.infinity,
-                      margin: getMargin(left: 7, top: 11, right: 8),
-                      decoration: AppDecoration.fillWhiteA700,
-                      child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Align(
-                                alignment: Alignment.centerLeft,
-                                child: Obx(() => ListView.builder(
-                                    physics: BouncingScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: controller
-                                        .userVenueOptionSelectedModelObj
-                                        .value
-                                        .listselva1ItemList
-                                        .length,
-                                    itemBuilder: (context, index) {
-                                      Listselva1ItemModel model = controller
-                                          .userVenueOptionSelectedModelObj
-                                          .value
-                                          .listselva1ItemList[index];
-                                      return Listselva1ItemWidget(model,
-                                          onTapColumnselva1: onTapColumnselva1);
-                                    })))
-                          ]))
-                ]))));
+                            Padding(
+                              padding: getPadding(left: 7, top: 4, right: 8),
+                              child: Container(
+                                margin: const EdgeInsets.all(15.0),
+                                padding: const EdgeInsets.all(6.0),
+                                decoration: BoxDecoration(
+                                  color: Color(0xffF2F2F2),
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(
+                                          10.0) //                 <--- border radius here
+                                      ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.20),
+                                      spreadRadius: 0,
+                                      blurRadius: 4,
+                                      offset: Offset(
+                                          0, 4), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    FittedBox(
+                                      fit: BoxFit.fill,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 220,
+                                            image: AssetImage(
+                                                'assets/images/example_makup.jpg'),
+                                            fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                    Text("Zintrella Makeup",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w400))
+                                  ],
+                                ),
+                              ),
+                              // child: Obx(() => ListView.builder(
+                              //     physics: NeverScrollableScrollPhysics(),
+                              //     shrinkWrap: true,
+
+                              //     // itemBuilder: (context, index) {
+                              //     //   ListbridalposesphItemModel model = controller
+                              //     //       .userMakeupArtistOptionSelectedModelObj
+                              //     //       .value
+                              //     //       .listbridalposesphItemList[index];
+                              //     //   return ListbridalposesphItemWidget(model,
+                              //     //       onTapColumnbridalposesph:
+                              //     //           onTapColumnbridalposesph);
+                              //     // }
+                              //     ))
+                            )
+                          ]))))
+                    ]))));
   }
 
-  onTapColumnselva1() {
-    Get.toNamed(AppRoutes.userVenueOptionSelectedChoiceTappedScreen);
-  }
+  onTapColumnbridalposesph() {}
 
   onTapImgArrowleft() {
     Get.back();
