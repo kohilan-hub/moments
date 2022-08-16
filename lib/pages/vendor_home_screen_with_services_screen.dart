@@ -1,10 +1,10 @@
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kohilan_s_application1/core/app_export.dart';
 
-class VendorHomeScreenWithServicesScreen
-    extends GetWidget<VendorHomeScreenWithServicesController> {
+class VendorHomeScreenWithServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,75 +34,6 @@ class VendorHomeScreenWithServicesScreen
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Container(
-                                                height: getVerticalSize(15.00),
-                                                width: size.width,
-                                                child: Stack(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    children: [
-                                                      Align(
-                                                          alignment:
-                                                              Alignment.topLeft,
-                                                          child: Container(
-                                                              height:
-                                                                  getVerticalSize(
-                                                                      14.00),
-                                                              width: size.width,
-                                                              margin: getMargin(
-                                                                  bottom: 10),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      color: ColorConstant
-                                                                          .red901))),
-                                                      Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Container(
-                                                              decoration:
-                                                                  AppDecoration
-                                                                      .fillBlack90063,
-                                                              child: Row(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Padding(
-                                                                        padding: getPadding(
-                                                                            left:
-                                                                                4),
-                                                                        child: Row(
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.center,
-                                                                            mainAxisSize: MainAxisSize.max,
-                                                                            children: [
-                                                                              Padding(padding: getPadding(top: 2, bottom: 1), child: Container(height: getVerticalSize(10.00), width: getHorizontalSize(14.00), child: SvgPicture.asset(ImageConstant.imgSignal, fit: BoxFit.fill))),
-                                                                              Padding(padding: getPadding(left: 3), child: Text("lbl_figma".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtAssistantRegular12.copyWith(height: 1.17))),
-                                                                              Padding(padding: getPadding(left: 8, top: 1, bottom: 1), child: Container(height: getVerticalSize(11.00), width: getHorizontalSize(13.00), child: SvgPicture.asset(ImageConstant.imgSignal12X13, fit: BoxFit.fill))),
-                                                                              Padding(padding: getPadding(left: 67), child: Text("lbl_3_12_pm".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtAssistantRegular12.copyWith(height: 1.17)))
-                                                                            ])),
-                                                                    Padding(
-                                                                        padding: getPadding(
-                                                                            left:
-                                                                                112,
-                                                                            top:
-                                                                                2,
-                                                                            right:
-                                                                                4,
-                                                                            bottom:
-                                                                                1),
-                                                                        child: Container(
-                                                                            height:
-                                                                                getVerticalSize(11.00),
-                                                                            width: getHorizontalSize(22.00),
-                                                                            child: SvgPicture.asset(ImageConstant.imgBattery, fit: BoxFit.fill)))
-                                                                  ])))
-                                                    ]))),
                                         Padding(
                                             padding: getPadding(
                                                 left: 12, top: 8, right: 12),
@@ -167,7 +98,7 @@ class VendorHomeScreenWithServicesScreen
                                                                               bottom:
                                                                                   2),
                                                                           child: Text(
-                                                                              "lbl_add".tr,
+                                                                              "Add",
                                                                               overflow: TextOverflow.ellipsis,
                                                                               textAlign: TextAlign.left,
                                                                               style: AppStyle.txtPoppinsRegular12WhiteA700.copyWith()))
@@ -176,8 +107,7 @@ class VendorHomeScreenWithServicesScreen
                                                             padding: getPadding(
                                                                 left: 65),
                                                             child: Text(
-                                                                "lbl_services"
-                                                                    .tr,
+                                                                "Services",
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
@@ -203,25 +133,241 @@ class VendorHomeScreenWithServicesScreen
                                                                       .fill)))
                                                 ]))
                                       ])))),
-                      Padding(
-                          padding: getPadding(left: 19, top: 12, right: 19),
-                          child: Obx(() => ListView.builder(
-                              physics: BouncingScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: controller
-                                  .vendorHomeScreenWithServicesModelObj
-                                  .value
-                                  .listunsplash3rzd6kItemList
-                                  .length,
-                              itemBuilder: (context, index) {
-                                Listunsplash3rzd6kItemModel model = controller
-                                    .vendorHomeScreenWithServicesModelObj
-                                    .value
-                                    .listunsplash3rzd6kItemList[index];
-                                return Listunsplash3rzd6kItemWidget(model,
-                                    onTapBtnEdit: onTapBtnEdit,
-                                    onTapBtnDelete: onTapBtnDelete);
-                              }))),
+                      //Zintrella Makeup
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 15),
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                            color: Color(0xffF4F4F6),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Color(0xffC4C4C4),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height: MediaQuery.of(context).size.width / 3,
+                                  image: AssetImage(
+                                      'assets/images/Makeup Artist.png'),
+                                  //fit: BoxFit.cover
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.width / 3,
+                              // decoration: BoxDecoration(
+                              //   color: Color(0xffC4C4C4),
+                              // ),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Zintrella Makeup",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontFamily: 'Poppins',
+                                          fontWeight: FontWeight.w400)),
+                                  RichText(
+                                      text: const TextSpan(children: [
+                                    TextSpan(
+                                        text: 'Category: ',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.normal,
+                                            color: Color(0xffFF4521))),
+                                    TextSpan(
+                                        text: 'Makeup Artist',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w700,
+                                            color: Color(0xffFF4521))),
+                                  ])),
+                                  Row(
+                                    children: [
+                                      RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5.0),
+                                          ),
+                                          padding:
+                                              EdgeInsets.fromLTRB(10, 6, 10, 6),
+                                          color: Color(0xffDFDDDE),
+                                          onPressed: () => {},
+                                          child: Text('Edit',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontFamily: "Mulish"))),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                            
+                                            borderRadius:
+                                                BorderRadius.circular(5.0),
+                                          ),
+                                          padding:
+                                              EdgeInsets.fromLTRB(10, 6, 10, 6),
+                                          color: Color(0xffFF4521)
+                                              .withOpacity(0.68),
+                                          onPressed: () => deletingConfirmAlertBox(context),
+                                          child: Text('Delete',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontFamily: "Mulish"))),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+
+                      //Acthu Pappa Cakes
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 15),
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                            color: Color(0xffF4F4F6),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Color(0xffC4C4C4),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height: MediaQuery.of(context).size.width / 3,
+                                  image: AssetImage('assets/images/Cake.png'),
+                                  //fit: BoxFit.cover
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.width / 3,
+                              // decoration: BoxDecoration(
+                              //   color: Color(0xffC4C4C4),
+                              // ),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Acthu Pappa Cakes",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontFamily: 'Poppins',
+                                          fontWeight: FontWeight.w400)),
+                                  RichText(
+                                      text: const TextSpan(children: [
+                                    TextSpan(
+                                        text: 'Category: ',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.normal,
+                                            color: Color(0xffFF4521))),
+                                    TextSpan(
+                                        text: 'Cake',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w700,
+                                            color: Color(0xffFF4521))),
+                                  ])),
+                                  Row(
+                                    children: [
+                                      RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5.0),
+                                          ),
+                                          padding:
+                                              EdgeInsets.fromLTRB(10, 6, 10, 6),
+                                          color: Color(0xffDFDDDE),
+                                          onPressed: () => {},
+                                          child: Text('Edit',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontFamily: "Mulish"))),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5.0),
+                                          ),
+                                          padding:
+                                              EdgeInsets.fromLTRB(10, 6, 10, 6),
+                                          color: Color(0xffFF4521)
+                                              .withOpacity(0.68),
+                                          onPressed: () => deletingConfirmAlertBox(context),
+                                          child: Text('Delete',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontFamily: "Mulish"))),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      //
+                      // Padding(
+                      //     padding: getPadding(left: 19, top: 12, right: 19),
+                      //     // child: Obx(() => ListView.builder(
+                      //     physics: BouncingScrollPhysics(),
+                      //     shrinkWrap: true,
+                      //     itemCount: controller
+                      //         .vendorHomeScreenWithServicesModelObj
+                      //         .value
+                      //         .listunsplash3rzd6kItemList
+                      //         .length,
+                      //     itemBuilder: (context, index) {
+                      //       Listunsplash3rzd6kItemModel model = controller
+                      //           .vendorHomeScreenWithServicesModelObj
+                      //           .value
+                      //           .listunsplash3rzd6kItemList[index];
+                      //       return Listunsplash3rzd6kItemWidget(model,
+                      //           onTapBtnEdit: onTapBtnEdit,
+                      //           onTapBtnDelete: onTapBtnDelete);
+                      //     }))),
                       Container(
                           height: getVerticalSize(1.00),
                           width: getHorizontalSize(267.00),
@@ -258,7 +404,7 @@ class VendorHomeScreenWithServicesScreen
                                             top: 13,
                                             right: 22,
                                             bottom: 13),
-                                        child: Text("lbl_add_service".tr,
+                                        child: Text("Add Service",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
                                             style: AppStyle
@@ -268,19 +414,143 @@ class VendorHomeScreenWithServicesScreen
                     ]))))));
   }
 
-  onTapBtnEdit() {
-    Get.toNamed(AppRoutes.vendorEditingAExistingServiceScreen);
+deletingConfirmAlertBox(BuildContext context) {
+    return showDialog(
+                                              context: context,
+                                              builder: (ctx) => AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  side: BorderSide(color: Color(0xff950320),width: 1.5),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10.0))),
+                                                content: Column(
+                                                  
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Text("Are you sure?",
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .black,
+                                                              fontSize: 16,
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400)),
+                                                      Text("Deleting",
+                                                          style: TextStyle(
+                                                              color: Color(
+                                                                  0xffAF0B2C),
+                                                              fontSize: 16,
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400)),
+                                                      Text("Zintrella Makeup",
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .black,
+                                                              fontSize: 16,
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400)),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          RaisedButton(
+                                                              elevation: 0,
+                                                              shape:
+                                                                  RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5.0),
+                                                              ),
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .fromLTRB(
+                                                                          10,
+                                                                          6,
+                                                                          10,
+                                                                          6),
+                                                              color: Color(
+                                                                  0xff2bff4520),
+                                                              //#2bff4520
+                                                              // Color(0xffFF4521#2bff4520)
+                                                              //     .withOpacity(0.68),
+                                                              onPressed:
+                                                                  () => {
+                                                                        Navigator.of(ctx)
+                                                                            .pop()
+                                                                      },
+                                                              child: Text(
+                                                                  'Yes',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                      fontFamily:
+                                                                          "Mulish"))),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          RaisedButton(
+                                                              shape:
+                                                                  RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5.0),
+                                                              ),
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .fromLTRB(
+                                                                          10,
+                                                                          6,
+                                                                          10,
+                                                                          6),
+                                                              color: Color(
+                                                                  0xffDFDDDE),
+                                                              onPressed:
+                                                                  () => {
+                                                                        Navigator.of(ctx)
+                                                                            .pop()
+                                                                      },
+                                                              child: Text(
+                                                                  'No',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                      fontFamily:
+                                                                          "Mulish"))),
+                                                        ],
+                                                      )
+                                                    ]),
+                                              ),
+                                            );
   }
 
-  onTapBtnDelete() {
-    Get.toNamed(AppRoutes.vendorDeletingAExistingServiceScreen);
-  }
+  onTapBtnEdit() {}
 
-  onTapRowplus() {
-    Get.toNamed(AppRoutes.vendorAddingNewServiceScreen);
-  }
+  onTapBtnDelete() {}
 
-  onTapRowplus1() {
-    Get.toNamed(AppRoutes.vendorAddingNewServiceScreen);
-  }
+  onTapRowplus() {}
+
+  onTapRowplus1() {}
 }

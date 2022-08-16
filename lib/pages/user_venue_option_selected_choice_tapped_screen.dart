@@ -4,8 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kohilan_s_application1/core/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class UserVenueOptionSelectedChoiceTappedScreen
-    extends GetWidget<UserMakeupArtistOptionSelectedChoiceTappedController> {
+class UserVenueOptionSelectedChoiceTappedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,210 +29,163 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Container(
-                                                height: getVerticalSize(56.00),
-                                                width: size.width,
                                                 child: Stack(
                                                     alignment:
                                                         Alignment.centerLeft,
                                                     children: [
-                                                      Align(
-                                                          alignment: Alignment
-                                                              .bottomCenter,
-                                                          child: Padding(
-                                                              padding:
-                                                                  getPadding(
-                                                                      left: 90,
-                                                                      top: 10,
-                                                                      right: 90,
-                                                                      bottom:
-                                                                          10),
-                                                              child: Text(
-                                                                  "lbl_v".tr,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: AppStyle
-                                                                      .txtFjordOne13WhiteA700
-                                                                      .copyWith()))),
-                                                      Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Container(
-                                                              width: size.width,
-                                                              margin: getMargin(
-                                                                  top: 2),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                      color: ColorConstant
-                                                                          .red900),
-                                                              child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          onTapImgArrowleft();
-                                                                        },
-                                                                        child: Padding(
-                                                                            padding:
-                                                                                getPadding(top: 3, bottom: 5),
-                                                                            child: Container(height: getVerticalSize(19.00), width: getHorizontalSize(11.00), child: SvgPicture.asset(ImageConstant.imgArrowleftWhiteA700, fit: BoxFit.fill)))),
-                                                                    Text(
-                                                                        "lbl_makeup_artist"
-                                                                            .tr,
-                                                                        overflow:
-                                                                            TextOverflow
-                                                                                .ellipsis,
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .center,
-                                                                        style: AppStyle
-                                                                            .txtVollkornRomanRegular20
-                                                                            .copyWith()),
-                                                                    Padding(
+                                                  Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Container(
+                                                          width: size.width,
+                                                          decoration: BoxDecoration(
+                                                              color:
+                                                                  ColorConstant
+                                                                      .red900),
+                                                          child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                GestureDetector(
+                                                                    onTap: () {
+                                                                      onTapImgArrowleft();
+                                                                    },
+                                                                    child: Padding(
                                                                         padding: getPadding(
                                                                             top:
-                                                                                4,
+                                                                                3,
                                                                             bottom:
-                                                                                6),
+                                                                                5),
                                                                         child: Container(
                                                                             height:
-                                                                                getSize(17.00),
-                                                                            width: getSize(17.00),
-                                                                            child: SvgPicture.asset(ImageConstant.imgSearch17X17, fit: BoxFit.fill)))
-                                                                  ]))),
-                                                      Align(
-                                                          alignment:
-                                                              Alignment.topLeft,
-                                                          child: Container(
-                                                              margin: getMargin(
-                                                                  bottom: 10),
-                                                              decoration:
-                                                                  AppDecoration
-                                                                      .fillRed901,
-                                                              child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Align(
-                                                                        alignment:
-                                                                            Alignment.centerLeft,
-                                                                        child: Container(
-                                                                            decoration: AppDecoration.fillBlack90063,
-                                                                            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, mainAxisSize: MainAxisSize.max, children: [
-                                                                              Padding(
-                                                                                  padding: getPadding(left: 4, top: 1, bottom: 2),
-                                                                                  child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisSize: MainAxisSize.max, children: [
-                                                                                    Padding(padding: getPadding(top: 2), child: Container(height: getVerticalSize(11.00), width: getHorizontalSize(14.00), child: SvgPicture.asset(ImageConstant.imgSignal, fit: BoxFit.fill))),
-                                                                                    Padding(padding: getPadding(left: 3), child: Text("lbl_figma".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtAssistantRegular12.copyWith(height: 1.17))),
-                                                                                    Padding(padding: getPadding(left: 8, top: 1), child: Container(height: getVerticalSize(12.00), width: getHorizontalSize(13.00), child: SvgPicture.asset(ImageConstant.imgSignal12X13, fit: BoxFit.fill))),
-                                                                                    Padding(padding: getPadding(left: 67), child: Text("lbl_3_12_pm".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: AppStyle.txtAssistantRegular12.copyWith(height: 1.17)))
-                                                                                  ])),
-                                                                              Padding(padding: getPadding(top: 2, right: 4, bottom: 1), child: Container(height: getVerticalSize(13.00), width: getHorizontalSize(22.00), child: SvgPicture.asset(ImageConstant.imgBattery, fit: BoxFit.fill)))
-                                                                            ])))
-                                                                  ])))
-                                                    ]))),
+                                                                                getVerticalSize(19.00),
+                                                                            width: getHorizontalSize(11.00),
+                                                                            child: SvgPicture.asset(ImageConstant.imgArrowleftWhiteA700, fit: BoxFit.fill)))),
+                                                                Text("Venue",
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: AppStyle
+                                                                        .txtVollkornRomanRegular20
+                                                                        .copyWith()),
+                                                                Padding(
+                                                                    padding: getPadding(
+                                                                        top: 4,
+                                                                        bottom:
+                                                                            6),
+                                                                    child: Container(
+                                                                        height: getSize(
+                                                                            17.00),
+                                                                        width: getSize(
+                                                                            17.00),
+                                                                        child: SvgPicture.asset(
+                                                                            ImageConstant
+                                                                                .imgSearch17X17,
+                                                                            fit:
+                                                                                BoxFit.fill)))
+                                                              ]))),
+                                                ]))),
                                         Align(
                                             alignment: Alignment.center,
                                             child: Container(
-                                                height: getVerticalSize(184.00),
-                                                width:
-                                                    getHorizontalSize(305.00),
-                                                margin: getMargin(
-                                                    left: 7, top: 12, right: 8),
                                                 child: Stack(
-                                                    alignment:
-                                                        Alignment.centerLeft,
+                                                    //
                                                     children: [
-                                                      Align(
-                                                          alignment: Alignment
-                                                              .topCenter,
-                                                          child: Padding(
+                                                  Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Container(
+                                                          child: Stack(
+                                                              alignment: Alignment
+                                                                  .bottomCenter,
+                                                              children: [
+                                                            Padding(
                                                               padding:
                                                                   getPadding(
-                                                                      left: 94,
-                                                                      right: 94,
-                                                                      bottom:
-                                                                          10),
-                                                              child: Text(
-                                                                  "lbl_hgh".tr,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: AppStyle
-                                                                      .txtFjordOne13WhiteA700
-                                                                      .copyWith()))),
-                                                      Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Container(
-                                                              height:
-                                                                  getVerticalSize(
-                                                                      184.00),
-                                                              width:
-                                                                  getHorizontalSize(
-                                                                      305.00),
-                                                              child: Stack(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .bottomCenter,
+                                                                      left: 7,
+                                                                      top: 4,
+                                                                      right: 8),
+                                                              child: Container(
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        15.0),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        6.0),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Color(
+                                                                      0xffF2F2F2),
+                                                                  borderRadius:
+                                                                      BorderRadius.all(
+                                                                          Radius.circular(
+                                                                              10.0) //                 <--- border radius here
+                                                                          ),
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      color: Colors
+                                                                          .black
+                                                                          .withOpacity(
+                                                                              0.20),
+                                                                      spreadRadius:
+                                                                          0,
+                                                                      blurRadius:
+                                                                          4,
+                                                                      offset: Offset(
+                                                                          0,
+                                                                          4), // changes position of shadow
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                child: Column(
                                                                   children: [
-                                                                    Obx(() => CarouselSlider.builder(
-                                                                        options: CarouselOptions(
-                                                                            height: getVerticalSize(184.00),
-                                                                            initialPage: 0,
-                                                                            autoPlay: true,
-                                                                            viewportFraction: 1.0,
-                                                                            enableInfiniteScroll: false,
-                                                                            scrollDirection: Axis.horizontal,
-                                                                            onPageChanged: (index, reason) {
-                                                                              controller.silderIndex.value = index;
-                                                                            }),
-                                                                        itemCount: controller.userMakeupArtistOptionSelectedChoiceTappedModelObj.value.sliderselva2ItemList.length,
-                                                                        itemBuilder: (context, index, realIndex) {
-                                                                          Sliderselva2ItemModel model = controller
-                                                                              .userMakeupArtistOptionSelectedChoiceTappedModelObj
-                                                                              .value
-                                                                              .sliderselva2ItemList[index];
-                                                                          return Sliderselva2ItemWidget(
-                                                                              model);
-                                                                        })),
-                                                                    Align(
-                                                                        alignment:
-                                                                            Alignment
-                                                                                .bottomCenter,
-                                                                        child: Obx(() => Container(
-                                                                            height: getVerticalSize(
-                                                                                5.00),
-                                                                            margin: getMargin(
-                                                                                left: 112,
-                                                                                top: 24,
-                                                                                right: 112,
-                                                                                bottom: 24),
-                                                                            child: AnimatedSmoothIndicator(activeIndex: controller.silderIndex.value, count: controller.userMakeupArtistOptionSelectedChoiceTappedModelObj.value.sliderselva2ItemList.length, axisDirection: Axis.horizontal, effect: ScrollingDotsEffect(spacing: 33, activeDotColor: ColorConstant.red901, dotColor: ColorConstant.gray401, dotHeight: getVerticalSize(5.00), dotWidth: getHorizontalSize(5.00))))))
-                                                                  ])))
-                                                    ]))),
+                                                                    FittedBox(
+                                                                      fit: BoxFit
+                                                                          .fill,
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10),
+                                                                        child: Image(
+                                                                            width: MediaQuery.of(context)
+                                                                                .size
+                                                                                .width,
+                                                                            height:
+                                                                                220,
+                                                                            image:
+                                                                                AssetImage('assets/images/Hall1.jpg'),
+                                                                            fit: BoxFit.cover),
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                        "Selva Hall",
+                                                                        style: TextStyle(
+                                                                            color: Colors
+                                                                                .black,
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontFamily:
+                                                                                'Poppins',
+                                                                            fontWeight:
+                                                                                FontWeight.w400))
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ])))
+                                                ]))),
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
@@ -266,8 +218,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                       Padding(
                                                           padding: getPadding(
                                                               left: 2),
-                                                          child: Text(
-                                                              "lbl_jaffna2".tr,
+                                                          child: Text("Jaffna",
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -286,7 +237,8 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                 margin: getMargin(
                                                     left: 17, right: 17),
                                                 child: Text(
-                                                    "msg_no_31_vivekan".tr,
+                                                    "No: 1229,\nPoonari Maraththady,\nAB16,\nJaffna 40000"
+                                                        .tr,
                                                     maxLines: null,
                                                     textAlign: TextAlign.left,
                                                     style: AppStyle
@@ -299,8 +251,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                     left: 17,
                                                     top: 32,
                                                     right: 17),
-                                                child: Text(
-                                                    "lbl_service_charges".tr,
+                                                child: Text("Meal Details".tr,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     textAlign: TextAlign.left,
@@ -326,7 +277,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                     mainAxisSize:
                                                         MainAxisSize.min,
                                                     children: [
-                                                      Text("lbl_veg_food".tr,
+                                                      Text("Veg food".tr,
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           textAlign:
@@ -338,7 +289,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                           padding: getPadding(
                                                               left: 50),
                                                           child: Text(
-                                                              "lbl_rs_750".tr,
+                                                              "Rs.750/=".tr,
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -373,8 +324,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                     mainAxisSize:
                                                         MainAxisSize.min,
                                                     children: [
-                                                      Text(
-                                                          "lbl_non_veg_food".tr,
+                                                      Text("Non-Veg food".tr,
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           textAlign:
@@ -386,7 +336,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                           padding: getPadding(
                                                               left: 20),
                                                           child: Text(
-                                                              "lbl_rs_850".tr,
+                                                              "Rs.850/=".tr,
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
@@ -411,27 +361,6 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                     alignment:
                                                         Alignment.centerLeft,
                                                     children: [
-                                                      Align(
-                                                          alignment: Alignment
-                                                              .topCenter,
-                                                          child: Padding(
-                                                              padding:
-                                                                  getPadding(
-                                                                      left: 81,
-                                                                      right: 81,
-                                                                      bottom:
-                                                                          10),
-                                                              child: Text(
-                                                                  "lbl_next".tr,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: AppStyle
-                                                                      .txtFjordOne13WhiteA700
-                                                                      .copyWith()))),
                                                       Align(
                                                           alignment: Alignment
                                                               .centerLeft,
@@ -459,7 +388,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                                             bottom:
                                                                                 12),
                                                                         child: Text(
-                                                                            "lbl_contact_now"
+                                                                            "Contact now"
                                                                                 .tr,
                                                                             overflow:
                                                                                 TextOverflow.ellipsis,
@@ -479,7 +408,7 @@ class UserVenueOptionSelectedChoiceTappedScreen
                                                                             ImageConstant
                                                                                 .imgPngegg101,
                                                                             height:
-                                                                                getVerticalSize(37.00),
+                                                                                getVerticalSize(35.00),
                                                                             width: getHorizontalSize(35.00),
                                                                             fit: BoxFit.fill))
                                                                   ])))

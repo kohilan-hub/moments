@@ -85,7 +85,7 @@ class ImageConstant {
 
   static String imgUnsplash3rzd6k = 'assets/images/img_unsplash3rzd6k.png';
 
-  static String imgPngegg101 = 'assets/images/img_pngegg101.png';
+  static String imgPngegg101 = 'assets/images/Whatsapp.png';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
 }

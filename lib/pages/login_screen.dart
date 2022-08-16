@@ -9,7 +9,7 @@ import 'package:kohilan_s_application1/domain/googleauth/google_auth_helper.dart
 import 'package:kohilan_s_application1/domain/facebookauth/facebook_auth_helper.dart';
 
 // ignore_for_file: must_be_immutable
-class LoginScreen extends GetWidget<LoginController> {
+class LoginScreen extends StatelessWidget {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -131,8 +131,8 @@ class LoginScreen extends GetWidget<LoginController> {
                                                           width: 236,
                                                           focusNode:
                                                               FocusNode(),
-                                                          controller: controller
-                                                              .emailaddressController1,
+                                                          //controller: controller
+                                                             // .emailaddressController1,
                                                           hintText:
                                                               "lbl_email_address"
                                                                   .tr,
@@ -157,8 +157,8 @@ class LoginScreen extends GetWidget<LoginController> {
                                                           width: 236,
                                                           focusNode:
                                                               FocusNode(),
-                                                          controller: controller
-                                                              .passwordController1,
+                                                          // controller: controller
+                                                          //     .passwordController1,
                                                           hintText:
                                                               "lbl_password".tr,
                                                           margin: getMargin(
@@ -356,7 +356,7 @@ class LoginScreen extends GetWidget<LoginController> {
   }
 
   onTapBtnLogin() {
-    Get.toNamed(AppRoutes.userHomeScreen);
+    // Get.toNamed(AppRoutes.userHomeScreen);
   }
 
   onTapRowrefresh() async {
@@ -380,6 +380,6 @@ class LoginScreen extends GetWidget<LoginController> {
   }
 
   onTapTxtDonthaveacco() {
-    Get.toNamed(AppRoutes.chooseRoleScreen);
+    // Get.toNamed(AppRoutes.chooseRoleScreen);
   }
 }

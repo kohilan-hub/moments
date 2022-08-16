@@ -205,6 +205,14 @@ class AppStyle {
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w400,
   );
+  static TextStyle txtExistingService = TextStyle(
+    color: Colors.black,
+    fontSize: getFontSize(
+      16,
+    ),
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+  );
 
   static TextStyle txtVollkornRomanRegular20Red901 = TextStyle(
     color: ColorConstant.red901,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:kohilan_s_application1/core/app_export.dart';
 import 'package:kohilan_s_application1/core/utils/validation_functions.dart';
@@ -6,7 +5,7 @@ import 'package:kohilan_s_application1/widgets/custom_button.dart';
 import 'package:kohilan_s_application1/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
-class SignupScreen extends GetWidget<SignupController> {
+class SignupScreen extends StatelessWidget {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -189,9 +188,9 @@ class SignupScreen extends GetWidget<SignupController> {
                                                                     width: 236,
                                                                     focusNode:
                                                                         FocusNode(),
-                                                                    controller:
-                                                                        controller
-                                                                            .nameController,
+                                                                    // controller:
+                                                                    //     controller
+                                                                    //         .nameController,
                                                                     hintText:
                                                                         "lbl_name2"
                                                                             .tr,
@@ -216,9 +215,9 @@ class SignupScreen extends GetWidget<SignupController> {
                                                                     width: 236,
                                                                     focusNode:
                                                                         FocusNode(),
-                                                                    controller:
-                                                                        controller
-                                                                            .emailaddressController,
+                                                                    // controller:
+                                                                    //     controller
+                                                                    //         .emailaddressController,
                                                                     hintText:
                                                                         "lbl_email_address"
                                                                             .tr,
@@ -243,9 +242,9 @@ class SignupScreen extends GetWidget<SignupController> {
                                                                     width: 236,
                                                                     focusNode:
                                                                         FocusNode(),
-                                                                    controller:
-                                                                        controller
-                                                                            .passwordController,
+                                                                    // controller:
+                                                                    //     controller
+                                                                    //         .passwordController,
                                                                     hintText:
                                                                         "lbl_password"
                                                                             .tr,
@@ -272,9 +271,9 @@ class SignupScreen extends GetWidget<SignupController> {
                                                                     width: 236,
                                                                     focusNode:
                                                                         FocusNode(),
-                                                                    controller:
-                                                                        controller
-                                                                            .confirmpasswordController,
+                                                                    // controller:
+                                                                    //     controller
+                                                                    //         .confirmpasswordController,
                                                                     hintText:
                                                                         "msg_confirm_passwor"
                                                                             .tr,
@@ -360,10 +359,10 @@ class SignupScreen extends GetWidget<SignupController> {
   }
 
   onTapBtnCreateyouracc() {
-    Get.toNamed(AppRoutes.userHomeScreen);
+    // Get.toNamed(AppRoutes.userHomeScreen);
   }
 
   onTapTxtAlreadyhavean() {
-    Get.toNamed(AppRoutes.loginScreen);
+    // Get.toNamed(AppRoutes.loginScreen);
   }
 }
