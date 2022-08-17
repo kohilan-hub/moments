@@ -10,7 +10,7 @@
 
 
     <application
-        android:label="kohilan_s_application1"
+        android:label="Moments"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

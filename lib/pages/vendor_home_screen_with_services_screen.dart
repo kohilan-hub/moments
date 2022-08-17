@@ -9,6 +9,44 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              leadingWidth: 90,
+              leading: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xffBF1235),
+                  borderRadius: BorderRadius.circular(3),
+                ),
+                margin: EdgeInsets.all(10),
+                child: RaisedButton.icon(
+                    elevation: 0,
+                    padding: EdgeInsets.all(0),
+                    onPressed: null,
+                    icon: Icon(
+                      Icons.add_circle_outline,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                    label: Text('Add',
+                        style:
+                            AppStyle.txtPoppinsRegular12WhiteA700.copyWith())),
+              ),
+              centerTitle: true,
+              title: Text("Services",
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: AppStyle.txtVollkornRomanRegular18.copyWith()),
+              actions: <Widget>[
+                IconButton(
+                  onPressed: null,
+                  icon: Icon(
+                    Icons.account_circle_outlined,
+                    size: 30.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
             backgroundColor: ColorConstant.whiteA700,
             body: Container(
                 width: size.width,
@@ -19,120 +57,6 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                              width: size.width,
-                              decoration:
-                                  BoxDecoration(color: ColorConstant.red900),
-                              child: Container(
-                                  margin: getMargin(bottom: 6),
-                                  child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                            padding: getPadding(
-                                                left: 12, top: 8, right: 12),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        GestureDetector(
-                                                            onTap: () {
-                                                              onTapRowplus();
-                                                            },
-                                                            child: Container(
-                                                                margin:
-                                                                    getMargin(
-                                                                        bottom:
-                                                                            4),
-                                                                decoration: AppDecoration
-                                                                    .fillRed800
-                                                                    .copyWith(
-                                                                        borderRadius:
-                                                                            BorderRadiusStyle
-                                                                                .roundedBorder3),
-                                                                child: Row(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      Padding(
-                                                                          padding: getPadding(
-                                                                              left:
-                                                                                  7,
-                                                                              top:
-                                                                                  5,
-                                                                              bottom:
-                                                                                  6),
-                                                                          child: Container(
-                                                                              height: getSize(10.00),
-                                                                              width: getSize(10.00),
-                                                                              child: SvgPicture.asset(ImageConstant.imgPlus10X10, fit: BoxFit.fill))),
-                                                                      Padding(
-                                                                          padding: getPadding(
-                                                                              left:
-                                                                                  4,
-                                                                              top:
-                                                                                  1,
-                                                                              right:
-                                                                                  4,
-                                                                              bottom:
-                                                                                  2),
-                                                                          child: Text(
-                                                                              "Add",
-                                                                              overflow: TextOverflow.ellipsis,
-                                                                              textAlign: TextAlign.left,
-                                                                              style: AppStyle.txtPoppinsRegular12WhiteA700.copyWith()))
-                                                                    ]))),
-                                                        Padding(
-                                                            padding: getPadding(
-                                                                left: 65),
-                                                            child: Text(
-                                                                "Services",
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .left,
-                                                                style: AppStyle
-                                                                    .txtVollkornRomanRegular18
-                                                                    .copyWith()))
-                                                      ]),
-                                                  Padding(
-                                                      padding: getPadding(
-                                                          top: 1, bottom: 4),
-                                                      child: Container(
-                                                          height:
-                                                              getSize(20.00),
-                                                          width: getSize(20.00),
-                                                          child:
-                                                              SvgPicture.asset(
-                                                                  ImageConstant
-                                                                      .imgUser,
-                                                                  fit: BoxFit
-                                                                      .fill)))
-                                                ]))
-                                      ])))),
                       //Zintrella Makeup
                       Container(
                         margin: const EdgeInsets.symmetric(
@@ -218,7 +142,6 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                                       ),
                                       RaisedButton(
                                           shape: RoundedRectangleBorder(
-                                            
                                             borderRadius:
                                                 BorderRadius.circular(5.0),
                                           ),
@@ -226,7 +149,8 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                                               EdgeInsets.fromLTRB(10, 6, 10, 6),
                                           color: Color(0xffFF4521)
                                               .withOpacity(0.68),
-                                          onPressed: () => deletingConfirmAlertBox(context),
+                                          onPressed: () =>
+                                              deletingConfirmAlertBox(context),
                                           child: Text('Delete',
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -333,7 +257,8 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                                               EdgeInsets.fromLTRB(10, 6, 10, 6),
                                           color: Color(0xffFF4521)
                                               .withOpacity(0.68),
-                                          onPressed: () => deletingConfirmAlertBox(context),
+                                          onPressed: () =>
+                                              deletingConfirmAlertBox(context),
                                           child: Text('Delete',
                                               style: TextStyle(
                                                   color: Colors.black,
@@ -414,136 +339,73 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                     ]))))));
   }
 
-deletingConfirmAlertBox(BuildContext context) {
+  deletingConfirmAlertBox(BuildContext context) {
     return showDialog(
-                                              context: context,
-                                              builder: (ctx) => AlertDialog(
-                                                shape: RoundedRectangleBorder(
-                                                  side: BorderSide(color: Color(0xff950320),width: 1.5),
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                10.0))),
-                                                content: Column(
-                                                  
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Text("Are you sure?",
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .black,
-                                                              fontSize: 16,
-                                                              fontFamily:
-                                                                  'Poppins',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400)),
-                                                      Text("Deleting",
-                                                          style: TextStyle(
-                                                              color: Color(
-                                                                  0xffAF0B2C),
-                                                              fontSize: 16,
-                                                              fontFamily:
-                                                                  'Poppins',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400)),
-                                                      Text("Zintrella Makeup",
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .black,
-                                                              fontSize: 16,
-                                                              fontFamily:
-                                                                  'Poppins',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400)),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
-                                                        children: [
-                                                          RaisedButton(
-                                                              elevation: 0,
-                                                              shape:
-                                                                  RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          10,
-                                                                          6,
-                                                                          10,
-                                                                          6),
-                                                              color: Color(
-                                                                  0xff2bff4520),
-                                                              //#2bff4520
-                                                              // Color(0xffFF4521#2bff4520)
-                                                              //     .withOpacity(0.68),
-                                                              onPressed:
-                                                                  () => {
-                                                                        Navigator.of(ctx)
-                                                                            .pop()
-                                                                      },
-                                                              child: Text(
-                                                                  'Yes',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontSize:
-                                                                          16,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontFamily:
-                                                                          "Mulish"))),
-                                                          SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          RaisedButton(
-                                                              shape:
-                                                                  RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.0),
-                                                              ),
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          10,
-                                                                          6,
-                                                                          10,
-                                                                          6),
-                                                              color: Color(
-                                                                  0xffDFDDDE),
-                                                              onPressed:
-                                                                  () => {
-                                                                        Navigator.of(ctx)
-                                                                            .pop()
-                                                                      },
-                                                              child: Text(
-                                                                  'No',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontSize:
-                                                                          16,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontFamily:
-                                                                          "Mulish"))),
-                                                        ],
-                                                      )
-                                                    ]),
-                                              ),
-                                            );
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Color(0xff950320), width: 1.5),
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        content: Column(mainAxisSize: MainAxisSize.min, children: [
+          Text("Are you sure?",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400)),
+          Text("Deleting",
+              style: TextStyle(
+                  color: Color(0xffAF0B2C),
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400)),
+          Text("Zintrella Makeup",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              RaisedButton(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
+                  color: Color(0xff2bff4520),
+                  //#2bff4520
+                  // Color(0xffFF4521#2bff4520)
+                  //     .withOpacity(0.68),
+                  onPressed: () => {Navigator.of(ctx).pop()},
+                  child: Text('Yes',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "Mulish"))),
+              SizedBox(
+                width: 10,
+              ),
+              RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
+                  color: Color(0xffDFDDDE),
+                  onPressed: () => {Navigator.of(ctx).pop()},
+                  child: Text('No',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "Mulish"))),
+            ],
+          )
+        ]),
+      ),
+    );
   }
 
   onTapBtnEdit() {}

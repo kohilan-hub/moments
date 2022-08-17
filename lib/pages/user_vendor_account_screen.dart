@@ -8,6 +8,23 @@ class UserVendorAccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              leading: IconButton(
+                onPressed: null,
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  size: 30.0,
+                  color: Colors.white,
+                ),
+              ),
+              centerTitle: true,
+              title: Text("Account",
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: AppStyle.txtVollkornRomanRegular18.copyWith()),
+              // actions: <Widget>[],
+            ),
             backgroundColor: ColorConstant.whiteA700,
             body: Container(
                 width: size.width,
@@ -17,72 +34,6 @@ class UserVendorAccountScreen extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                              width: size.width,
-                              decoration:
-                                  BoxDecoration(color: ColorConstant.red900),
-                              child: Container(
-                                  margin: getMargin(bottom: 6),
-                                  child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Padding(
-                                                padding: getPadding(
-                                                    left: 18,
-                                                    top: 8,
-                                                    right: 18),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      GestureDetector(
-                                                          onTap: () {
-                                                            onTapImgArrowleft();
-                                                          },
-                                                          child: Padding(
-                                                              padding:
-                                                                  getPadding(
-                                                                      top: 3,
-                                                                      bottom:
-                                                                          2),
-                                                              child: Container(
-                                                                  height:
-                                                                      getVerticalSize(
-                                                                          19.00),
-                                                                  width:
-                                                                      getHorizontalSize(
-                                                                          11.00),
-                                                                  child: SvgPicture.asset(
-                                                                      ImageConstant
-                                                                          .imgArrowleftWhiteA700,
-                                                                      fit: BoxFit
-                                                                          .fill)))),
-                                                      Padding(
-                                                          padding: getPadding(
-                                                              left: 96),
-                                                          child: Text("Account",
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left,
-                                                              style: AppStyle
-                                                                  .txtVollkornRomanRegular18
-                                                                  .copyWith()))
-                                                    ])))
-                                      ])))),
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Container(

@@ -7,6 +7,32 @@ class UserSearchItemNotFoundScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              leading: IconButton(
+                onPressed: null,
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  size: 30.0,
+                  color: Colors.white,
+                ),
+              ),
+              centerTitle: true,
+              title: Text("Colombo",
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: AppStyle.txtVollkornRomanRegular18.copyWith()),
+              actions: <Widget>[
+                IconButton(
+                  onPressed: null,
+                  icon: Icon(
+                    Icons.search,
+                    size: 30.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
             backgroundColor: ColorConstant.whiteA700,
             body: Container(
                 width: size.width,
@@ -17,72 +43,6 @@ class UserSearchItemNotFoundScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                              height: getVerticalSize(56.00),
-                              width: size.width,
-                              child: Stack(
-                                  alignment: Alignment.centerLeft,
-                                  children: [
-                                    Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Container(
-                                            width: size.width,
-                                            margin: getMargin(top: 2),
-                                            decoration: BoxDecoration(
-                                                color: ColorConstant.red900),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  GestureDetector(
-                                                      onTap: () {
-                                                        onTapImgArrowleft();
-                                                      },
-                                                      child: Padding(
-                                                          padding: getPadding(
-                                                              top: 3,
-                                                              bottom: 5),
-                                                          child: Container(
-                                                              height:
-                                                                  getVerticalSize(
-                                                                      19.00),
-                                                              width:
-                                                                  getHorizontalSize(
-                                                                      11.00),
-                                                              child: SvgPicture.asset(
-                                                                  ImageConstant
-                                                                      .imgArrowleftWhiteA700,
-                                                                  fit: BoxFit
-                                                                      .fill)))),
-                                                  Text("Colombo",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: AppStyle
-                                                          .txtVollkornRomanRegular20
-                                                          .copyWith()),
-                                                  Padding(
-                                                      padding: getPadding(
-                                                          top: 4, bottom: 6),
-                                                      child: Container(
-                                                          height:
-                                                              getSize(17.00),
-                                                          width: getSize(17.00),
-                                                          child: SvgPicture.asset(
-                                                              ImageConstant
-                                                                  .imgSearch17X17,
-                                                              fit:
-                                                                  BoxFit.fill)))
-                                                ]))),
-                                    //
-                                  ]))),
                       Padding(
                           padding: getPadding(left: 38, top: 159, right: 38),
                           child: Text("Nothing Found",

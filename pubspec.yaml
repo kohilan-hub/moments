@@ -18,9 +18,18 @@ dependencies:
   flutter_svg: ^0.22.0
   carousel_slider: ^4.0.0
   smooth_page_indicator: ^1.0.0+2
+
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
+  flutter_launcher_icons: "^0.10.0"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon.png"
+
+
 flutter: 
   uses-material-design: true
   assets: 
