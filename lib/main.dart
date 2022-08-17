@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kohilan_s_application1/pages/choose_role_screen.dart';
-import 'package:kohilan_s_application1/pages/login_screen.dart';
-import 'package:kohilan_s_application1/pages/onboarding_screen_1_screen.dart';
-import 'package:kohilan_s_application1/pages/register_screen.dart';
-import 'package:kohilan_s_application1/pages/vendor_adding_new_service_screen.dart';
+import 'pages/choose_role_screen.dart';
+import 'pages/login_screen.dart';
+import 'pages/onboarding_screen_1_screen.dart';
+import 'pages/register_screen.dart';
+import 'pages/vendor_adding_new_service_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'core/app_export.dart';
 
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme:
           ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
       //initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
-      home: VendorHomeScreen(),
+      home: VendorHomeScreenWithServicesScreen(),
     );
   }
 }

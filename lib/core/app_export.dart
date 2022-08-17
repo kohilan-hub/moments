@@ -1,26 +1,26 @@
 export 'package:get/get.dart';
 
-export 'package:kohilan_s_application1/localization/app_localization.dart';
+export 'package:moments/localization/app_localization.dart';
 
-export 'package:kohilan_s_application1/core/constants/constants.dart';
+export 'package:moments/core/constants/constants.dart';
 
-export 'package:kohilan_s_application1/core/utils/image_constant.dart';
-export 'package:kohilan_s_application1/core/utils/color_constant.dart';
+export 'package:moments/core/utils/image_constant.dart';
+export 'package:moments/core/utils/color_constant.dart';
 
-export 'package:kohilan_s_application1/core/utils/math_utils.dart';
-export 'package:kohilan_s_application1/core/utils/pref_utils.dart';
+export 'package:moments/core/utils/math_utils.dart';
+export 'package:moments/core/utils/pref_utils.dart';
 
-export 'package:kohilan_s_application1/core/utils/initial_bindings.dart';
+export 'package:moments/core/utils/initial_bindings.dart';
 
-export 'package:kohilan_s_application1/theme/app_style.dart';
-export 'package:kohilan_s_application1/theme/app_decoration.dart';
+export 'package:moments/theme/app_style.dart';
+export 'package:moments/theme/app_decoration.dart';
 
 export 'package:connectivity_plus/connectivity_plus.dart';
 
-export 'package:kohilan_s_application1/data/models/selectionPopupModel/selection_popup_model.dart';
+export 'package:moments/data/models/selectionPopupModel/selection_popup_model.dart';
 
-export 'package:kohilan_s_application1/widgets/common_network_image.dart';
-export 'package:kohilan_s_application1/widgets/paginated_list_view.dart';
+export 'package:moments/widgets/common_network_image.dart';
+export 'package:moments/widgets/paginated_list_view.dart';
 
-export 'package:kohilan_s_application1/core/errors/exceptions.dart';
-export 'package:kohilan_s_application1/core/network/network_info.dart';
+export 'package:moments/core/errors/exceptions.dart';
+export 'package:moments/core/network/network_info.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kohilan_s_application1/core/app_export.dart';
-import 'package:kohilan_s_application1/core/utils/validation_functions.dart';
-import 'package:kohilan_s_application1/widgets/custom_button.dart';
-import 'package:kohilan_s_application1/widgets/custom_text_form_field.dart';
+import 'package:moments/core/app_export.dart';
+import 'package:moments/core/utils/validation_functions.dart';
+import 'package:moments/widgets/custom_button.dart';
+import 'package:moments/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class SignupScreen extends StatelessWidget {

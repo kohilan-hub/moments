@@ -1,12 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kohilan_s_application1/core/app_export.dart';
-import 'package:kohilan_s_application1/core/utils/validation_functions.dart';
-import 'package:kohilan_s_application1/widgets/custom_button.dart';
-import 'package:kohilan_s_application1/widgets/custom_text_form_field.dart';
-import 'package:kohilan_s_application1/domain/googleauth/google_auth_helper.dart';
-import 'package:kohilan_s_application1/domain/facebookauth/facebook_auth_helper.dart';
+import 'package:moments/core/app_export.dart';
+import 'package:moments/core/utils/validation_functions.dart';
+import 'package:moments/widgets/custom_button.dart';
+import 'package:moments/widgets/custom_text_form_field.dart';
+import 'package:moments/domain/googleauth/google_auth_helper.dart';
+import 'package:moments/domain/facebookauth/facebook_auth_helper.dart';
 
 // ignore_for_file: must_be_immutable
 class LoginScreen extends StatelessWidget {
@@ -132,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                                                           focusNode:
                                                               FocusNode(),
                                                           //controller: controller
-                                                             // .emailaddressController1,
+                                                          // .emailaddressController1,
                                                           hintText:
                                                               "lbl_email_address"
                                                                   .tr,

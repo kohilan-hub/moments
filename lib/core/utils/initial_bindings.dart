@@ -1,5 +1,5 @@
-import 'package:kohilan_s_application1/core/app_export.dart';
-import 'package:kohilan_s_application1/data/apiClient/api_client.dart';
+import 'package:moments/core/app_export.dart';
+import 'package:moments/data/apiClient/api_client.dart';
 
 class InitialBindings extends Bindings {
   @override

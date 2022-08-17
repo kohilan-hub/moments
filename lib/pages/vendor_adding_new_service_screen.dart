@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kohilan_s_application1/core/app_export.dart';
-import 'package:kohilan_s_application1/widgets/custom_button.dart';
-import 'package:kohilan_s_application1/widgets/custom_icon_button.dart';
+import 'package:moments/core/app_export.dart';
+import 'package:moments/widgets/custom_button.dart';
+import 'package:moments/widgets/custom_icon_button.dart';
 
 class VendorAddingNewServiceScreen extends StatelessWidget {
   @override

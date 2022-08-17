@@ -1,8 +1,6 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:kohilan_s_application1/core/app_export.dart';
-import 'package:kohilan_s_application1/widgets/custom_button.dart';
+import 'package:moments/core/app_export.dart';
+import 'package:moments/widgets/custom_button.dart';
 
 import 'onboarding_screen_2_screen.dart';
 

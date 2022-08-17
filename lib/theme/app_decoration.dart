@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kohilan_s_application1/core/app_export.dart';
+import 'package:moments/core/app_export.dart';
 
 class AppDecoration {
   static BoxDecoration get outlineBluegray100 => BoxDecoration(
