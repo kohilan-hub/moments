@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moments/core/app_export.dart';
+import 'package:moments/pages/vendor_home_screen.dart';
 
 class VendorHomeScreenWithServicesScreen extends StatelessWidget {
   @override
@@ -47,7 +48,6 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
             ),
             backgroundColor: ColorConstant.whiteA700,
             body: Container(
-              
                 child: SingleChildScrollView(
                     child: Container(
                         child: Column(
@@ -117,9 +117,6 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                                         color: Color(0xffFF4521))),
                               ])),
                               Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -129,7 +126,7 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                                         ),
                                         padding:
                                             EdgeInsets.fromLTRB(10, 6, 10, 6),
-                                            //fixedSize:,
+                                        fixedSize: Size.fromWidth(90),
                                         primary: Color(0xffDFDDDE),
                                       ),
                                       onPressed: () => {},
@@ -140,7 +137,7 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                                               fontWeight: FontWeight.w700,
                                               fontFamily: "Mulish"))),
                                   SizedBox(
-                                    width: 20,
+                                    width: 10,
                                   ),
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -148,6 +145,7 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(5.0),
                                         ),
+                                        fixedSize: Size.fromWidth(90),
                                         padding:
                                             EdgeInsets.fromLTRB(10, 6, 10, 6),
                                         primary:
@@ -233,14 +231,17 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                               ])),
                               Row(
                                 children: [
-                                  RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0),
+                                  ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                        ),
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 6, 10, 6),
+                                        fixedSize: Size.fromWidth(90),
+                                        primary: Color(0xffDFDDDE),
                                       ),
-                                      padding:
-                                          EdgeInsets.fromLTRB(10, 6, 10, 6),
-                                      color: Color(0xffDFDDDE),
                                       onPressed: () => {},
                                       child: Text('Edit',
                                           style: TextStyle(
@@ -251,15 +252,18 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                                   SizedBox(
                                     width: 10,
                                   ),
-                                  RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0),
+                                  ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                        ),
+                                        fixedSize: Size.fromWidth(90),
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 6, 10, 6),
+                                        primary:
+                                            Color(0xffFF4521).withOpacity(0.68),
                                       ),
-                                      padding:
-                                          EdgeInsets.fromLTRB(10, 6, 10, 6),
-                                      color:
-                                          Color(0xffFF4521).withOpacity(0.68),
                                       onPressed: () =>
                                           deletingConfirmAlertBox(context),
                                       child: Text('Delete',
@@ -301,42 +305,34 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
                       width: getHorizontalSize(267.00),
                       margin: getMargin(left: 19, top: 18, right: 19),
                       decoration: BoxDecoration(color: ColorConstant.gray401)),
-                  GestureDetector(
-                      onTap: () {
-                        onTapRowplus1();
-                      },
-                      child: Container(
-                          margin: getMargin(
-                              left: 19, top: 17, right: 19, bottom: 178),
-                          decoration: AppDecoration.fillRed901.copyWith(
-                              borderRadius: BorderRadiusStyle.roundedBorder3),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                    padding: getPadding(
-                                        left: 19, top: 13, bottom: 13),
-                                    child: Container(
-                                        height: getSize(20.00),
-                                        width: getSize(20.00),
-                                        child: SvgPicture.asset(
-                                            ImageConstant.imgPlus10X10,
-                                            fit: BoxFit.fill))),
-                                Padding(
-                                    padding: getPadding(
-                                        left: 6,
-                                        top: 13,
-                                        right: 22,
-                                        bottom: 13),
-                                    child: Text("Add Service",
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.left,
-                                        style: AppStyle
-                                            .txtMulishSemiBold16WhiteA700
-                                            .copyWith()))
-                              ])))
+                  Container(
+                    margin: getMargin(left: 82, top: 20, right: 80),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xffAF0B2C),
+                        elevation: 0,
+                        padding: EdgeInsets.fromLTRB(19, 13, 19, 13),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                      ),
+                      onPressed: () => Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (_) => VendorHomeScreen())),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.add_circle_outline,
+                            color: Colors.white,
+                          ),
+                          Text('Add Service',
+                              style: AppStyle.txtMulishSemiBold16WhiteA700
+                                  .copyWith())
+                        ],
+                      ),
+                    ),
+                  ),
                 ]))))));
   }
 
@@ -369,16 +365,15 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              RaisedButton(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xff2bff4520),
+                    elevation: 0,
+                    padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
                   ),
-                  padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
-                  color: Color(0xff2bff4520),
-                  //#2bff4520
-                  // Color(0xffFF4521#2bff4520)
-                  //     .withOpacity(0.68),
                   onPressed: () => {Navigator.of(ctx).pop()},
                   child: Text('Yes',
                       style: TextStyle(
@@ -389,12 +384,15 @@ class VendorHomeScreenWithServicesScreen extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xffDFDDDE),
+                    elevation: 0,
+                    padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
                   ),
-                  padding: EdgeInsets.fromLTRB(10, 6, 10, 6),
-                  color: Color(0xffDFDDDE),
                   onPressed: () => {Navigator.of(ctx).pop()},
                   child: Text('No',
                       style: TextStyle(

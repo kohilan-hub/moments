@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moments/core/app_export.dart';
 
 import 'vendor_adding_new_service_screen.dart';
@@ -40,20 +39,32 @@ class VendorHomeScreen extends StatelessWidget {
                       Container(
                         margin: getMargin(
                             left: 82, top: 207, right: 80, bottom: 261),
-                        child: RaisedButton.icon(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xffAF0B2C),
+                            elevation: 0,
                             padding: EdgeInsets.fromLTRB(19, 13, 19, 13),
-                            color: Color(0xffAF0B2C),
-                            onPressed: () => Navigator.of(context)
-                                .pushReplacement(MaterialPageRoute(
-                                    builder: (_) =>
-                                        VendorAddingNewServiceScreen())),
-                            icon: Icon(
-                              Icons.add_circle_outline,
-                              color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
                             ),
-                            label: Text('Add Service',
-                                style: AppStyle.txtMulishSemiBold16WhiteA700
-                                    .copyWith())),
+                          ),
+                          onPressed: () => Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                                  builder: (_) =>
+                                      VendorAddingNewServiceScreen())),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.add_circle_outline,
+                                color: Colors.white,
+                              ),
+                              Text('Add Service',
+                                  style: AppStyle.txtMulishSemiBold16WhiteA700
+                                      .copyWith())
+                            ],
+                          ),
+                        ),
                       ),
                     ]))))));
   }

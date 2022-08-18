@@ -1,8 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moments/core/app_export.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class UserVenueOptionSelectedChoiceTappedScreen extends StatelessWidget {
   @override

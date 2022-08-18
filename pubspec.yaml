@@ -2,7 +2,7 @@ name: moments
 description: A new Flutter project.
 version: 1.0.0+1
 environment: 
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.16.0 <3.0.0"
 dependencies: 
   flutter: 
     sdk: flutter
@@ -18,6 +18,9 @@ dependencies:
   flutter_svg: ^0.22.0
   carousel_slider: ^4.0.0
   smooth_page_indicator: ^1.0.0+2
+
+  #Firebase Database
+  cloud_firestore: ^3.4.4
 
 dev_dependencies: 
   flutter_test: 

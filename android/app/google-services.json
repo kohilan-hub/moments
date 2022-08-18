@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "319060627455",
+    "project_id": "moments-6th-sem",
+    "storage_bucket": "moments-6th-sem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319060627455:android:fca9fe6b913e26c656a1ca",
+        "android_client_info": {
+          "package_name": "com.moments_application.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319060627455-lk3tv1ph30nqqk94q8bie10bmndak587.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVAft456TnsLXk-96tHTbLpjXG4EiXDZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319060627455-lk3tv1ph30nqqk94q8bie10bmndak587.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
