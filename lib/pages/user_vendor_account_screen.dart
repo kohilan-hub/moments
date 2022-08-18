@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moments/core/app_export.dart';
 import 'package:moments/widgets/custom_button.dart';
 
