@@ -14,7 +14,7 @@ class OnboardingScreen2Screen extends StatelessWidget {
             body: Container(
                 child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                   Stack(
                     clipBehavior: Clip.none,
@@ -39,7 +39,9 @@ class OnboardingScreen2Screen extends StatelessWidget {
                                           spreadRadius: 5,
                                           blurRadius: 14,
                                           offset: Offset(0, 4))
-                                    ]))),
+                                    ])
+                                    )
+                                    ),
                       ),
                       Positioned(
                         top: 480,
@@ -63,6 +65,9 @@ class OnboardingScreen2Screen extends StatelessWidget {
                                     ]))),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 150,
                   ),
                   Container(
                     //Design Box by KH
@@ -148,18 +153,22 @@ class OnboardingScreen2Screen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  TextButton(onPressed: () => {}, child: Text("Next")),
-                  CustomButton(
-                    width: 122,
-                    text: "Next",
-                    //margin: getMargin(left: 34, top: 60, right: 34, bottom: 60),
-                    variant: ButtonVariant.FillWhiteA700,
-                    shape: ButtonShape.RoundedBorder8,
-                    padding: ButtonPadding.PaddingAll14,
-                    fontStyle: ButtonFontStyle.PoppinsRegular13,
-                    onTap: () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (_) => OnboardingScreen3Screen())),
+                  SizedBox(
+                    height: 150,
+                  ),
+                  Center(
+                    child: CustomButton(
+                      width: 122,
+                      text: "Next",
+                      margin: EdgeInsets.only(bottom: 40),
+                      variant: ButtonVariant.FillWhiteA700,
+                      shape: ButtonShape.RoundedBorder8,
+                      padding: ButtonPadding.PaddingAll14,
+                      fontStyle: ButtonFontStyle.PoppinsRegular13,
+                      onTap: () => Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (_) => OnboardingScreen3Screen())),
+                    ),
                   ),
                 ]))));
   }

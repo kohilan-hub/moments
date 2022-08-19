@@ -1,384 +1,332 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moments/core/app_export.dart';
-import 'package:moments/core/utils/validation_functions.dart';
-import 'package:moments/widgets/custom_button.dart';
-import 'package:moments/widgets/custom_text_form_field.dart';
-import 'package:moments/domain/googleauth/google_auth_helper.dart';
-import 'package:moments/domain/facebookauth/facebook_auth_helper.dart';
+import 'package:flutter_svg/svg.dart';
 
-// ignore_for_file: must_be_immutable
-class LoginScreen extends StatelessWidget {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:moments/pages/signup_screen.dart';
+import 'package:moments/pages/user_home_screen.dart';
+
+import '../core/utils/color_constant.dart';
+import '../core/utils/math_utils.dart';
+
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  //form key
+  final _formKey = GlobalKey<FormState>();
+
+  //editing controller
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
+    //email field
+    final emailField = TextFormField(
+      autofocus: false,
+      controller: emailController,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter Your Email");
+        }
+        //reg expression for email validation
+        if (!RegExp("^[a-zA-Z0-9+_.-]+.[a-z]").hasMatch(value)) {
+          return ("Please Enter a valid email");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        emailController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Color(0xFFF1F5F9),
+          prefixIcon: Icon(Icons.mail),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Email",
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          )),
+    );
+
+    //Password field
+    final passwordField = TextFormField(
+      autofocus: false,
+      controller: passwordController,
+      obscureText: true,
+
+      validator: (value) {
+        RegExp regex = new RegExp(r'^.{6,}$');
+        if (value!.isEmpty) {
+          return ("Password is required to login");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Please Enter valid Password(Min 6 Character)");
+        }
+      },
+
+      //validator : () {},
+      onSaved: (value) {
+        passwordController.text = value!;
+      },
+      textInputAction: TextInputAction.done,
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Color(0xFFF1F5F9),
+          prefixIcon: Icon(Icons.vpn_key),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Password",
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          )),
+    );
+
+    //login start button
+    final loginButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(8),
+      color: Color(0xFFAF0B2C),
+      child: MaterialButton(
+          minWidth: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
+          height: 40,
+          onPressed: () {
+            sigIn(emailController.text, passwordController.text);
+          },
+          child: Text(
+            "Log in",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 20, color: Colors.white, fontFamily: 'Poppins'),
+          )),
+    );
+
+    //Facebook button
+    final facebookButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(8),
+      color: Color(0xFFF1F5F9),
+      child: MaterialButton(
+          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+          height: 10,
+          onPressed: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
+          },
+          child: Text(
+            "Facebook",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 20, color: Colors.black, fontFamily: 'Poppins'),
+          )),
+    );
+
+    //Google button
+    final googleButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(8),
+      color: Color(0xFFF1F5F9),
+      child: MaterialButton(
+          padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+          onPressed: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
+          },
+          child: Text(
+            "Google",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 20, color: Colors.black, fontFamily: 'Poppins'),
+          )),
+    );
+
     return SafeArea(
-        child: Scaffold(
-            backgroundColor: ColorConstant.whiteA700,
-            body: Container(
-                width: size.width,
-                child: SingleChildScrollView(
+      child: Scaffold(
+        body: Center(
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text: "M",
+                                style: TextStyle(
+                                    color: ColorConstant.red901,
+                                    fontSize: getFontSize(35),
+                                    fontFamily: 'KyivType Sans',
+                                    fontWeight: FontWeight.bold)),
+                            TextSpan(
+                                text: "oments",
+                                style: TextStyle(
+                                    color: ColorConstant.red901,
+                                    fontSize: getFontSize(25),
+                                    fontFamily: 'KyivType Sans',
+                                    fontWeight: FontWeight.w400))
+                          ]),
+                          textAlign: TextAlign.center),
+                      Positioned(
+                        left: 36.5,
+                        top: 19,
+                        child: SizedBox(
+                          height: 27,
+                          width: 27,
+                          child: SvgPicture.asset(
+                            'assets/icons/ring.svg',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(26.0),
                     child: Form(
-                        key: _formKey,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        child: Container(
-                            height: size.height,
-                            width: size.width,
-                            child: Stack(children: [
-                              Align(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                      margin: getMargin(
-                                          left: 11,
-                                          top: 18,
-                                          right: 11,
-                                          bottom: 20),
-                                      child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                                width: size.width,
-                                                margin: getMargin(
-                                                    left: 15, right: 15),
-                                                child: Container(
-                                                    height:
-                                                        getVerticalSize(44.00),
-                                                    width: getHorizontalSize(
-                                                        165.00),
-                                                    child: Stack(
-                                                        alignment: Alignment
-                                                            .bottomLeft,
-                                                        children: [
-                                                          Align(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .topLeft,
-                                                              child: Container(
-                                                                  margin:
-                                                                      getMargin(
-                                                                          bottom:
-                                                                              10),
-                                                                  child: RichText(
-                                                                      text: TextSpan(children: [
-                                                                        TextSpan(
-                                                                            text: "lbl_m3"
-                                                                                .tr,
-                                                                            style: TextStyle(
-                                                                                color: ColorConstant.red901,
-                                                                                fontSize: getFontSize(35),
-                                                                                fontFamily: 'KyivType Sans',
-                                                                                fontWeight: FontWeight.w700)),
-                                                                        TextSpan(
-                                                                            text: "lbl_o_ments2"
-                                                                                .tr,
-                                                                            style: TextStyle(
-                                                                                color: ColorConstant.red901,
-                                                                                fontSize: getFontSize(25),
-                                                                                fontFamily: 'KyivType Sans',
-                                                                                fontWeight: FontWeight.w400))
-                                                                      ]),
-                                                                      textAlign: TextAlign.center))),
-                                                          Align(
-                                                              alignment: Alignment
-                                                                  .bottomLeft,
-                                                              child: Padding(
-                                                                  padding:
-                                                                      getPadding(
-                                                                          left:
-                                                                              45,
-                                                                          top:
-                                                                              10,
-                                                                          right:
-                                                                              45),
-                                                                  child: Image.asset(
-                                                                      ImageConstant
-                                                                          .imgIcons8ringsid,
-                                                                      height: getSize(
-                                                                          30.00),
-                                                                      width: getSize(
-                                                                          30.00),
-                                                                      fit: BoxFit
-                                                                          .fill)))
-                                                        ]))),
-                                            Container(
-                                                width: double.infinity,
-                                                margin: getMargin(
-                                                    left: 15,
-                                                    top: 28,
-                                                    right: 15),
-                                                decoration: AppDecoration
-                                                    .fillWhiteA700
-                                                    .copyWith(
-                                                        borderRadius:
-                                                            BorderRadiusStyle
-                                                                .roundedBorder30),
-                                                child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      CustomTextFormField(
-                                                          width: 236,
-                                                          focusNode:
-                                                              FocusNode(),
-                                                          //controller: controller
-                                                          // .emailaddressController1,
-                                                          hintText:
-                                                              "lbl_email_address"
-                                                                  .tr,
-                                                          margin: getMargin(
-                                                              left: 12,
-                                                              top: 32,
-                                                              right: 12),
-                                                          shape:
-                                                              TextFormFieldShape
-                                                                  .RoundedBorder2,
-                                                          validator: (value) {
-                                                            if (value == null ||
-                                                                (!isValidEmail(
-                                                                    value,
-                                                                    isRequired:
-                                                                        true))) {
-                                                              return "Please enter valid email";
-                                                            }
-                                                            return null;
-                                                          }),
-                                                      CustomTextFormField(
-                                                          width: 236,
-                                                          focusNode:
-                                                              FocusNode(),
-                                                          // controller: controller
-                                                          //     .passwordController1,
-                                                          hintText:
-                                                              "lbl_password".tr,
-                                                          margin: getMargin(
-                                                              left: 12,
-                                                              top: 28,
-                                                              right: 12),
-                                                          shape:
-                                                              TextFormFieldShape
-                                                                  .RoundedBorder2,
-                                                          textInputAction:
-                                                              TextInputAction
-                                                                  .done,
-                                                          validator: (value) {
-                                                            if (value == null ||
-                                                                (!isValidPassword(
-                                                                    value,
-                                                                    isRequired:
-                                                                        true))) {
-                                                              return "Please enter valid password";
-                                                            }
-                                                            return null;
-                                                          },
-                                                          isObscureText: true),
-                                                      CustomButton(
-                                                          width: 236,
-                                                          text: "lbl_login".tr,
-                                                          margin: getMargin(
-                                                              left: 12,
-                                                              top: 28,
-                                                              right: 12,
-                                                              bottom: 36),
-                                                          variant: ButtonVariant
-                                                              .OutlineRed901,
-                                                          shape: ButtonShape
-                                                              .RoundedBorder8,
-                                                          padding: ButtonPadding
-                                                              .PaddingAll10,
-                                                          fontStyle: ButtonFontStyle
-                                                              .PoppinsRegular15,
-                                                          onTap: onTapBtnLogin)
-                                                    ])),
-                                            Padding(
-                                                padding: getPadding(
-                                                    left: 15,
-                                                    top: 9,
-                                                    right: 15),
-                                                child: Text(
-                                                    "msg_forgot_password".tr,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.center,
-                                                    style: AppStyle
-                                                        .txtPoppinsRegular14
-                                                        .copyWith())),
-                                            Padding(
-                                                padding: getPadding(
-                                                    left: 15,
-                                                    top: 27,
-                                                    right: 15),
-                                                child: Text(
-                                                    "msg_or_continue_wit".tr,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle
-                                                        .txtRobotoRomanRegular14
-                                                        .copyWith(
-                                                            height: 1.43))),
-                                            Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                    padding:
-                                                        getPadding(top: 16),
-                                                    child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          GestureDetector(
-                                                              onTap: () {
-                                                                onTapRowrefresh();
-                                                              },
-                                                              child: Container(
-                                                                  decoration: AppDecoration
-                                                                      .fillGray102
-                                                                      .copyWith(
-                                                                          borderRadius: BorderRadiusStyle
-                                                                              .roundedBorder3),
-                                                                  child: Row(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .center,
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      children: [
-                                                                        Padding(
-                                                                            padding: getPadding(
-                                                                                left: 36,
-                                                                                top: 12,
-                                                                                bottom: 12),
-                                                                            child: Container(height: getSize(16.00), width: getSize(16.00), child: SvgPicture.asset(ImageConstant.imgRefresh, fit: BoxFit.fill))),
-                                                                        Padding(
-                                                                            padding: getPadding(
-                                                                                left: 8,
-                                                                                top: 10,
-                                                                                right: 37,
-                                                                                bottom: 10),
-                                                                            child: Text("lbl_google".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtRobotoRomanRegular14Bluegray700.copyWith(height: 1.43)))
-                                                                      ]))),
-                                                          GestureDetector(
-                                                              onTap: () {
-                                                                onTapRowfacebook();
-                                                              },
-                                                              child: Container(
-                                                                  decoration: AppDecoration
-                                                                      .fillGray102
-                                                                      .copyWith(
-                                                                          borderRadius: BorderRadiusStyle
-                                                                              .roundedBorder3),
-                                                                  child: Row(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .center,
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      children: [
-                                                                        Padding(
-                                                                            padding: getPadding(
-                                                                                left: 28,
-                                                                                top: 12,
-                                                                                bottom: 12),
-                                                                            child: Image.asset(ImageConstant.imgFrame, height: getSize(16.00), width: getSize(16.00), fit: BoxFit.fill)),
-                                                                        Padding(
-                                                                            padding: getPadding(
-                                                                                left: 8,
-                                                                                top: 10,
-                                                                                right: 28,
-                                                                                bottom: 10),
-                                                                            child: Text("lbl_facebook".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtRobotoRomanRegular14Bluegray700.copyWith(height: 1.43)))
-                                                                      ])))
-                                                        ]))),
-                                            GestureDetector(
-                                                onTap: () {
-                                                  onTapTxtDonthaveacco();
-                                                },
-                                                child: Container(
-                                                    margin: getMargin(
-                                                        left: 15,
-                                                        top: 30,
-                                                        right: 15),
-                                                    child: RichText(
-                                                        text:
-                                                            TextSpan(children: [
-                                                          TextSpan(
-                                                              text: "msg_don_t_have_acco2"
-                                                                  .tr,
-                                                              style: TextStyle(
-                                                                  color: ColorConstant
-                                                                      .gray602,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          14),
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400)),
-                                                          TextSpan(
-                                                              text: "lbl_create_now"
-                                                                  .tr,
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      ColorConstant
-                                                                          .red901,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          14),
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500))
-                                                        ]),
-                                                        textAlign:
-                                                            TextAlign.left)))
-                                          ])))
-                            ])))))));
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(3.0, 0),
+                                ),
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(-3.0, 0),
+                                ),
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(0, 0),
+                                ),
+                                BoxShadow(
+                                    color: Colors.white,
+                                    spreadRadius: 2,
+                                    blurRadius: 4.0,
+                                    offset: Offset(0, 7)),
+                              ],
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(20, 80, 20, 30),
+                              child: Column(
+                                children: [
+                                  emailField,
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                  passwordField,
+                                  SizedBox(height: 30),
+                                  loginButton,
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Forget password?",
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+                          Text(
+                            "Or continue with",
+                            style: TextStyle(
+                              color: Colors.black12,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 17,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 45,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              googleButton,
+                              SizedBox(
+                                width: 45,
+                              ),
+                              facebookButton,
+                            ],
+                          ),
+                          SizedBox(
+                            height: 45,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "Don't have account? ",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SignupScreen()));
+                                },
+                                child: Text(
+                                  "Create now",
+                                  style: TextStyle(
+                                    color: Color(0xFFAF0B2C),
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-  onTapBtnLogin() {
-    // Get.toNamed(AppRoutes.userHomeScreen);
-  }
-
-  onTapRowrefresh() async {
-    await GoogleAuthHelper().googleSignInProcess().then((googleUser) {
-      if (googleUser != null) {
-        //TODO Actions to be performed after signin
-      } else {
-        Get.snackbar('Error', 'user data is empty');
-      }
-    }).catchError((onError) {
-      Get.snackbar('Error', onError.toString());
-    });
-  }
-
-  onTapRowfacebook() async {
-    await FacebookAuthHelper().facebookSignInProcess().then((facebookUser) {
-      //TODO Actions to be performed after signin
-    }).catchError((onError) {
-      Get.snackbar('Error', onError.toString());
-    });
-  }
-
-  onTapTxtDonthaveacco() {
-    // Get.toNamed(AppRoutes.chooseRoleScreen);
+  void sigIn(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: "Login Sucessful"),
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => UserHomeScreen()))
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
   }
 }

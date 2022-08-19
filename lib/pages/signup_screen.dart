@@ -1,368 +1,288 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:moments/core/app_export.dart';
-import 'package:moments/core/utils/validation_functions.dart';
-import 'package:moments/widgets/custom_button.dart';
-import 'package:moments/widgets/custom_text_form_field.dart';
+import 'package:moments/model/user_model.dart';
 
-// ignore_for_file: must_be_immutable
-class SignupScreen extends StatelessWidget {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:moments/pages/login_screen.dart';
+import 'package:moments/pages/user_home_screen.dart';
+
+class SignupScreen extends StatefulWidget {
+  SignupScreen({Key? key}) : super(key: key);
+
+  @override
+  _SignupScreenState createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  //form key
+  final _formKey = GlobalKey<FormState>();
+
+  //editing controller
+  final TextEditingController nameController = new TextEditingController();
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController confirmPasswordController =
+      new TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: ColorConstant.red901,
-            body: Form(
+    //Name field start
+    final nameField = TextFormField(
+      autofocus: false,
+      controller: nameController,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        RegExp regex = new RegExp(r'^.{3,}$');
+        if (value!.isEmpty) {
+          return ("Name can't be empty");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Please Enter valid Name(Min 3 Character)");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        nameController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          prefixIcon: Icon(Icons.account_circle),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Name",
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          )),
+    );
+    //Name field end
+
+    //email field
+    final emailField = TextFormField(
+      autofocus: false,
+      controller: emailController,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter Your Email");
+        }
+        //reg expression for email validation
+        if (!RegExp("^[a-zA-Z0-9+_.-]+.[a-z]").hasMatch(value)) {
+          return ("Please Enter a valid email");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        emailController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          prefixIcon: Icon(Icons.mail),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Email",
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          )),
+    );
+
+    //Password field
+    final passwordField = TextFormField(
+      autofocus: false,
+      controller: passwordController,
+      obscureText: true,
+
+      validator: (value) {
+        RegExp regex = new RegExp(r'^.{6,}$');
+        if (value!.isEmpty) {
+          return ("Password is required to login");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Please Enter valid Password(Min 6 Character)");
+        }
+      },
+
+      //validator : () {},
+      onSaved: (value) {
+        passwordController.text = value!;
+      },
+      textInputAction: TextInputAction.done,
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          prefixIcon: Icon(Icons.vpn_key),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Password",
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          )),
+    );
+
+    //confirm Password field
+    final confirmPasswordField = TextFormField(
+      autofocus: false,
+      controller: confirmPasswordController,
+      obscureText: true,
+
+      validator: (value) {
+        if (confirmPasswordController.text != passwordController.text) {
+          return "Password don't match";
+        }
+        return null;
+      },
+
+      //validator : () {},
+      onSaved: (value) {
+        confirmPasswordController.text = value!;
+      },
+      textInputAction: TextInputAction.done,
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          prefixIcon: Icon(Icons.vpn_key),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Confirm Password",
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          )),
+    );
+    //confirm password
+
+    //Signup button
+    final SignupButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(8),
+      color: Color(0xFF950320),
+      child: MaterialButton(
+          minWidth: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+          height: 40,
+          onPressed: () {
+            signUp(emailController.text, passwordController.text);
+          },
+          child: Text(
+            "Create your account",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 20, color: Colors.white, fontFamily: 'Poppins'),
+          )),
+    );
+
+    return Scaffold(
+      backgroundColor: Color(0xFFAF0B2C),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/SignupScreen.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(36.0),
+              child: Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Container(
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.end,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 80, 20, 30),
+                      child: Column(
                         children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                              width: double.infinity,
-                              decoration: AppDecoration.outlineRed90112,
-                              child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Container(
-                                            height: getVerticalSize(136.00),
-                                            width: getHorizontalSize(242.00),
-                                            margin: getMargin(right: 10),
-                                            child: Stack(
-                                                alignment: Alignment.topRight,
-                                                children: [
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      child: Padding(
-                                                          padding: getPadding(
-                                                              right: 10),
-                                                          child: Image.asset(
-                                                              ImageConstant
-                                                                  .imgEllipse9,
-                                                              height:
-                                                                  getVerticalSize(
-                                                                      136.00),
-                                                              width:
-                                                                  getHorizontalSize(
-                                                                      86.00),
-                                                              fit: BoxFit
-                                                                  .fill))),
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.topRight,
-                                                      child: Container(
-                                                          margin: getMargin(
-                                                              left: 10,
-                                                              top: 17,
-                                                              bottom: 17),
-                                                          child: RichText(
-                                                              text: TextSpan(
-                                                                  children: [
-                                                                    TextSpan(
-                                                                        text: "lbl_m3"
-                                                                            .tr,
-                                                                        style: TextStyle(
-                                                                            color: ColorConstant
-                                                                                .whiteA700,
-                                                                            fontSize: getFontSize(
-                                                                                35),
-                                                                            fontFamily:
-                                                                                'KyivType Sans',
-                                                                            fontWeight:
-                                                                                FontWeight.w700)),
-                                                                    TextSpan(
-                                                                        text: "lbl_o_ments2"
-                                                                            .tr,
-                                                                        style: TextStyle(
-                                                                            color: ColorConstant
-                                                                                .whiteA700,
-                                                                            fontSize: getFontSize(
-                                                                                25),
-                                                                            fontFamily:
-                                                                                'KyivType Sans',
-                                                                            fontWeight:
-                                                                                FontWeight.w400))
-                                                                  ]),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center))),
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.topRight,
-                                                      child: Padding(
-                                                          padding: getPadding(
-                                                              left: 90,
-                                                              top: 30,
-                                                              right: 90,
-                                                              bottom: 30),
-                                                          child: Image.asset(
-                                                              ImageConstant
-                                                                  .imgIcons8ring48,
-                                                              height: getSize(
-                                                                  30.00),
-                                                              width: getSize(
-                                                                  30.00),
-                                                              fit:
-                                                                  BoxFit.fill)))
-                                                ]))),
-                                    Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Container(
-                                            height: getVerticalSize(454.00),
-                                            width: getHorizontalSize(291.00),
-                                            margin: getMargin(left: 10, top: 3),
-                                            child: Stack(
-                                                alignment: Alignment.topLeft,
-                                                children: [
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.bottomRight,
-                                                      child: Container(
-                                                          height:
-                                                              getVerticalSize(
-                                                                  263.00),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  153.00),
-                                                          margin: getMargin(
-                                                              left: 10,
-                                                              top: 10),
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                                  ColorConstant
-                                                                      .red900,
-                                                              borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      getHorizontalSize(
-                                                                          131.50)),
-                                                              boxShadow: [
-                                                                BoxShadow(
-                                                                    color: ColorConstant
-                                                                        .black9003f,
-                                                                    spreadRadius:
-                                                                        getHorizontalSize(
-                                                                            2.00),
-                                                                    blurRadius:
-                                                                        getHorizontalSize(
-                                                                            2.00),
-                                                                    offset:
-                                                                        Offset(
-                                                                            0,
-                                                                            4))
-                                                              ]))),
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.topLeft,
-                                                      child: Container(
-                                                          margin: getMargin(
-                                                              right: 10,
-                                                              bottom: 10),
-                                                          decoration: AppDecoration
-                                                              .fillRed901
-                                                              .copyWith(
-                                                                  borderRadius:
-                                                                      BorderRadiusStyle
-                                                                          .roundedBorder30),
-                                                          child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                CustomTextFormField(
-                                                                    width: 236,
-                                                                    focusNode:
-                                                                        FocusNode(),
-                                                                    // controller:
-                                                                    //     controller
-                                                                    //         .nameController,
-                                                                    hintText:
-                                                                        "lbl_name2"
-                                                                            .tr,
-                                                                    margin: getMargin(
-                                                                        left:
-                                                                            12,
-                                                                        top: 18,
-                                                                        right:
-                                                                            12),
-                                                                    validator:
-                                                                        (value) {
-                                                                      if (value ==
-                                                                              null ||
-                                                                          (!isText(
-                                                                              value,
-                                                                              isRequired: true))) {
-                                                                        return "Please enter valid text";
-                                                                      }
-                                                                      return null;
-                                                                    }),
-                                                                CustomTextFormField(
-                                                                    width: 236,
-                                                                    focusNode:
-                                                                        FocusNode(),
-                                                                    // controller:
-                                                                    //     controller
-                                                                    //         .emailaddressController,
-                                                                    hintText:
-                                                                        "lbl_email_address"
-                                                                            .tr,
-                                                                    margin: getMargin(
-                                                                        left:
-                                                                            12,
-                                                                        top: 21,
-                                                                        right:
-                                                                            12),
-                                                                    validator:
-                                                                        (value) {
-                                                                      if (value ==
-                                                                              null ||
-                                                                          (!isValidEmail(
-                                                                              value,
-                                                                              isRequired: true))) {
-                                                                        return "Please enter valid email";
-                                                                      }
-                                                                      return null;
-                                                                    }),
-                                                                CustomTextFormField(
-                                                                    width: 236,
-                                                                    focusNode:
-                                                                        FocusNode(),
-                                                                    // controller:
-                                                                    //     controller
-                                                                    //         .passwordController,
-                                                                    hintText:
-                                                                        "lbl_password"
-                                                                            .tr,
-                                                                    margin: getMargin(
-                                                                        left:
-                                                                            12,
-                                                                        top: 29,
-                                                                        right:
-                                                                            12),
-                                                                    validator:
-                                                                        (value) {
-                                                                      if (value ==
-                                                                              null ||
-                                                                          (!isValidPassword(
-                                                                              value,
-                                                                              isRequired: true))) {
-                                                                        return "Please enter valid password";
-                                                                      }
-                                                                      return null;
-                                                                    },
-                                                                    isObscureText:
-                                                                        true),
-                                                                CustomTextFormField(
-                                                                    width: 236,
-                                                                    focusNode:
-                                                                        FocusNode(),
-                                                                    // controller:
-                                                                    //     controller
-                                                                    //         .confirmpasswordController,
-                                                                    hintText:
-                                                                        "msg_confirm_passwor"
-                                                                            .tr,
-                                                                    margin: getMargin(
-                                                                        left:
-                                                                            12,
-                                                                        top: 21,
-                                                                        right:
-                                                                            12),
-                                                                    textInputAction:
-                                                                        TextInputAction
-                                                                            .done,
-                                                                    validator:
-                                                                        (value) {
-                                                                      if (value ==
-                                                                              null ||
-                                                                          (!isValidPassword(
-                                                                              value,
-                                                                              isRequired: true))) {
-                                                                        return "Please enter valid password";
-                                                                      }
-                                                                      return null;
-                                                                    },
-                                                                    isObscureText:
-                                                                        true),
-                                                                CustomButton(
-                                                                    width: 236,
-                                                                    text:
-                                                                        "msg_create_your_acc"
-                                                                            .tr,
-                                                                    margin: getMargin(
-                                                                        left:
-                                                                            12,
-                                                                        top: 21,
-                                                                        right:
-                                                                            12,
-                                                                        bottom:
-                                                                            21),
-                                                                    variant:
-                                                                        ButtonVariant
-                                                                            .OutlineRed900,
-                                                                    shape: ButtonShape
-                                                                        .RoundedBorder8,
-                                                                    padding:
-                                                                        ButtonPadding
-                                                                            .PaddingAll10,
-                                                                    fontStyle:
-                                                                        ButtonFontStyle
-                                                                            .PoppinsRegular15,
-                                                                    onTap:
-                                                                        onTapBtnCreateyouracc)
-                                                              ]))),
-                                                  Align(
-                                                      alignment: Alignment
-                                                          .bottomLeft,
-                                                      child: GestureDetector(
-                                                          onTap: () {
-                                                            onTapTxtAlreadyhavean();
-                                                          },
-                                                          child: Padding(
-                                                              padding:
-                                                                  getPadding(
-                                                                      left: 46,
-                                                                      top: 63,
-                                                                      right: 46,
-                                                                      bottom:
-                                                                          63),
-                                                              child: Text(
-                                                                  "msg_already_have_an"
-                                                                      .tr,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: AppStyle
-                                                                      .txtPoppinsRegular13
-                                                                      .copyWith()))))
-                                                ])))
-                                  ])))
-                    ])))));
+                          SizedBox(
+                            height: 105,
+                          ),
+                          nameField,
+                          SizedBox(
+                            height: 25,
+                          ),
+                          emailField,
+                          SizedBox(
+                            height: 25,
+                          ),
+                          passwordField,
+                          SizedBox(
+                            height: 25,
+                          ),
+                          confirmPasswordField,
+                          SizedBox(height: 30),
+                          SignupButton,
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 45,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()));
+                          },
+                          child: Text(
+                            "Alredy have an acocunt? ",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              letterSpacing: 1,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-  onTapBtnCreateyouracc() {
-    // Get.toNamed(AppRoutes.userHomeScreen);
+  void signUp(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => {postDetailsToFirestore()})
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
   }
 
-  onTapTxtAlreadyhavean() {
-    // Get.toNamed(AppRoutes.loginScreen);
+  postDetailsToFirestore() async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+
+    UserModel userModel = UserModel();
+
+    userModel.email = user!.email;
+    userModel.uid = user.uid;
+    userModel.name = nameController.text;
+
+    await firebaseFirestore
+        .collection("user")
+        .doc(user.uid)
+        .set(userModel.toMap());
+    Fluttertoast.showToast(msg: "Account created successfully");
+
+    Navigator.pushAndRemoveUntil((context),
+        MaterialPageRoute(builder: (context) => UserHomeScreen()), (route) => false);
   }
 }

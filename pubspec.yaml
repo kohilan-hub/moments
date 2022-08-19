@@ -21,6 +21,9 @@ dependencies:
 
   google_fonts: ^2.1.0 
 
+
+
+
   #Firebase Database
   cloud_firestore: ^3.4.4
 
@@ -38,7 +41,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icon/icon.png"
+  image_path: "assets/icons/icon.png"
 
 
 flutter: 
@@ -46,7 +49,16 @@ flutter:
   assets: 
     - assets/
     - assets/images/
+    - assets/icons/ring.svg
+    
   fonts: 
+    - family: KyivType Sans
+      fonts: 
+        - asset: assets/fonts/KyivType Sans Regular-.otf
+          #weight: 400
+        - asset: assets/fonts/KyivType Sans Bold-.otf
+          #weight: 700
+
     - family: Vollkorn
       fonts: 
         - asset: assets/fonts/VollkornRomanRegular.ttf

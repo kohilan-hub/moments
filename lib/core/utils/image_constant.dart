@@ -50,7 +50,7 @@ class ImageConstant {
 
   static String imgGroup251 = 'assets/images/img_group251.svg';
 
-  static String imgAmudhiniepir = 'assets/images/img_amudhiniepir.png';
+  static String imgAmudhiniepir = 'assets/images/img_bride.png';
 
   static String imgSignal = 'assets/images/img_signal.svg';
 
