@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'kasthu page/onboarding1.dart';
 import 'pages/choose_role_screen.dart';
 import 'pages/login_screen.dart';
 import 'pages/onboarding_screen_1_screen.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme:
           ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
       //initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
-      home: VendorHomeScreenWithServicesScreen(),
+      home: OnboardingScreen1Screen(),
     );
   }
 }

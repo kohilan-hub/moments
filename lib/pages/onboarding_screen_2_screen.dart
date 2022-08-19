@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:moments/core/app_export.dart';
 import 'package:moments/widgets/custom_button.dart';
 
@@ -12,193 +13,154 @@ class OnboardingScreen2Screen extends StatelessWidget {
             backgroundColor: ColorConstant.red901,
             body: Container(
                 child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                  Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                          width: double.infinity,
-                          decoration: AppDecoration.outlineRed900,
-                          child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Container(
-                                        height: getVerticalSize(171.00),
-                                        width: getHorizontalSize(99.00),
-                                        margin: getMargin(right: 10),
-                                        decoration: BoxDecoration(
-                                            color: ColorConstant.red900,
-                                            borderRadius: BorderRadius.circular(
-                                                getHorizontalSize(85.50)),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color:
-                                                      ColorConstant.black9003f,
-                                                  spreadRadius:
-                                                      getHorizontalSize(2.00),
-                                                  blurRadius:
-                                                      getHorizontalSize(2.00),
-                                                  offset: Offset(0, 4))
-                                            ]))),
-                                Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Container(
-                                        // height: getVerticalSize(255.00),
-                                        width: getHorizontalSize(255.00),
-                                        margin: getMargin(left: 10, top: 42),
-                                        child: Stack(
-                                            alignment: Alignment.bottomLeft,
-                                            children: [
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomRight,
-                                                  child: Container(
-                                                      // height: getVerticalSize(
-                                                      //     263.00),
-                                                      width: getHorizontalSize(
-                                                          99.00),
-                                                      margin: getMargin(
-                                                          left: 10, top: 10),
-                                                      decoration: BoxDecoration(
-                                                          color: ColorConstant
-                                                              .red900,
-                                                          borderRadius:
-                                                              BorderRadius.circular(
-                                                                  getHorizontalSize(
-                                                                      131.50)),
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                                color: ColorConstant
-                                                                    .black9003f,
-                                                                spreadRadius:
-                                                                    getHorizontalSize(
-                                                                        2.00),
-                                                                blurRadius:
-                                                                    getHorizontalSize(
-                                                                        2.00),
-                                                                offset: Offset(
-                                                                    0, 4))
-                                                          ]))),
-                                              Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Container(
-                                                      margin: getMargin(
-                                                          right: 10,
-                                                          bottom: 10),
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Align(
-                                                                alignment: Alignment
-                                                                    .centerLeft,
-                                                                child: Container(
-                                                                    decoration: const BoxDecoration(
-                                                                        border: Border(
-                                                                      top: BorderSide(
-                                                                          width:
-                                                                              2.0,
-                                                                          color:
-                                                                              Color(0xFFFFFFFFFF)),
-                                                                      left: BorderSide(
-                                                                          width:
-                                                                              2.0,
-                                                                          color:
-                                                                              Color(0xFFFFFFFFFF)),
-                                                                      right: BorderSide(
-                                                                          width:
-                                                                              2.0,
-                                                                          color:
-                                                                              Color(0xFFFFFFFFFF)),
-                                                                      bottom: BorderSide(
-                                                                          width:
-                                                                              2.0,
-                                                                          color:
-                                                                              Color(0xFFFFFFFFFF)),
-                                                                    )),
-                                                                    height: getVerticalSize(173.00),
-                                                                    width: getHorizontalSize(205.00),
-                                                                    child: Stack(alignment: Alignment.bottomRight, children: [
-                                                                      // Container(height: getVerticalSize(94.00), width: getHorizontalSize(5.00), margin: getMargin(left: 14, top: 10, right: 14), decoration: BoxDecoration(color: ColorConstant.gray300)),
-                                                                      // Container(height: getVerticalSize(149.00), width: getHorizontalSize(5.00), margin: getMargin(left: 10, top: 10, right: 2), decoration: BoxDecoration(color: ColorConstant.whiteA700)),
-                                                                      // Container(height: getVerticalSize(5.00), width: getHorizontalSize(131.00), margin: getMargin(left: 10, top: 24, right: 4, bottom: 24), decoration: BoxDecoration(color: ColorConstant.whiteA700)),
-                                                                      Align(
-                                                                          alignment:
-                                                                              Alignment.centerLeft,
-                                                                          child: Container(
-                                                                              width: getHorizontalSize(205.00),
-                                                                              margin: getMargin(bottom: 4),
-                                                                              child: RichText(
-                                                                                  text: TextSpan(children: [
-                                                                                    TextSpan(text: "W", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(64), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                    TextSpan(text: "e will plan", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                    TextSpan(text: ' ', style: TextStyle(color: ColorConstant.black900, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                    TextSpan(text: "your wedding", style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                    TextSpan(text: ' ', style: TextStyle(color: ColorConstant.black900, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400)),
-                                                                                    TextSpan(text: "of your dream".tr, style: TextStyle(color: ColorConstant.whiteA700, fontSize: getFontSize(24), fontFamily: 'Fjord', fontWeight: FontWeight.w400))
-                                                                                  ]),
-                                                                                  textAlign: TextAlign.left)))
-                                                                    ]))),
-                                                            CustomButton(
-                                                                width: 122,
-                                                                text: "Next",
-                                                                margin:
-                                                                    getMargin(
-                                                                        left:
-                                                                            34,
-                                                                        top: 60,
-                                                                        right:
-                                                                            34,
-                                                                        bottom:
-                                                                            60),
-                                                                variant:
-                                                                    ButtonVariant
-                                                                        .FillWhiteA700,
-                                                                shape: ButtonShape
-                                                                    .RoundedBorder8,
-                                                                padding:
-                                                                    ButtonPadding
-                                                                        .PaddingAll14,
-                                                                fontStyle:
-                                                                    ButtonFontStyle
-                                                                        .PoppinsRegular13,
-                                                                onTap: () => Navigator
-                                                                        .of(
-                                                                            context)
-                                                                    .pushReplacement(MaterialPageRoute(
-                                                                        builder:
-                                                                            (_) =>
-                                                                                OnboardingScreen3Screen())),
-                                                                alignment: Alignment
-                                                                    .bottomLeft),
-                                                            // Container(
-                                                            //     height:
-                                                            //         getVerticalSize(
-                                                            //             5.00),
-                                                            //     width:
-                                                            //         getHorizontalSize(
-                                                            //             180.00),
-                                                            //     margin:
-                                                            //         getMargin(
-                                                            //             left:
-                                                            //                 18,
-                                                            //             right:
-                                                            //                 7),
-                                                            //     decoration:
-                                                            //         BoxDecoration(
-                                                            //             color: ColorConstant
-                                                            //                 .gray100))
-                                                          ])))
-                                            ]))),
-                              ])))
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      SizedBox(),
+                      Positioned(
+                        // top: -30,
+                        left: -290,
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                                height: getVerticalSize(171.00),
+                                width: getHorizontalSize(180.00),
+                                margin: getMargin(right: 10),
+                                decoration: BoxDecoration(
+                                    color: ColorConstant.red900,
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(90)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: ColorConstant.black9003f,
+                                          spreadRadius: 5,
+                                          blurRadius: 14,
+                                          offset: Offset(0, 4))
+                                    ]))),
+                      ),
+                      Positioned(
+                        top: 480,
+                        left: 60,
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                                height: 280,
+                                width: 200,
+                                margin: getMargin(right: 5),
+                                decoration: BoxDecoration(
+                                    color: ColorConstant.red900,
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(100)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: ColorConstant.black9003f,
+                                          spreadRadius: 5,
+                                          blurRadius: 14,
+                                          offset: Offset(0, 4))
+                                    ]))),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    //Design Box by KH
+                    margin: EdgeInsets.only(right: 0, left: 0),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: 200,
+                          height: 180,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              RichText(
+                                  text: TextSpan(children: [
+                                TextSpan(
+                                    text: "W",
+                                    style: GoogleFonts.fjordOne(
+                                      color: Colors.white,
+                                      fontSize: 64,
+                                    )),
+                                TextSpan(
+                                    text: "e will plan",
+                                    style: GoogleFonts.fjordOne(
+                                        color: Colors.white, fontSize: 24)),
+                                TextSpan(
+                                    text:
+                                        "\n${' ' * 6}your wedding\n${' ' * 6}of your dream",
+                                    style: GoogleFonts.fjordOne(
+                                        color: Colors.white, fontSize: 24))
+                              ])),
+                              Expanded(
+                                flex: 1,
+                                child: Divider(
+                                  height: 34,
+                                  indent: 65,
+                                  endIndent: 0,
+                                  thickness: 5,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      flex: 0,
+                                      child: VerticalDivider(
+                                        color: Colors.white,
+                                        indent: 70,
+                                        width: 30,
+                                        thickness: 5,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 0,
+                                      child: VerticalDivider(
+                                        color: Colors.white,
+                                        indent: 14.5,
+                                        width: 0,
+                                        thickness: 5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: Expanded(
+                            flex: 0,
+                            child: Divider(
+                              height: 0,
+                              indent: 15,
+                              endIndent: 0,
+                              thickness: 5,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  TextButton(onPressed: () => {}, child: Text("Next")),
+                  CustomButton(
+                    width: 122,
+                    text: "Next",
+                    //margin: getMargin(left: 34, top: 60, right: 34, bottom: 60),
+                    variant: ButtonVariant.FillWhiteA700,
+                    shape: ButtonShape.RoundedBorder8,
+                    padding: ButtonPadding.PaddingAll14,
+                    fontStyle: ButtonFontStyle.PoppinsRegular13,
+                    onTap: () => Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                            builder: (_) => OnboardingScreen3Screen())),
+                  ),
                 ]))));
   }
 }

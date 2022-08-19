@@ -4,58 +4,6 @@ import 'package:moments/widgets/custom_button.dart';
 
 import 'onboarding_screen_2_screen.dart';
 
-// class OnboardingPageState extends StatefulWidget {
-//   @override
-// _OnboardingPageState createState() => _OnboardingPageState();
-// }
-
-// class _OnboardingPageState extends State<OnboardingPage>{
-//  final controller = PageController();
-
-//  @override
-//  void dispose(){
-//   controller.dispose();
-
-//   super.dispose();
-//  }
-
-//  @override
-// Widget build(BuildContext context) => Scaffold(
-//   body: Container(
-//     padding: const EdgeInsets.only(bottom: 80),
-//     child: PageView(
-//       controller: controller,
-//       children: [
-//         Container(
-//           color: Colors.red,
-//           child: const Center(child: Text('Page 1'),),
-//         ),
-//         Container(
-//           color: Colors.indigo,
-//           child: const Center(child: Text('Page 2'),),
-//         ),
-//         Container(
-//           color: Colors.green,
-//           child: const Center(child: Text('Page 3'),),
-//         )
-//       ],
-//     ),
-//   ),
-//   bottomSheet: Container(
-//     padding: const EdgeInsets.symmetric(horizontal:12 ),
-//     height: 80,
-//     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//     children: [
-//       TextButton(onPressed: () =>controller.jumpToPage(2), child: const Text('SKIP')),
-//       Center(
-//         child: SmoothPageIndicator(controller: controller,count: 3,),
-//       ),
-//       TextButton(onPressed: () =>controller.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeIn), child: const Text('NEXT')),
-//     ],),
-//   ),
-// );
-// }
-
 class OnboardingScreen1Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,7 +29,7 @@ class OnboardingScreen1Screen extends StatelessWidget {
                                         color: ColorConstant.red901,
                                         fontSize: getFontSize(35),
                                         fontFamily: 'KyivType Sans',
-                                        fontWeight: FontWeight.w700)),
+                                        fontWeight: FontWeight.bold)),
                                 TextSpan(
                                     text: "oments",
                                     style: TextStyle(
@@ -111,6 +59,4 @@ class OnboardingScreen1Screen extends StatelessWidget {
                     ]))))));
   }
 
-  // onTapBtnNext() => Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(builder: (_) => OnboardingScreen2Screen()));
 }
