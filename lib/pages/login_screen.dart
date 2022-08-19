@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:moments/pages/signup_screen.dart';
 import 'package:moments/pages/user_home_screen.dart';
 
@@ -113,201 +115,155 @@ class _LoginScreenState extends State<LoginScreen> {
           )),
     );
 
-    //Facebook button
-    final facebookButton = Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(8),
-      color: Color(0xFFF1F5F9),
-      child: MaterialButton(
-          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-          height: 10,
-          onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => LoginScreen()));
-          },
-          child: Text(
-            "Facebook",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 20, color: Colors.black, fontFamily: 'Poppins'),
-          )),
-    );
-
-    //Google button
-    final googleButton = Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(8),
-      color: Color(0xFFF1F5F9),
-      child: MaterialButton(
-          padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-          onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => LoginScreen()));
-          },
-          child: Text(
-            "Google",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 20, color: Colors.black, fontFamily: 'Poppins'),
-          )),
-    );
-
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                                text: "M",
-                                style: TextStyle(
-                                    color: ColorConstant.red901,
-                                    fontSize: getFontSize(35),
-                                    fontFamily: 'KyivType Sans',
-                                    fontWeight: FontWeight.bold)),
-                            TextSpan(
-                                text: "oments",
-                                style: TextStyle(
-                                    color: ColorConstant.red901,
-                                    fontSize: getFontSize(25),
-                                    fontFamily: 'KyivType Sans',
-                                    fontWeight: FontWeight.w400))
-                          ]),
-                          textAlign: TextAlign.center),
-                      Positioned(
-                        left: 36.5,
-                        top: 19,
-                        child: SizedBox(
-                          height: 27,
-                          width: 27,
-                          child: SvgPicture.asset(
-                            'assets/icons/ring.svg',
-                          ),
+          child: Container(
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: "M",
+                              style: TextStyle(
+                                  color: ColorConstant.red901,
+                                  fontSize: getFontSize(35),
+                                  fontFamily: 'KyivType Sans',
+                                  fontWeight: FontWeight.bold)),
+                          TextSpan(
+                              text: "oments",
+                              style: TextStyle(
+                                  color: ColorConstant.red901,
+                                  fontSize: getFontSize(25),
+                                  fontFamily: 'KyivType Sans',
+                                  fontWeight: FontWeight.w400))
+                        ]),
+                        textAlign: TextAlign.center),
+                    Positioned(
+                      left: 36.5,
+                      top: 19,
+                      child: SizedBox(
+                        height: 27,
+                        width: 27,
+                        child: SvgPicture.asset(
+                          'assets/icons/ring.svg',
                         ),
                       ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(26.0),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(3.0, 0),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(26.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(3.0, 0),
+                              ),
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(-3.0, 0),
+                              ),
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(0, 0),
+                              ),
+                              BoxShadow(
+                                  color: Colors.white,
+                                  spreadRadius: 2,
+                                  blurRadius: 4.0,
+                                  offset: Offset(0, 7)),
+                            ],
+                          ),
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(20, 50, 20, 30),
+                            child: Column(
+                              children: [
+                                emailField,
+                                SizedBox(
+                                  height: 25,
                                 ),
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(-3.0, 0),
-                                ),
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(0, 0),
-                                ),
-                                BoxShadow(
-                                    color: Colors.white,
-                                    spreadRadius: 2,
-                                    blurRadius: 4.0,
-                                    offset: Offset(0, 7)),
+                                passwordField,
+                                SizedBox(height: 30),
+                                loginButton,
                               ],
                             ),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(20, 80, 20, 30),
-                              child: Column(
-                                children: [
-                                  emailField,
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-                                  passwordField,
-                                  SizedBox(height: 30),
-                                  loginButton,
-                                ],
-                              ),
-                            ),
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            "Forget password?",
-                            style: TextStyle(
-                              fontSize: 17,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 35,
-                          ),
-                          Text(
-                            "Or continue with",
-                            style: TextStyle(
-                              color: Colors.black12,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 17,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 45,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              googleButton,
-                              SizedBox(
-                                width: 45,
-                              ),
-                              facebookButton,
-                            ],
-                          ),
-                          SizedBox(
-                            height: 45,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                "Don't have account? ",
-                                style: TextStyle(
-                                  fontSize: 17,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              SignupScreen()));
-                                },
-                                child: Text(
-                                  "Create now",
-                                  style: TextStyle(
-                                    color: Color(0xFFAF0B2C),
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Forget password?",
+                          style: GoogleFonts.poppins(fontSize: 14,color: Colors.black,letterSpacing: 0.5,fontWeight: FontWeight.w500)
+                        ),
+                        SizedBox(
+                          height: 35,
+                        ),
+                        Text(
+                          "Or continue with",
+                          style: GoogleFonts.roboto(fontSize: 14,color: Color(0xff64748B))
+                        ),
+                        SizedBox(
+                          height: 35,
+                        ),
+                        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [SignInButton(
+    Buttons.Google,
+    onPressed: () {},
+    //text: "Google",
+  
+  ),SizedBox(
+                          height: 8,
+                        ),
+          SignInButton(
+    Buttons.Facebook,
+    onPressed: () {},
+    //text: "Facebook",
+   
+  ),
+          
+          ],
+        ),
+                        SizedBox(
+                          height: 45,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SignupScreen()));
+                          },
+                          child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                          text: "Don't have account? ",
+                          style: GoogleFonts.poppins(fontSize: 14,color: Color(0xff828282))),
+                          TextSpan(
+                          text: "Create now",
+                          style: GoogleFonts.poppins(fontSize: 14,color: Color(0xffAF0B2C),fontWeight: FontWeight.w600))
+                        ]),
+                        ),
+                        
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

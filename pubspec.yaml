@@ -1,76 +1,69 @@
 name: moments
 description: A new Flutter project.
 version: 1.0.0+1
-environment: 
+environment:
   sdk: ">=2.16.0 <3.0.0"
-dependencies: 
-  flutter: 
-    sdk: flutter
-  get: ^4.6.1
-  pull_to_refresh: ^2.0.0
-  cupertino_icons: ^1.0.0
-  connectivity_plus: ^1.4.0
-  shared_preferences: ^2.0.7
+dependencies:
   cached_network_image: ^3.1.0
-  flutter_login_facebook: ^1.1.0
-  http: ^0.13.3
-  google_sign_in: ^5.0.7
-  flutter_svg: ^0.22.0
   carousel_slider: ^4.0.0
-  smooth_page_indicator: ^1.0.0+2
-
-  google_fonts: ^2.1.0 
-
-
-
-
-  #Firebase Database
   cloud_firestore: ^3.4.4
-
-  flutter_signin_button: ^2.0.0
-  fluttertoast: ^8.0.9
+  connectivity_plus: ^1.4.0
+  cupertino_icons: ^1.0.0
   firebase_auth: ^3.6.3
   firebase_core: ^1.20.1
-
-dev_dependencies: 
-  flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter:
     sdk: flutter
+  flutter_login_facebook: ^1.1.0
+  flutter_signin_button: ^2.0.0
+  flutter_svg: ^0.22.0
+  fluttertoast: ^8.0.9
+
+  get: ^4.6.1
+  google_fonts: ^2.1.0
+  google_sign_in: ^5.0.7
+  http: ^0.13.3
+  pull_to_refresh: ^2.0.0
+  shared_preferences: ^2.0.7
+  smooth_page_indicator: ^1.0.0+2
+
+dev_dependencies:
   flutter_launcher_icons: "^0.10.0"
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
 
 flutter_icons:
   android: true
   ios: true
   image_path: "assets/icons/icon.png"
 
-
-flutter: 
+flutter:
   uses-material-design: true
-  assets: 
+  assets:
     - assets/
     - assets/images/
     - assets/icons/ring.svg
-    
-  fonts: 
+
+  fonts:
     - family: KyivType Sans
-      fonts: 
+      fonts:
         - asset: assets/fonts/KyivType Sans Regular-.otf
           #weight: 400
         - asset: assets/fonts/KyivType Sans Bold-.otf
           #weight: 700
 
     - family: Vollkorn
-      fonts: 
+      fonts:
         - asset: assets/fonts/VollkornRomanRegular.ttf
           weight: 400
         - asset: assets/fonts/VollkornRomanBold.ttf
           weight: 700
     - family: Assistant
-      fonts: 
+      fonts:
         - asset: assets/fonts/AssistantRegular.ttf
           weight: 400
     - family: Poppins
-      fonts: 
+      fonts:
         - asset: assets/fonts/PoppinsRegular.ttf
           weight: 400
         - asset: assets/fonts/PoppinsLight.ttf
@@ -78,10 +71,10 @@ flutter:
         - asset: assets/fonts/PoppinsMedium.ttf
           weight: 500
     - family: Mulish
-      fonts: 
+      fonts:
         - asset: assets/fonts/MulishSemiBold.ttf
           weight: 600
     - family: Roboto
-      fonts: 
+      fonts:
         - asset: assets/fonts/RobotoRomanRegular.ttf
           weight: 400

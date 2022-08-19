@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme:
           ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
       //initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
-      home: LoginScreen(),
+      home: SignupScreen(),
     );
   }
 }
