@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,11 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moments/core/utils/user_preferences.dart';
+import 'package:moments/pages/choose_role_screen.dart';
 import 'package:moments/pages/signup_screen.dart';
 import 'package:moments/pages/user_home_screen.dart';
+import 'package:moments/pages/vendor_home_screen.dart';
 
 import '../core/utils/color_constant.dart';
 import '../core/utils/math_utils.dart';
@@ -20,6 +24,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+    var uid;
   //form key
   final _formKey = GlobalKey<FormState>();
 
@@ -245,7 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        SignupScreen()));
+                                        ChooseRoleScreen()));
                           },
                           child: RichText(
                         text: TextSpan(children: [
@@ -272,17 +277,48 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void sigIn(String email, String password) async {
+    var roleState;
     if (_formKey.currentState!.validate()) {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
                 Fluttertoast.showToast(msg: "Login Sucessful"),
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => UserHomeScreen()))
+                
+                
               })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
       });
+      //getting UID from current user
+      final User? user = _auth.currentUser;
+      uid = user!.uid;
+
+
+      print(UserPreferences.getEmail());
+
+     
+
+DocumentSnapshot _userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+
+DocumentSnapshot _vendorDoc =
+    await FirebaseFirestore.instance.collection('vendors').doc(uid).get();
+    
+    // print('kanni/${_vendorDoc.exists}/');
+    // print('kanni/${_userDoc.exists}/');
+      
+
+
+      if(_userDoc.exists){
+        Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => UserHomeScreen()));
+      }
+      else if(_vendorDoc.exists){
+        Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => VendorHomeScreen()));
+      }
+
+      await UserPreferences.setUserID(uid);
     }
   }
 }

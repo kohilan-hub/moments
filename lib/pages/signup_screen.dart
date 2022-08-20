@@ -3,18 +3,23 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:moments/model/user_model.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:moments/model/user_model.dart';
 import 'package:moments/pages/login_screen.dart';
 import 'package:moments/pages/user_home_screen.dart';
+import 'package:moments/pages/vendor_home_screen.dart';
 
 import '../core/utils/color_constant.dart';
 import '../core/utils/math_utils.dart';
 
 class SignupScreen extends StatefulWidget {
-  SignupScreen({Key? key}) : super(key: key);
+  final bool roleState;
+  SignupScreen({
+    Key? key,
+    required this.roleState,
+  }) : super(key: key);
 
   @override
   _SignupScreenState createState() => _SignupScreenState();
@@ -393,14 +398,28 @@ class _SignupScreenState extends State<SignupScreen> {
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.name = nameController.text;
+    userModel.roleState=widget.roleState;
 
-    await firebaseFirestore
-        .collection("user")
+    if(widget.roleState){
+      await firebaseFirestore
+        .collection("vendors")
         .doc(user.uid)
         .set(userModel.toMap());
+    }
+    else{await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());}
+    
     Fluttertoast.showToast(msg: "Account created successfully");
 
+    if(widget.roleState){
     Navigator.pushAndRemoveUntil((context),
+        MaterialPageRoute(builder: (context) => VendorHomeScreen()), (route) => false);
+    }
+    else{
+      Navigator.pushAndRemoveUntil((context),
         MaterialPageRoute(builder: (context) => UserHomeScreen()), (route) => false);
+    }
   }
 }

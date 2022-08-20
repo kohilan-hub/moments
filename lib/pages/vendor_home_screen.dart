@@ -1,11 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:moments/core/app_export.dart';
+import 'package:moments/core/utils/user_preferences.dart';
 
+import 'user_vendor_account_screen.dart';
 import 'vendor_adding_new_service_screen.dart';
 
-class VendorHomeScreen extends StatelessWidget {
+Future<void> userDetailFetchSharedPreference() async {
+  var name;
+  var email;
+  //var phone;
+  await FirebaseFirestore.instance
+      .collection('vendors')
+      .doc(UserPreferences.getUserID())
+      .get()
+      .then(
+    (DocumentSnapshot) {
+      name = (DocumentSnapshot.data()!['name'].toString());
+      email = (DocumentSnapshot.data()!['email'].toString());
+      //phone = (DocumentSnapshot.data()!['phoneNumber'].toString());
+      //return name = (DocumentSnapshot.data()!['name'].toString());
+    },
+  );
+  await UserPreferences.setUserName(name);
+  await UserPreferences.setEmail(email);
+  //await UserPreferences.setPhoneNumber(phone);
+  
+}
+class VendorHomeScreen extends StatefulWidget {
+  @override
+  State<VendorHomeScreen> createState() => _VendorHomeScreenState();
+}
+
+class _VendorHomeScreenState extends State<VendorHomeScreen> {
   @override
   Widget build(BuildContext context) {
+        userDetailFetchSharedPreference();
+// print(UserPreferences.getEmail());
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -17,7 +48,8 @@ class VendorHomeScreen extends StatelessWidget {
                   style: AppStyle.txtVollkornRomanRegular18.copyWith()),
               actions: <Widget>[
                 IconButton(
-                  onPressed: null,
+                  onPressed:() =>  Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => UserVendorAccountScreen())),
                   icon: Icon(
                     Icons.account_circle_outlined,
                     size: 30.0,

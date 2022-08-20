@@ -1,9 +1,40 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:moments/core/app_export.dart';
+import 'package:moments/core/utils/user_preferences.dart';
+import 'package:moments/pages/user_vendor_account_screen.dart';
 
-class UserHomeScreen extends StatelessWidget {
+Future<void> userDetailFetchSharedPreference() async {
+  var name;
+  var email;
+  //var phone;
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc(UserPreferences.getUserID())
+      .get()
+      .then(
+    (DocumentSnapshot) {
+      name = (DocumentSnapshot.data()!['name'].toString());
+      email = (DocumentSnapshot.data()!['email'].toString());
+      //phone = (DocumentSnapshot.data()!['phoneNumber'].toString());
+      //return name = (DocumentSnapshot.data()!['name'].toString());
+    },
+  );
+  await UserPreferences.setUserName(name);
+  await UserPreferences.setEmail(email);
+  //await UserPreferences.setPhoneNumber(phone);
+  
+}
+
+class UserHomeScreen extends StatefulWidget {
+  @override
+  State<UserHomeScreen> createState() => _UserHomeScreenState();
+}
+
+class _UserHomeScreenState extends State<UserHomeScreen> {
   @override
   Widget build(BuildContext context) {
+    userDetailFetchSharedPreference();
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -15,7 +46,8 @@ class UserHomeScreen extends StatelessWidget {
                   style: AppStyle.txtVollkornRomanRegular18.copyWith()),
               actions: <Widget>[
                 IconButton(
-                  onPressed: null,
+                  onPressed:() =>  Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => UserVendorAccountScreen())),
                   icon: Icon(
                     Icons.account_circle_outlined,
                     size: 30.0,
