@@ -138,7 +138,9 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                               ),
                                         ),
                                         child: InkWell(
-                                          onTap: () {},
+                                          onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(builder: 
+                          (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Makeup Artist',))),
                                           child: Center(
                                             child: Column(
                                               children: [
@@ -170,22 +172,27 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                                   10.0) //                 <--- border radius here
                                               ),
                                         ),
-                                        child: Center(
-                                          child: Column(
-                                            children: [
-                                              Image(
-                                                  width: 120,
-                                                  height: 120,
-                                                  image: AssetImage(
-                                                      'assets/images/Photography.png')),
-                                              Text("Photography",
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 12,
-                                                      fontFamily: 'Poppins',
-                                                      fontWeight:
-                                                          FontWeight.w400))
-                                            ],
+                                        child: InkWell(
+                                          onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(builder: 
+                          (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Photography',))),
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                Image(
+                                                    width: 120,
+                                                    height: 120,
+                                                    image: AssetImage(
+                                                        'assets/images/Photography.png')),
+                                                Text("Photography",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12,
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.w400))
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -202,10 +209,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                         ),
                                         child: InkWell(
                                           onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Venue',)
-                              
-                              )),
+                          MaterialPageRoute(builder: 
+                          (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Venue',))),
                                           child: Center(
                                             child: Column(
                                               children: [
@@ -237,22 +242,27 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                                   10.0) //                 <--- border radius here
                                               ),
                                         ),
-                                        child: Center(
-                                          child: Column(
-                                            children: [
-                                              Image(
-                                                  width: 120,
-                                                  height: 120,
-                                                  image: AssetImage(
-                                                      'assets/images/Caterers.png')),
-                                              Text("Caterers",
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 12,
-                                                      fontFamily: 'Poppins',
-                                                      fontWeight:
-                                                          FontWeight.w400))
-                                            ],
+                                        child: InkWell(
+                                          onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(builder: 
+                          (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Caterers',))),
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                Image(
+                                                    width: 120,
+                                                    height: 120,
+                                                    image: AssetImage(
+                                                        'assets/images/Caterers.png')),
+                                                Text("Caterers",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12,
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.w400))
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -267,22 +277,27 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                                   10.0) //                 <--- border radius here
                                               ),
                                         ),
-                                        child: Center(
-                                          child: Column(
-                                            children: [
-                                              Image(
-                                                  width: 120,
-                                                  height: 120,
-                                                  image: AssetImage(
-                                                      'assets/images/Cake.png')),
-                                              Text("Cake",
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 12,
-                                                      fontFamily: 'Poppins',
-                                                      fontWeight:
-                                                          FontWeight.w400))
-                                            ],
+                                        child: InkWell(
+                                          onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(builder: 
+                          (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Cake',))),
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                Image(
+                                                    width: 120,
+                                                    height: 120,
+                                                    image: AssetImage(
+                                                        'assets/images/Cake.png')),
+                                                Text("Cake",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12,
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.w400))
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -297,22 +312,27 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                                   10.0) //                 <--- border radius here
                                               ),
                                         ),
-                                        child: Center(
-                                          child: Column(
-                                            children: [
-                                              Image(
-                                                  width: 120,
-                                                  height: 120,
-                                                  image: AssetImage(
-                                                      'assets/images/Pandits.png')),
-                                              Text("Pandits",
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 12,
-                                                      fontFamily: 'Poppins',
-                                                      fontWeight:
-                                                          FontWeight.w400))
-                                            ],
+                                        child: InkWell(
+                                          onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(builder: 
+                          (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Pandits',))),
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                Image(
+                                                    width: 120,
+                                                    height: 120,
+                                                    image: AssetImage(
+                                                        'assets/images/Pandits.png')),
+                                                Text("Pandits",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12,
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.w400))
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

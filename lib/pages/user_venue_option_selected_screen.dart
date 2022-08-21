@@ -14,9 +14,6 @@ class UserVenueOptionSelectedScreen extends StatefulWidget {
   State<UserVenueOptionSelectedScreen> createState() => _UserVenueOptionSelectedScreenState();
 }
 
-var name;
-
-
 class _UserVenueOptionSelectedScreenState extends State<UserVenueOptionSelectedScreen> {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +22,7 @@ class _UserVenueOptionSelectedScreenState extends State<UserVenueOptionSelectedS
             appBar: AppBar(
               elevation: 0,
               leading: IconButton(
-                onPressed:() { Navigator.pop(context);},
+                onPressed:()  async { Navigator.pop(context);},
                 icon: Icon(
                   Icons.arrow_back_ios,
                   size: 30.0,
@@ -50,7 +47,7 @@ class _UserVenueOptionSelectedScreenState extends State<UserVenueOptionSelectedS
             ),
             backgroundColor: ColorConstant.whiteA700,
             body: StreamBuilder<List<Service>>(
-        stream: readServices(),
+        stream:readServices(),
         builder: (context, snapshot) {
           // snapshot.data!.isNotEmpty;
 
@@ -64,11 +61,16 @@ class _UserVenueOptionSelectedScreenState extends State<UserVenueOptionSelectedS
               itemBuilder: (context, index) {
                 
 
-                // if (users[index].category.toString() ==
-                //     "selectedCategory") {
+                if (users[index].category.toString() ==
+                    widget.selectedCategory) {
                   return buildServiceCard(
                       user: users[index], context: context);
-                // } 
+                } 
+                else{
+                  return buildEmptyCard(
+                      user: users[index], context: context);
+                }
+              
               },
             );
 
@@ -242,9 +244,15 @@ class _UserVenueOptionSelectedScreenState extends State<UserVenueOptionSelectedS
                    
                 );
             }
+  Widget buildEmptyCard(
+          {required Service user, required BuildContext context}) {
+              return  SizedBox();
+                    
+            }
+            
 }
 
-Stream<List<Service>> readServices() => FirebaseFirestore.instance
+Stream<List<Service>> readServices  () => FirebaseFirestore.instance
       // .collection('vendors')
       // .doc('o11ktyBTciMiLYJKgtu3KMgbZCc2')
       .collectionGroup('services')
