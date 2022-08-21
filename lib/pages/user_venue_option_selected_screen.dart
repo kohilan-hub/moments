@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:moments/core/app_export.dart';
 import 'package:moments/core/utils/user_preferences.dart';
 import 'package:moments/model/entry.dart';
+import 'package:moments/pages/user_venue_option_selected_choice_tapped_screen.dart';
 
 
 class UserVenueOptionSelectedScreen extends StatefulWidget {
@@ -218,28 +220,36 @@ class _UserVenueOptionSelectedScreenState extends State<UserVenueOptionSelectedS
                                       ),
                                     ),
                                     Text((user.name),
-                                        style: TextStyle(
+                                        style: GoogleFonts.poppins(
                                             color: Colors.black,
                                             fontSize: 16,
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.w400))
+                                           
+                                            fontWeight: FontWeight.w500)),
+                                    Text((user.district),
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                           
+                                            fontWeight: FontWeight.w300))
                                   ],
                                 ),
                               ),
                             ),   
                     ]),
                   onTap: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //       builder: (context) => checkOut_time(
-          //             id: user.qrID.toString(),
-          //             checkIn: timeFormatter(user.checkIn),
-          //             checkInTimestamp: user.checkInTimestamp,
-          //             name: user.placeName.toString(),
-          //             checkOut: timeFormatter(user.checkOut),
-          //           )),
-          // );
+                    
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => UserVenueOptionSelectedChoiceTappedScreen(
+                  category: user.category, 
+                  name: user.name, 
+                  district: user.district, 
+                  address: user.address, 
+                  price: user.price, 
+                  phoneNumber: user.phoneNumber
+                  )),
+          );
                   },
                    
                 );

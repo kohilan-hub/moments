@@ -18,6 +18,8 @@ dependencies:
   flutter_svg: ^0.22.0
   fluttertoast: ^8.0.9
 
+  url_launcher: ^6.1.5
+
   get: ^4.6.1
   google_fonts: ^2.1.0
   google_sign_in: ^5.0.7
@@ -43,6 +45,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/icons/ring.svg
+
 
   fonts:
     - family: KyivType Sans
