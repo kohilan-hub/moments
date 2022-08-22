@@ -1,12 +1,534 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:moments/core/app_export.dart';
 import 'package:moments/widgets/custom_button.dart';
 import 'package:moments/widgets/custom_icon_button.dart';
 
-class VendorAddingNewServiceScreen extends StatelessWidget {
+class VendorAddingNewServiceScreen extends StatefulWidget {
+  @override
+  State<VendorAddingNewServiceScreen> createState() => _VendorAddingNewServiceScreenState();
+}
+
+class _VendorAddingNewServiceScreenState extends State<VendorAddingNewServiceScreen> {
+
+  //form key
+  final _formKey = GlobalKey<FormState>();
+
+  //editing controller
+  final nameEditingController = TextEditingController();
+  final categoryEditingController = TextEditingController();
+  final addressEditingController = TextEditingController();
+  final districtEditingController = TextEditingController();
+  final phoneNumberEditingController = TextEditingController();
+  final descriptionEditingController = TextEditingController();
+  final priceEditingController = TextEditingController();
+  final confirmPasswordEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    //first name field
+    final nameField = TextFormField(
+      
+      style: GoogleFonts.poppins(fontSize: 18
+      ,color: Colors.black),
+      cursorColor: Color(0xff950320),
+      autofocus: false,
+      controller: nameEditingController,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{3,}$');
+        if (value!.isEmpty) {
+          return ("First name can not be empty");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Enter valid name(Min.3 Character");
+        }
+      },
+      onSaved: (value) {
+        nameEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        
+
+        label: RichText(
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                              text: "Name",
+                                              style: GoogleFonts.poppins(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w400)),
+                                          TextSpan(
+                                              text: "*",
+                                              style: GoogleFonts.mulish(
+                                                  color: ColorConstant
+                                                      .deepOrange600,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w600))
+                                        ]),
+                                        textAlign: TextAlign.left),
+                                        floatingLabelBehavior: FloatingLabelBehavior.always ,
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Enter Your Brand Name",
+        hintStyle: GoogleFonts.poppins(fontSize: 18, color: Color(0xffBEC1C9)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3
+          ),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xffBEC1C9)),
+        ),
+
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xff950320)),
+        ),
+
+        //errorBorder: Is activated when there is some error (i.e. a failed validate)
+        errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1, color: Colors.black)),
+      ),
+    );
+
+    //category field
+    String dropdownValue;
+    final categoryField = 
+DropdownButtonFormField(
+  style: GoogleFonts.poppins(fontSize: 18
+      ,color: Colors.black),
+  
+      autofocus: false,
+    
+ 
+      // validator: (value) {
+      //   RegExp regex = RegExp(r'^.{3,}$');
+      //   if (value!.isEmpty) {
+      //     return ("First name can not be empty");
+      //   }
+      //   if (!regex.hasMatch(value)) {
+      //     return ("Enter valid name(Min.3 Character");
+      //   }
+      // },
+      // onSaved: (value) {
+      //   nameEditingController.text = value!;
+      // },
+      //
+      //textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        
+
+        label: RichText(
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                              text: "Category",
+                                              style: GoogleFonts.poppins(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w400)),
+                                          TextSpan(
+                                              text: "*",
+                                              style: GoogleFonts.mulish(
+                                                  color: ColorConstant
+                                                      .deepOrange600,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w600))
+                                        ]),
+                                        textAlign: TextAlign.left),
+                                        floatingLabelBehavior: FloatingLabelBehavior.always ,
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Select Your Category",
+        hintStyle: GoogleFonts.poppins(fontSize: 18, color: Color(0xffBEC1C9)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3
+          ),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xffBEC1C9)),
+        ),
+
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xff950320)),
+        ),
+
+        //errorBorder: Is activated when there is some error (i.e. a failed validate)
+        errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1, color: Colors.black)),
+      ),
+  
+
+  //dropdownColor: Colors.greenAccent,
+  //value: dropdownValue,
+  onChanged: (String? newValue) {
+    setState(() {
+      dropdownValue = newValue!;
+    });
+  },
+  items: <String>['Makeup Artist', 'Photography', 'Venue', 'Caterers','Cake','Pandits'].map<DropdownMenuItem<String>>((String value) {
+    return DropdownMenuItem<String>(
+      //alignment: AlignmentDirectional.lerp(a, b, t),
+      value: value,
+      child: Text(
+        value,
+        style: GoogleFonts.poppins(fontSize: 18
+      ,color: Colors.black),
+      ),
+    );
+  }).toList(),
+);
+
+final addressField = TextFormField(
+      
+      style: GoogleFonts.poppins(fontSize: 18
+      ,color: Colors.black),
+      cursorColor: Color(0xff950320),
+      autofocus: false,
+      controller: nameEditingController,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{3,}$');
+        if (value!.isEmpty) {
+          return ("First name can not be empty");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Enter valid name(Min.3 Character");
+        }
+      },
+      onSaved: (value) {
+        nameEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        
+
+        label: RichText(
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                              text: "Address",
+                                              style: GoogleFonts.poppins(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w400)),
+                                          TextSpan(
+                                              text: "*",
+                                              style: GoogleFonts.mulish(
+                                                  color: ColorConstant
+                                                      .deepOrange600,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w600))
+                                        ]),
+                                        textAlign: TextAlign.left),
+                                        floatingLabelBehavior: FloatingLabelBehavior.always ,
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Enter Your Address",
+        hintStyle: GoogleFonts.poppins(fontSize: 18, color: Color(0xffBEC1C9)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3
+          ),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xffBEC1C9)),
+        ),
+
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xff950320)),
+        ),
+
+        //errorBorder: Is activated when there is some error (i.e. a failed validate)
+        errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1, color: Colors.black)),
+      ),
+    );
+
+final districtField = TextFormField(
+      
+      style: GoogleFonts.poppins(fontSize: 18
+      ,color: Colors.black),
+      cursorColor: Color(0xff950320),
+      autofocus: false,
+      controller: nameEditingController,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{3,}$');
+        if (value!.isEmpty) {
+          return ("First name can not be empty");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Enter valid name(Min.3 Character");
+        }
+      },
+      onSaved: (value) {
+        nameEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        
+
+        label: RichText(
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                              text: "District",
+                                              style: GoogleFonts.poppins(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w400)),
+                                          TextSpan(
+                                              text: "*",
+                                              style: GoogleFonts.mulish(
+                                                  color: ColorConstant
+                                                      .deepOrange600,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w600))
+                                        ]),
+                                        textAlign: TextAlign.left),
+                                        floatingLabelBehavior: FloatingLabelBehavior.always ,
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Enter Your District",
+        hintStyle: GoogleFonts.poppins(fontSize: 18, color: Color(0xffBEC1C9)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3
+          ),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xffBEC1C9)),
+        ),
+
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xff950320)),
+        ),
+
+        //errorBorder: Is activated when there is some error (i.e. a failed validate)
+        errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1, color: Colors.black)),
+      ),
+    );
+
+final phoneNumberField = TextFormField(
+      
+      style: GoogleFonts.poppins(fontSize: 18
+      ,color: Colors.black),
+      cursorColor: Color(0xff950320),
+      autofocus: false,
+      controller: nameEditingController,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{3,}$');
+        if (value!.isEmpty) {
+          return ("First name can not be empty");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Enter valid name(Min.3 Character");
+        }
+      },
+      onSaved: (value) {
+        nameEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        
+
+        label: RichText(
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                              text: "Phone Number",
+                                              style: GoogleFonts.poppins(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w400)),
+                                          TextSpan(
+                                              text: "*",
+                                              style: GoogleFonts.mulish(
+                                                  color: ColorConstant
+                                                      .deepOrange600,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w600))
+                                        ]),
+                                        textAlign: TextAlign.left),
+                                        floatingLabelBehavior: FloatingLabelBehavior.always ,
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Enter Your Phone Number",
+        hintStyle: GoogleFonts.poppins(fontSize: 18, color: Color(0xffBEC1C9)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xffBEC1C9)),
+        ),
+
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xff950320)),
+        ),
+
+        //errorBorder: Is activated when there is some error (i.e. a failed validate)
+        errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1, color: Colors.black)),
+      ),
+    );
+
+final descriptionField = TextFormField(
+      maxLines: 3,
+      style: GoogleFonts.poppins(fontSize: 18
+      ,color: Colors.black),
+      cursorColor: Color(0xff950320),
+      autofocus: false,
+      controller: nameEditingController,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{3,}$');
+        if (value!.isEmpty) {
+          return ("First name can not be empty");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Enter valid name(Min.3 Character");
+        }
+      },
+      onSaved: (value) {
+        nameEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        
+
+        label: RichText(
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                              text: "Description",
+                                              style: GoogleFonts.poppins(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w400)),
+                                          TextSpan(
+                                              text: "*",
+                                              style: GoogleFonts.mulish(
+                                                  color: ColorConstant
+                                                      .deepOrange600,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w600))
+                                        ]),
+                                        textAlign: TextAlign.left),
+                                        floatingLabelBehavior: FloatingLabelBehavior.always ,
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Tell about your service",
+        hintStyle: GoogleFonts.poppins(fontSize: 18, color: Color(0xffBEC1C9)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3
+          ),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xffBEC1C9)),
+        ),
+
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xff950320)),
+        ),
+
+        //errorBorder: Is activated when there is some error (i.e. a failed validate)
+        errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1, color: Colors.black)),
+      ),
+    );
+
+final priceField = TextFormField(
+     
+      style: GoogleFonts.poppins(fontSize: 18
+      ,color: Colors.black),
+      cursorColor: Color(0xff950320),
+      autofocus: false,
+      controller: nameEditingController,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{3,}$');
+        if (value!.isEmpty) {
+          return ("First name can not be empty");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Enter valid name(Min.3 Character");
+        }
+      },
+      onSaved: (value) {
+        nameEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        
+
+        label: RichText(
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                              text: "Price",
+                                              style: GoogleFonts.poppins(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w400)),
+                                          TextSpan(
+                                              text: "*",
+                                              style: GoogleFonts.mulish(
+                                                  color: ColorConstant
+                                                      .deepOrange600,
+                                                  fontSize: getFontSize(16),
+                                                  
+                                                  fontWeight: FontWeight.w600))
+                                        ]),
+                                        textAlign: TextAlign.left),
+                                        floatingLabelBehavior: FloatingLabelBehavior.always ,
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: "Enter the price here",
+        hintStyle: GoogleFonts.poppins(fontSize: 18, color: Color(0xffBEC1C9)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3
+          ),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xffBEC1C9)),
+        ),
+
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(3)),
+          borderSide: BorderSide(width: 1, color: Color(0xff950320)),
+        ),
+
+        //errorBorder: Is activated when there is some error (i.e. a failed validate)
+        errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1, color: Colors.black)),
+      ),
+    );
+
+    //height of the sizedBox
+    double h=30;
+
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -36,475 +558,99 @@ class VendorAddingNewServiceScreen extends StatelessWidget {
               ],
             ),
             backgroundColor: ColorConstant.whiteA700,
-            body: Container(
+            body: SingleChildScrollView(
+                //padding: getPadding(left: 10, top: 10),
                 child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                  Expanded(
-                      child: SingleChildScrollView(
-                          padding: getPadding(left: 10, top: 10),
-                          child: Container(
-                              child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                Padding(
-                                    padding: getPadding(left: 2, right: 10),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Text("Add service",
-                                              overflow: TextOverflow.ellipsis,
-                                              textAlign: TextAlign.left,
-                                              style: AppStyle.txtPoppinsMedium18
-                                                  .copyWith()),
-                                        ])),
-                                Container(
-                                    width: getHorizontalSize(268.00),
-                                    margin:
-                                        getMargin(left: 2, top: 5, right: 10),
-                                    child: Text(
-                                        "To start adding any service, you need the name, category, price and picture",
-                                        maxLines: null,
-                                        textAlign: TextAlign.left,
-                                        style: AppStyle
-                                            .txtPoppinsRegular14Gray700
-                                            .copyWith())),
-                                Container(
-                                    margin:
-                                        getMargin(left: 2, top: 18, right: 10),
-                                    child: RichText(
-                                        text: TextSpan(children: [
-                                          TextSpan(
-                                              text: "Name",
-                                              style: TextStyle(
-                                                  color: ColorConstant.black900,
-                                                  fontSize: getFontSize(16),
-                                                  fontFamily: 'Poppins',
-                                                  fontWeight: FontWeight.w400)),
-                                          TextSpan(
-                                              text: "*",
-                                              style: TextStyle(
-                                                  color: ColorConstant
-                                                      .deepOrange600,
-                                                  fontSize: getFontSize(16),
-                                                  fontFamily: 'Mulish',
-                                                  fontWeight: FontWeight.w600))
-                                        ]),
-                                        textAlign: TextAlign.left)),
-                                Container(
-                                    width: double.infinity,
-                                    margin: getMargin(left: 2, right: 10),
-                                    decoration: AppDecoration.outlineGray400
-                                        .copyWith(
-                                            borderRadius: BorderRadiusStyle
-                                                .roundedBorder3),
-                                    child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Padding(
-                                                  padding: getPadding(
-                                                      left: 21,
-                                                      top: 18,
-                                                      right: 21,
-                                                      bottom: 14),
-                                                  child: Text(
-                                                      "Enter Your Brand Name"
-                                                          .tr,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtPoppinsRegular16Gray400
-                                                          .copyWith())))
-                                        ])),
-                                Align(
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                        height: getVerticalSize(642.00),
-                                        width: getHorizontalSize(301.00),
-                                        margin: getMargin(left: 1, top: 14),
-                                        child: Stack(
-                                            alignment: Alignment.topLeft,
-                                            children: [
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: Container(
-                                                      margin: getMargin(
-                                                          left: 1,
-                                                          top: 144,
-                                                          right: 10,
-                                                          bottom: 144),
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Container(
-                                                                margin:
-                                                                    getMargin(
-                                                                        right:
-                                                                            10),
-                                                                child: RichText(
-                                                                    text: TextSpan(
-                                                                        children: [
-                                                                          TextSpan(
-                                                                              text: "Price".tr,
-                                                                              style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                                                                          TextSpan(
-                                                                              text: "*".tr,
-                                                                              style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
-                                                                        ]),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .left)),
-                                                            Container(
-                                                                width: double
-                                                                    .infinity,
-                                                                decoration: AppDecoration
-                                                                    .outlineGray400
-                                                                    .copyWith(
-                                                                        borderRadius:
-                                                                            BorderRadiusStyle
-                                                                                .roundedBorder3),
-                                                                child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Align(
-                                                                          alignment: Alignment
-                                                                              .centerLeft,
-                                                                          child: Padding(
-                                                                              padding: getPadding(left: 21, top: 18, right: 21, bottom: 14),
-                                                                              child: Text("Enter the price here".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
-                                                                    ]))
-                                                          ]))),
-                                              Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Container(
-                                                      height: getVerticalSize(
-                                                          326.00),
-                                                      width: getHorizontalSize(
-                                                          301.00),
-                                                      margin:
-                                                          getMargin(bottom: 10),
-                                                      child: Stack(
-                                                          alignment:
-                                                              Alignment.topLeft,
-                                                          children: [
-                                                            Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .topLeft,
-                                                                child:
-                                                                    Container(
-                                                                        margin: getMargin(
-                                                                            left:
-                                                                                1,
-                                                                            top:
-                                                                                23,
-                                                                            right:
-                                                                                10,
-                                                                            bottom:
-                                                                                23),
-                                                                        decoration: AppDecoration.outlineGray400.copyWith(
-                                                                            borderRadius: BorderRadiusStyle
-                                                                                .roundedBorder3),
-                                                                        child: Row(
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.end,
-                                                                            mainAxisSize: MainAxisSize.max,
-                                                                            children: [
-                                                                              Padding(padding: getPadding(left: 21, top: 18, bottom: 14), child: Text("Select Your Category".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())),
-                                                                              Padding(padding: getPadding(left: 43, top: 33, right: 19, bottom: 13), child: Container(height: getVerticalSize(10.00), width: getHorizontalSize(15.00), child: SvgPicture.asset(ImageConstant.imgArrowdown, fit: BoxFit.fill)))
-                                                                            ]))),
-                                                            Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .topLeft,
-                                                                child: Container(
-                                                                    margin: getMargin(right: 10, bottom: 10),
-                                                                    child: RichText(
-                                                                        text: TextSpan(children: [
-                                                                          TextSpan(
-                                                                              text: "Category".tr,
-                                                                              style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                                                                          TextSpan(
-                                                                              text: "*".tr,
-                                                                              style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
-                                                                        ]),
-                                                                        textAlign: TextAlign.left)))
-                                                          ]))),
-                                              Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Container(
-                                                      height: getVerticalSize(
-                                                          334.00),
-                                                      width: getHorizontalSize(
-                                                          301.00),
-                                                      margin: getMargin(
-                                                          top: 90, bottom: 90),
-                                                      child: Stack(
-                                                          alignment:
-                                                              Alignment.topLeft,
-                                                          children: [
-                                                            Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .topLeft,
-                                                                child:
-                                                                    Container(
-                                                                        margin: getMargin(
-                                                                            left:
-                                                                                1,
-                                                                            top:
-                                                                                23,
-                                                                            right:
-                                                                                10,
-                                                                            bottom:
-                                                                                23),
-                                                                        decoration: AppDecoration.outlineGray400.copyWith(
-                                                                            borderRadius: BorderRadiusStyle
-                                                                                .roundedBorder3),
-                                                                        child: Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                                            mainAxisAlignment: MainAxisAlignment.start,
-                                                                            children: [
-                                                                              Align(alignment: Alignment.centerLeft, child: Padding(padding: getPadding(left: 21, top: 18, right: 21, bottom: 14), child: Text("Enter your address".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
-                                                                            ]))),
-                                                            Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .topLeft,
-                                                                child: Container(
-                                                                    margin: getMargin(right: 10, bottom: 10),
-                                                                    child: RichText(
-                                                                        text: TextSpan(children: [
-                                                                          TextSpan(
-                                                                              text: "Address".tr,
-                                                                              style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                                                                          TextSpan(
-                                                                              text: "*".tr,
-                                                                              style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
-                                                                        ]),
-                                                                        textAlign: TextAlign.left)))
-                                                          ]))),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: Container(
-                                                      height: getVerticalSize(
-                                                          339.00),
-                                                      width: getHorizontalSize(
-                                                          301.00),
-                                                      margin: getMargin(
-                                                          top: 121,
-                                                          bottom: 121),
-                                                      child: Stack(
-                                                          alignment:
-                                                              Alignment.topLeft,
-                                                          children: [
-                                                            Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .topLeft,
-                                                                child:
-                                                                    Container(
-                                                                        margin: getMargin(
-                                                                            left:
-                                                                                1,
-                                                                            top:
-                                                                                23,
-                                                                            right:
-                                                                                10,
-                                                                            bottom:
-                                                                                23),
-                                                                        decoration: AppDecoration.outlineGray400.copyWith(
-                                                                            borderRadius: BorderRadiusStyle
-                                                                                .roundedBorder3),
-                                                                        child: Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            mainAxisAlignment: MainAxisAlignment.start,
-                                                                            children: [
-                                                                              Align(alignment: Alignment.centerLeft, child: Padding(padding: getPadding(left: 21, top: 18, right: 21), child: Text("Select Your District".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith()))),
-                                                                              Align(alignment: Alignment.centerRight, child: Padding(padding: getPadding(left: 27, top: 2, right: 27, bottom: 2), child: Container(height: getVerticalSize(10.00), width: getHorizontalSize(15.00), child: SvgPicture.asset(ImageConstant.imgArrowdown, fit: BoxFit.fill))))
-                                                                            ]))),
-                                                            Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .topLeft,
-                                                                child: Container(
-                                                                    margin: getMargin(right: 10, bottom: 10),
-                                                                    child: RichText(
-                                                                        text: TextSpan(children: [
-                                                                          TextSpan(
-                                                                              text: "District".tr,
-                                                                              style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                                                                          TextSpan(
-                                                                              text: "*".tr,
-                                                                              style: TextStyle(color: ColorConstant.deepOrange600, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
-                                                                        ]),
-                                                                        textAlign: TextAlign.left)))
-                                                          ]))),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: Container(
-                                                      margin: getMargin(
-                                                          top: 20, bottom: 20),
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Container(
-                                                                height:
-                                                                    getVerticalSize(
-                                                                        135.00),
-                                                                width:
-                                                                    getHorizontalSize(
-                                                                        267.00),
-                                                                margin:
-                                                                    getMargin(
-                                                                        right:
-                                                                            10),
-                                                                child: Stack(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .topLeft,
-                                                                    children: [
-                                                                      Align(
-                                                                          alignment:
-                                                                              Alignment.bottomCenter,
-                                                                          child: Container(
-                                                                              margin: getMargin(left: 1, top: 10),
-                                                                              decoration: AppDecoration.outlineGray400.copyWith(borderRadius: BorderRadiusStyle.roundedBorder3),
-                                                                              child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.start, children: [
-                                                                                Align(alignment: Alignment.centerLeft, child: Padding(padding: getPadding(left: 21, top: 18, right: 21, bottom: 70), child: Text("Tell about your service".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Gray400.copyWith())))
-                                                                              ]))),
-                                                                      Align(
-                                                                          alignment: Alignment
-                                                                              .topLeft,
-                                                                          child: Padding(
-                                                                              padding: getPadding(right: 10, bottom: 10),
-                                                                              child: Text("Description".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtPoppinsRegular16Black902.copyWith())))
-                                                                    ])),
-                                                            Container(
-                                                                width:
-                                                                    getHorizontalSize(
-                                                                        217.00),
-                                                                margin:
-                                                                    getMargin(
-                                                                        top:
-                                                                            103,
-                                                                        right:
-                                                                            10,
-                                                                        bottom:
-                                                                            58),
-                                                                child: RichText(
-                                                                    text: TextSpan(
-                                                                        children: [
-                                                                          TextSpan(
-                                                                              text: "Drop images here,\n",
-                                                                              style: TextStyle(color: ColorConstant.black902, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                                                                          TextSpan(
-                                                                              text: "Tap below boxes to browse",
-                                                                              style: TextStyle(color: ColorConstant.red901, fontSize: getFontSize(16), fontFamily: 'Poppins', fontWeight: FontWeight.w400))
-                                                                        ]),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .left))
-                                                          ]))),
-                                              CustomIconButton(
-                                                  height: 76,
-                                                  width: 76,
-                                                  margin: getMargin(
-                                                      left: 8,
-                                                      top: 10,
-                                                      right: 10),
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: SvgPicture.asset(
-                                                      ImageConstant
-                                                          .imgGroup251)),
-                                              CustomIconButton(
-                                                  height: 76,
-                                                  width: 76,
-                                                  margin: getMargin(
-                                                      left: 103,
-                                                      top: 10,
-                                                      right: 103),
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: SvgPicture.asset(
-                                                      ImageConstant
-                                                          .imgGroup251)),
-                                              CustomIconButton(
-                                                  height: 76,
-                                                  width: 76,
-                                                  margin: getMargin(
-                                                      left: 27,
-                                                      top: 10,
-                                                      right: 27),
-                                                  alignment:
-                                                      Alignment.bottomRight,
-                                                  child: SvgPicture.asset(
-                                                      ImageConstant
-                                                          .imgGroup251))
-                                            ]))),
-                                Container(
-                                    width: getHorizontalSize(285.00),
-                                    margin: getMargin(top: 7, right: 10),
-                                    child: Text(
-                                        "Use quality pictures for the product. It will be used for products adverts",
-                                        maxLines: null,
-                                        textAlign: TextAlign.left,
-                                        style: AppStyle
-                                            .txtPoppinsRegular16Gray700
-                                            .copyWith())),
-                                CustomButton(
-                                    width: 263,
-                                    text: "Save",
-                                    margin:
-                                        getMargin(left: 11, top: 17, right: 11),
-                                    padding: ButtonPadding.PaddingAll14,
-                                    fontStyle: ButtonFontStyle.PoppinsMedium18,
-                                    onTap: onTapBtnSave)
-                              ]))))
+                  Text("Add service",
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.left,
+                      style: AppStyle.txtPoppinsMedium18
+                          .copyWith()),
+                  Text(
+                      "To start adding any service, you need the name, category, price and picture",
+                      maxLines: null,
+                      textAlign: TextAlign.left,
+                      style: AppStyle
+                          .txtPoppinsRegular14Gray700
+                          .copyWith()),
+                           
+                           SizedBox(height: h), 
+                           nameField, 
+                           SizedBox(height: h), 
+                           categoryField,
+                           SizedBox(height: h),
+                           addressField,
+                           SizedBox(height: h),
+                           districtField,
+                           SizedBox(height: h),
+                           phoneNumberField,
+                           SizedBox(height: h),
+                           descriptionField,
+                           SizedBox(height: h),
+                           priceField,
+                           SizedBox(height: h),
+                           
+                  // 
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(color: Colors.amber,
+                        child: SizedBox(width: 100, height: 100,
+                          child: IconButton(alignment: Alignment.center,
+            onPressed:(){ },
+            icon: Icon(
+            Icons.add_rounded,
+            size: 80.0,
+            color: Colors.black,
+            ),
+              ),
+                        ),
+                      ),
+                      Container(color: Colors.amber,
+                        child: SizedBox(width: 100, height: 100,
+                          child: IconButton(alignment: Alignment.center,
+            onPressed:(){ },
+            icon: Icon(
+            Icons.add_rounded,
+            size: 80.0,
+            color: Colors.black,
+            ),
+              ),
+                        ),
+                      ),
+                      Container(color: Colors.amber,
+                        child: SizedBox(width: 100, height: 100,
+                          child: IconButton(alignment: Alignment.center,
+            onPressed:(){ },
+            icon: Icon(
+            Icons.add_rounded,
+            size: 80.0,
+            color: Colors.black,
+            ),
+              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  
+                  Text(
+                      "Use quality pictures for the product. It will be used for products adverts",
+                      maxLines: null,
+                      textAlign: TextAlign.left,
+                      style: AppStyle
+                          .txtPoppinsRegular16Gray700
+                          .copyWith()),
+                  CustomButton(
+                      width: 263,
+                      text: "Save",
+                      margin:
+                          getMargin(left: 11, top: 17, right: 11),
+                      padding: ButtonPadding.PaddingAll14,
+                      fontStyle: ButtonFontStyle.PoppinsMedium18,
+                      onTap: onTapBtnSave)
                 ]))));
   }
 

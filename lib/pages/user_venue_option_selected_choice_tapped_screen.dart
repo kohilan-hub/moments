@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:moments/core/app_export.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class UserVenueOptionSelectedChoiceTappedScreen extends StatelessWidget {
@@ -324,7 +327,27 @@ class UserVenueOptionSelectedChoiceTappedScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0),
                   ),
                       ),
-                      onPressed: () => _launchWhatsapp(context),
+                      onPressed: () async => { 
+                      if(Platform.isIOS){
+    //iOS devices
+    await canLaunchUrl(Uri.parse('https://wa.me/${phoneNumber}?text=Hey kohilan, i have seen your venue service on moments app, I am interested about your venue service,  I would like to get to know more about your service, Could you tell me more about it?'))
+                        .then((Value) => launchUrl(Uri.parse('https://wa.me/${phoneNumber}?text=Hey ${name}, I have seen your ${category} service on moments app, I am interested about your ${category} service,  I would like to get to know more about your service, Could you tell me more about it?')))? print("WhatsApp is installed on the device"):
+                        ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: new Text("WhatsApp is not installed on the device")))
+    }
+    //android, web
+    else{
+      await canLaunchUrl(Uri.parse('whatsapp://send?phone=${phoneNumber}&text=Hey kohilan, i have seen your venue service on moments app, I am interested about your venue service,  I would like to get to know more about your service, Could you tell me more about it?'))
+                        .then((Value) => launchUrl(Uri.parse('whatsapp://send?phone=${phoneNumber}&text=Hey ${name}, I have seen your ${category} service on moments app, I am interested about your ${category} service,  I would like to get to know more about your service, Could you tell me more about it?')))? print("WhatsApp is installed on the device"):
+                        ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: new Text("WhatsApp is not installed on the device")))
+    }
+                      },
+
+                      
+
+                    
+                  
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -346,7 +369,7 @@ class UserVenueOptionSelectedChoiceTappedScreen extends StatelessWidget {
   }
 
   _launchWhatsapp(ctx) async {
-    var whatsapp = "+91XXXXXXXXXX";
+    var whatsapp = "+94772129356";
     var whatsappAndroid =Uri.parse("whatsapp://send?phone=$whatsapp&text=hello");
     if (await canLaunchUrl(whatsappAndroid)) {
         await launchUrl(whatsappAndroid);
@@ -358,4 +381,9 @@ class UserVenueOptionSelectedChoiceTappedScreen extends StatelessWidget {
       );
     }
 }
+
+
+
+
+
 }
