@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moments/core/app_export.dart';
 import 'package:moments/core/utils/user_preferences.dart';
-import 'package:moments/model/entry.dart';
+import 'package:moments/model/service_model.dart';
 import 'package:moments/pages/user_venue_option_selected_choice_tapped_screen.dart';
 
 

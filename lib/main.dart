@@ -22,7 +22,7 @@ import 'pages/user_venue_option_selected_screen.dart';
 
 import 'pages/vendor_editing_a_existing_service_screen.dart';
 import 'pages/vendor_home_screen.dart';
-import 'pages/vendor_home_screen_with_services_screen.dart';
+import 'pages/vendor_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 // 
