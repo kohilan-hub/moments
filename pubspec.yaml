@@ -9,18 +9,16 @@ dependencies:
   cloud_firestore: ^3.4.4
   connectivity_plus: ^1.4.0
   cupertino_icons: ^1.0.0
+  file_picker: ^5.0.1
   firebase_auth: ^3.6.3
-  firebase_core: ^1.20.1
+  firebase_core: ^1.21.0
+  firebase_storage: ^10.3.6
   flutter:
     sdk: flutter
   flutter_login_facebook: ^1.1.0
   flutter_signin_button: ^2.0.0
   flutter_svg: ^0.22.0
   fluttertoast: ^8.0.9
-
-  url_launcher: ^6.1.5
-
-
   get: ^4.6.1
   google_fonts: ^2.1.0
   google_sign_in: ^5.0.7
@@ -28,6 +26,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   shared_preferences: ^2.0.7
   smooth_page_indicator: ^1.0.0+2
+  url_launcher: ^6.1.5
 
 dev_dependencies:
   flutter_launcher_icons: "^0.10.0"
@@ -46,7 +45,6 @@ flutter:
     - assets/
     - assets/images/
     - assets/icons/ring.svg
-
 
   fonts:
     - family: KyivType Sans

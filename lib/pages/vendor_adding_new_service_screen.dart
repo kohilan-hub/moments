@@ -1,7 +1,14 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moments/core/app_export.dart';
+import 'package:moments/core/utils/user_preferences.dart';
 import 'package:moments/widgets/custom_button.dart';
 import 'package:moments/widgets/custom_icon_button.dart';
 
@@ -11,6 +18,37 @@ class VendorAddingNewServiceScreen extends StatefulWidget {
 }
 
 class _VendorAddingNewServiceScreenState extends State<VendorAddingNewServiceScreen> {
+   List<PlatformFile?> pickedFile=List.filled(3, null, growable: false);
+  
+  Future uploadFile() async{
+    final path1='files/${pickedFile[0]!.name}';
+    final file1= File(pickedFile[0]!.path!);
+
+    final ref1=FirebaseStorage.instance.ref().child(path1);
+    ref1.putFile(file1);
+    //file 2
+    final path2='files/${pickedFile[1]!.name}';
+    final file2= File(pickedFile[1]!.path!);
+
+    final ref2=FirebaseStorage.instance.ref().child(path2);
+    ref2.putFile(file2);
+    // file 3
+    final path3='files/${pickedFile[2]!.name}';
+    final file3= File(pickedFile[2]!.path!);
+
+    final ref3=FirebaseStorage.instance.ref().child(path3);
+    ref3.putFile(file3);
+  }
+
+  Future selectFile(int i) async{
+    final result=await FilePicker.platform.pickFiles();
+    if(result==null)return;
+
+    setState(() {
+      pickedFile[i]=result.files.first;
+    });
+  
+  }
 
   //form key
   final _formKey = GlobalKey<FormState>();
@@ -24,6 +62,9 @@ class _VendorAddingNewServiceScreenState extends State<VendorAddingNewServiceScr
   final descriptionEditingController = TextEditingController();
   final priceEditingController = TextEditingController();
   final confirmPasswordEditingController = TextEditingController();
+
+  //category field
+  late String dropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +138,7 @@ class _VendorAddingNewServiceScreenState extends State<VendorAddingNewServiceScr
     );
 
     //category field
-    String dropdownValue;
+    
     final categoryField = 
 DropdownButtonFormField(
   style: GoogleFonts.poppins(fontSize: 18
@@ -193,19 +234,16 @@ final addressField = TextFormField(
       ,color: Colors.black),
       cursorColor: Color(0xff950320),
       autofocus: false,
-      controller: nameEditingController,
+      controller: addressEditingController,
       keyboardType: TextInputType.name,
       validator: (value) {
         RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
-          return ("First name can not be empty");
-        }
-        if (!regex.hasMatch(value)) {
-          return ("Enter valid name(Min.3 Character");
+          return ("Address can not be empty");
         }
       },
       onSaved: (value) {
-        nameEditingController.text = value!;
+        addressEditingController.text = value!;
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
@@ -261,7 +299,7 @@ final districtField = TextFormField(
       ,color: Colors.black),
       cursorColor: Color(0xff950320),
       autofocus: false,
-      controller: nameEditingController,
+      controller: districtEditingController,
       keyboardType: TextInputType.name,
       validator: (value) {
         RegExp regex = RegExp(r'^.{3,}$');
@@ -329,19 +367,19 @@ final phoneNumberField = TextFormField(
       ,color: Colors.black),
       cursorColor: Color(0xff950320),
       autofocus: false,
-      controller: nameEditingController,
+      controller: phoneNumberEditingController,
       keyboardType: TextInputType.name,
       validator: (value) {
-        RegExp regex = RegExp(r'^.{3,}$');
+        RegExp regex = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
         if (value!.isEmpty) {
-          return ("First name can not be empty");
+          return ("Phone number is required");
         }
         if (!regex.hasMatch(value)) {
-          return ("Enter valid name(Min.3 Character");
+          return ("Please enter valid phone number");
         }
       },
       onSaved: (value) {
-        nameEditingController.text = value!;
+        phoneNumberEditingController.text = value!;
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
@@ -396,19 +434,16 @@ final descriptionField = TextFormField(
       ,color: Colors.black),
       cursorColor: Color(0xff950320),
       autofocus: false,
-      controller: nameEditingController,
+      controller: descriptionEditingController,
       keyboardType: TextInputType.name,
       validator: (value) {
         RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
-          return ("First name can not be empty");
-        }
-        if (!regex.hasMatch(value)) {
-          return ("Enter valid name(Min.3 Character");
+          return ("Address can not be empty");
         }
       },
       onSaved: (value) {
-        nameEditingController.text = value!;
+        descriptionEditingController.text = value!;
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
@@ -464,7 +499,7 @@ final priceField = TextFormField(
       ,color: Colors.black),
       cursorColor: Color(0xff950320),
       autofocus: false,
-      controller: nameEditingController,
+      controller: priceEditingController,
       keyboardType: TextInputType.name,
       validator: (value) {
         RegExp regex = RegExp(r'^.{3,}$');
@@ -528,13 +563,12 @@ final priceField = TextFormField(
 
     //height of the sizedBox
     double h=30;
-
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
               elevation: 0,
               leading: IconButton(
-                onPressed: null,
+                onPressed:() { Navigator.pop(context);},
                 icon: Icon(
                   Icons.arrow_back_ios,
                   size: 30.0,
@@ -545,7 +579,7 @@ final priceField = TextFormField(
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 12),
                   child: MaterialButton(
-                    onPressed: null,
+                    onPressed:() { Navigator.pop(context);},
                     child: Icon(
                       Icons.close_rounded,
                       size: 25.0,
@@ -559,7 +593,7 @@ final priceField = TextFormField(
             ),
             backgroundColor: ColorConstant.whiteA700,
             body: SingleChildScrollView(
-                //padding: getPadding(left: 10, top: 10),
+                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
                 child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -594,69 +628,174 @@ final priceField = TextFormField(
                            priceField,
                            SizedBox(height: h),
                            
-                  // 
+                  Text(
+                      "Drop images here,",
+                      maxLines: null,
+                      textAlign: TextAlign.left,
+                      style:GoogleFonts.poppins(fontSize:18,color:Colors.black)
+                      ),
+                          Text(
+                      "Tap below boxes to browse",
+                      maxLines: null,
+                      textAlign: TextAlign.left,
+                      style: GoogleFonts.poppins(fontSize:18,color:Color(0xffAF0B2C))
+                          ),
+                          
+                  SizedBox(height: 10), 
+
                   Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(color: Colors.amber,
-                        child: SizedBox(width: 100, height: 100,
-                          child: IconButton(alignment: Alignment.center,
-            onPressed:(){ },
-            icon: Icon(
-            Icons.add_rounded,
-            size: 80.0,
-            color: Colors.black,
-            ),
-              ),
-                        ),
-                      ),
-                      Container(color: Colors.amber,
-                        child: SizedBox(width: 100, height: 100,
-                          child: IconButton(alignment: Alignment.center,
-            onPressed:(){ },
-            icon: Icon(
-            Icons.add_rounded,
-            size: 80.0,
-            color: Colors.black,
-            ),
-              ),
-                        ),
-                      ),
-                      Container(color: Colors.amber,
-                        child: SizedBox(width: 100, height: 100,
-                          child: IconButton(alignment: Alignment.center,
-            onPressed:(){ },
-            icon: Icon(
-            Icons.add_rounded,
-            size: 80.0,
-            color: Colors.black,
-            ),
-              ),
-                        ),
-                      ),
+                        (pickedFile[0] == null) ?imgPickButton(0) : displayImg(0),
+                        (pickedFile[1] == null) ?imgPickButton(1) : displayImg(1),
+                        (pickedFile[2] == null) ?imgPickButton(2) : displayImg(2),
+                      
+
+          
+                     
                     ],
                   ),
+                  
+                  SizedBox(height: 10), 
                   
                   Text(
                       "Use quality pictures for the product. It will be used for products adverts",
                       maxLines: null,
-                      textAlign: TextAlign.left,
-                      style: AppStyle
-                          .txtPoppinsRegular16Gray700
-                          .copyWith()),
-                  CustomButton(
-                      width: 263,
-                      text: "Save",
-                      margin:
-                          getMargin(left: 11, top: 17, right: 11),
-                      padding: ButtonPadding.PaddingAll14,
-                      fontStyle: ButtonFontStyle.PoppinsMedium18,
-                      onTap: onTapBtnSave)
+                      textAlign: TextAlign.justify,
+                      style: GoogleFonts.poppins(fontSize:18,color:Color(0xff555B6A))
+                          ),
+
+                          SizedBox(height: 20), 
+
+                          Center(
+                            child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              //fixedSize: Size.fromWidth(265),
+                              primary: Color(0xffAF0B2C),
+                              elevation: 0,
+                              padding: EdgeInsets.fromLTRB(120, 15, 120, 15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                            ),
+                            onPressed: () {
+                             // uploadFile();
+                            sendDataToDB();},
+                            child: Text('Save',
+                                style: AppStyle.txtMulishSemiBold16WhiteA700
+                                    .copyWith()),
+                        ),
+                          ),
+                          SizedBox(height: 20),                  
                 ]))));
   }
+
+  displayImg(int i) {
+     return Container(width: 100, height: 100,decoration: BoxDecoration(
+                                    color: Color(0xffD9D9D9),
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(image:Image.file(File(pickedFile[i]!.path!)).image,fit: BoxFit.cover
+                                    ),
+                        //child: Image.file(File(pickedFile!.path!),fit: BoxFit.fill,),
+                      ));
+                    
+  }
+
+  imgPickButton(int i) {
+     return Container(decoration: BoxDecoration(
+                                    color: Color(0xffD9D9D9),
+                                    borderRadius: BorderRadius.circular(10),
+                                    
+                                    ),
+                        child: SizedBox(width: 100, height: 100,
+                          child: IconButton(alignment: Alignment.center,
+                                 onPressed:()=>selectFile(i),
+                                 icon: Icon(
+                                 Icons.add_rounded,
+                                 size: 80.0,
+                                 color: Colors.black,
+                                 ),
+                                   ),
+                        ),
+                                           );
+                     
+  }
+
+  // void save(String firstName, String email, String nic, String address,
+  //     String phoneNumber) async {
+  //   if (_formKey.currentState!.validate()) {
+  //     await _auth
+  //         .createUserWithEmailAndPassword(
+  //             email: email, password: passwordEditingController.text)
+  //         .then((value) => {postDetailsToFirestore()})
+  //         .catchError((e) {
+  //       Fluttertoast.showToast(msg: e!.message);
+  //     });
+  //   }
+  // }
+  
+  sendDataToDB() async {
+final imageArray = <String, String>{
+  "0": 'files/${pickedFile[0]!.name}',
+  "1": 'files/${pickedFile[1]!.name}',
+  "2": 'files/${pickedFile[2]!.name}'
+};
+CollectionReference _collectionReferance =
+    FirebaseFirestore.instance.collection("vendors").doc("${UserPreferences.getUserID()}").collection("services");
+return _collectionReferance
+    .doc()
+    .set({
+      "name": nameEditingController.text,
+      "category": dropdownValue,
+      "address": addressEditingController.text,
+      "district": districtEditingController.text,
+      "phoneNumber": phoneNumberEditingController.text,
+      "description": descriptionEditingController.text,
+      "price": double.parse(priceEditingController.text),
+      "images":imageArray
+    })
+    //.then((value) => dialog())
+    .catchError((error) => Fluttertoast.showToast(msg: "something wrong"));
+  
+  }
+
+  // postDetailsToFirestore() async {
+
+
+  //   //calling our firestore
+  //   //calling our user model
+  //   //sending these values
+
+
+
+  //   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  //   User? user = _auth.currentUser;
+
+  //   UserModel userModel = UserModel();
+
+  //   //Writing all the values
+  //   userModel.name = nameEditingController.text;
+  //   userModel.nic = nicEditingController.text;
+  //   userModel.email = user!.email;
+  //   userModel.address = addressEditingController.text;
+  //   userModel.phoneNumber = phoneNumberEditingController.text;
+
+  //   await firebaseFirestore
+  //       .collection("users")
+  //       .doc(user.uid)
+  //       .set(userModel.tomap());
+
+  //   Fluttertoast.showToast(msg: "Account Created Sucessfully.");
+
+  //   Navigator.pushAndRemoveUntil(
+  //       (context),
+  //       MaterialPageRoute(builder: (context) => LoginScreen()),
+  //       (route) => false);
+  // }
 
   onTapImgArrowleft() {
     Get.back();
   }
 
   onTapBtnSave() {}
+  
 }

@@ -48,7 +48,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
                   style: AppStyle.txtVollkornRomanRegular18.copyWith()),
               actions: <Widget>[
                 IconButton(
-                  onPressed:() =>  Navigator.pushReplacement(context,
+                  onPressed:() =>  Navigator.push(context,
                     MaterialPageRoute(builder: (context) => UserVendorAccountScreen())),
                   icon: Icon(
                     Icons.account_circle_outlined,
@@ -81,7 +81,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
                             ),
                           ),
                           onPressed: () => Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
+                              .push(MaterialPageRoute(
                                   builder: (_) =>
                                       VendorAddingNewServiceScreen())),
                           child: Row(

@@ -13,7 +13,7 @@ class UserVendorAccountScreen extends StatelessWidget {
             appBar: AppBar(
               elevation: 0,
               leading: IconButton(
-                onPressed: null,
+                onPressed:() { Navigator.pop(context);},
                 icon: Icon(
                   Icons.arrow_back_ios,
                   size: 30.0,
