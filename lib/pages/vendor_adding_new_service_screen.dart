@@ -679,7 +679,8 @@ final priceField = TextFormField(
                             ),
                             onPressed: () {
                              // uploadFile();
-                            sendDataToDB();},
+                            sendDataToDB();
+                            Navigator.of(context).pop();},
                             child: Text('Save',
                                 style: AppStyle.txtMulishSemiBold16WhiteA700
                                     .copyWith()),

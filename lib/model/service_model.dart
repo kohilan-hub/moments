@@ -7,7 +7,8 @@ class Service {
   final String address;
   final double price;
   final String phoneNumber;
-  
+  final String description;
+
 
   Service({
     required this.name,
@@ -16,7 +17,11 @@ class Service {
     required this.address,
     required this.price,
     required this.phoneNumber,
+    required this.description,
   });
+  
+
+ 
 
   static Service fromJson(Map<void, dynamic> json) => Service(
       name: json['name'],
@@ -25,5 +30,6 @@ class Service {
       address: json['address'],
       price: (json['price'] as num).toDouble(),
       phoneNumber: json['phoneNumber'],
+      description: json['description'],
       );
 }

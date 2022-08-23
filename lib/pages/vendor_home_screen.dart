@@ -5,6 +5,7 @@ import 'package:moments/core/app_export.dart';
 import 'package:moments/core/utils/user_preferences.dart';
 import 'package:moments/model/service_model.dart';
 import 'package:moments/pages/vendor_adding_new_service_screen.dart';
+import 'package:moments/pages/vendor_editing_a_existing_service_screen.dart';
 import 'package:moments/pages/vendor_home_screen.dart';
 
 import 'user_vendor_account_screen.dart';
@@ -35,6 +36,47 @@ class VendorHomeScreen extends StatefulWidget {
 }
 
 class _VendorHomeScreenState extends State<VendorHomeScreen> {
+  var docId;
+
+  Future<void> loadDocId(String command,Service user) async {
+    await FirebaseFirestore.instance
+        .collection('vendors')
+        .doc(UserPreferences.getUserID())
+        .collection('services')
+        //check in unique in a entry because qrID can be same for one place
+        .where("name", isEqualTo: user.name)
+        .where("phoneNumber", isEqualTo: user.phoneNumber)
+        .where("category", isEqualTo: user.category)
+        .get()
+        .then(
+          (QuerySnapshot snapshot) => {
+            snapshot.docs.forEach((f) {
+              docId = (f.reference.id);
+            }),
+          },
+        );
+    
+    print("hijkl: $docId");
+
+    final docEntry = await FirebaseFirestore.instance
+        .collection('vendors')
+        .doc(UserPreferences.getUserID())
+        .collection('services')
+        .doc(docId);
+
+    if(command=='delete')
+      await docEntry.delete();
+
+    if(command=='edit')
+      Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => VendorEditingAExistingServiceScreen(docEntry: docEntry, user: user)));
+
+
+    
+    //await docEntry.update({'check-out': myTimeStamp});
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     userDetailFetchSharedPreference();
@@ -120,7 +162,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
              
           
           
-             // newMethod(context),
+             // underServicesAddButton(context),
            
   
     //this is it.
@@ -129,7 +171,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
   );
   }
 
-  Column newMethod(BuildContext context) {
+  Column underServicesAddButton(BuildContext context) {
     return Column(
               children: [
                 Container(
@@ -148,9 +190,10 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
                 borderRadius: BorderRadius.circular(5.0),
           ),
                 ),
-                onPressed: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                    builder: (_) => VendorHomeScreen())),
+                onPressed: () => Navigator.of(context)
+                            .push(MaterialPageRoute(
+                                builder: (_) =>
+                                    VendorAddingNewServiceScreen())),
                 child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -257,7 +300,10 @@ Stream<List<Service>> readServices() => FirebaseFirestore.instance
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onPressed: () => {Navigator.of(ctx).pop()},
+                  onPressed: () async {
+                    await loadDocId("delete",user);
+                    Navigator.of(ctx).pop();
+                  },
                   child: Text('Yes',
                       style: TextStyle(
                           color: Colors.black,
@@ -365,7 +411,9 @@ Stream<List<Service>> readServices() => FirebaseFirestore.instance
                                         fixedSize: Size.fromWidth(90),
                                         primary: Color(0xffDFDDDE),
                                       ),
-                                      onPressed: () => {},
+                                      onPressed: () async {
+                                        await loadDocId("edit",user);
+                                      },
                                       child: Text('Edit',
                                           style: TextStyle(
                                               color: Colors.black,
@@ -387,8 +435,10 @@ Stream<List<Service>> readServices() => FirebaseFirestore.instance
                                         primary:
                                             Color(0xffFF4521).withOpacity(0.68),
                                       ),
-                                      onPressed: () =>
-                                          deletingConfirmAlertBox(context,user),
+                                      onPressed: () async {
+                                        
+                                        deletingConfirmAlertBox(context,user);
+                                      },
                                       child: Text('Delete',
                                           style: TextStyle(
                                               color: Colors.black,
