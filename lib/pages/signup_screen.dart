@@ -32,6 +32,7 @@ class _SignupScreenState extends State<SignupScreen> {
   //editing controller
   final TextEditingController nameController = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
+  final TextEditingController phoneNumberController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
   final TextEditingController confirmPasswordController =
       new TextEditingController();
@@ -97,6 +98,37 @@ class _SignupScreenState extends State<SignupScreen> {
           prefixIcon: Icon(Icons.mail),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Email",
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10),
+          )),
+    );
+
+    //phoneNumber field
+    final phoneNumberField = TextFormField(
+      autofocus: false,
+      controller: emailController,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter Your Phone Number");
+        }
+        //reg expression for phone number validation
+        if (!RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(value)) {
+          return ("Please Enter a valid Phone Number");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        phoneNumberController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          prefixIcon: Icon(Icons.phone),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Phone Number",
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(10),
@@ -398,6 +430,7 @@ class _SignupScreenState extends State<SignupScreen> {
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.name = nameController.text;
+    userModel.phoneNumber=phoneNumberController.text;
     userModel.roleState=widget.roleState;
 
     if(widget.roleState){

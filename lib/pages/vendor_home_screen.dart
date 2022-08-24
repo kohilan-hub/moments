@@ -13,7 +13,8 @@ import 'user_vendor_account_screen.dart';
 Future<void> userDetailFetchSharedPreference() async {
   var name;
   var email;
-  //var phone;
+  var phoneNumber;
+  
   await FirebaseFirestore.instance
       .collection('vendors')
       .doc(UserPreferences.getUserID())
@@ -22,14 +23,14 @@ Future<void> userDetailFetchSharedPreference() async {
     (DocumentSnapshot) {
       name = (DocumentSnapshot.data()!['name'].toString());
       email = (DocumentSnapshot.data()!['email'].toString());
-      //phone = (DocumentSnapshot.data()!['phoneNumber'].toString());
-      //return name = (DocumentSnapshot.data()!['name'].toString());
+      phoneNumber = (DocumentSnapshot.data()!['phoneNumber'].toString());
     },
   );
   await UserPreferences.setUserName(name);
   await UserPreferences.setEmail(email);
-  //await UserPreferences.setPhoneNumber(phone);
+  await UserPreferences.setPhoneNumber(phoneNumber);
 }
+
 class VendorHomeScreen extends StatefulWidget {
   @override
   State<VendorHomeScreen> createState() => _VendorHomeScreenState();

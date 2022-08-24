@@ -214,8 +214,7 @@ class _UserVenueOptionSelectedScreenState extends State<UserVenueOptionSelectedS
                                             width:
                                                 MediaQuery.of(context).size.width,
                                             height: 220,
-                                            image: AssetImage(
-                                                'assets/images/Hall1.jpg'),
+                                            image: Image.network("${user.images[0]}").image,
                                             fit: BoxFit.cover),
                                       ),
                                     ),
@@ -247,7 +246,9 @@ class _UserVenueOptionSelectedScreenState extends State<UserVenueOptionSelectedS
                   district: user.district, 
                   address: user.address, 
                   price: user.price, 
-                  phoneNumber: user.phoneNumber
+                  phoneNumber: user.phoneNumber, 
+                  description: user.description, 
+                  images: user.images,
                   )),
           );
                   },

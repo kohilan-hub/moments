@@ -2,12 +2,14 @@ class UserModel {
   String? uid;
   String? name;
   String? email;
+  String? phoneNumber;
   bool? roleState;
 
   UserModel({
     this.uid,
     this.name,
     this.email,
+    this.phoneNumber,
     this.roleState,
   });
 
@@ -17,6 +19,7 @@ class UserModel {
       uid: map['uid'],
       name: map['name'],
       email: map['email'],
+      phoneNumber: map['phoneNumber'],
       roleState: map['roleState']
     );
   }
@@ -27,6 +30,7 @@ class UserModel {
       'uid' : uid,
       'name' : name,
       'email' : email,
+      'phoneNumber' : phoneNumber,
       'roleState':roleState
     };
   }
