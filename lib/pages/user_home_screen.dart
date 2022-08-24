@@ -218,7 +218,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                                     width: 120,
                                                     height: 120,
                                                     image: AssetImage(
-                                                        'assets/images/Wedding Hall.png')),
+                                                        'assets/images/Venue.png')),
                                                 Text("Venue",
                                                     style: TextStyle(
                                                         color: Colors.black,

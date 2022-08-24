@@ -19,25 +19,45 @@ class VendorAddingNewServiceScreen extends StatefulWidget {
 
 class _VendorAddingNewServiceScreenState extends State<VendorAddingNewServiceScreen> {
    List<PlatformFile?> pickedFile=List.filled(3, null, growable: false);
-  
+  UploadTask? uploadTask;
+   List<String> urlDownload  =List.filled(3, "", growable: false);
   Future uploadFile() async{
     final path1='files/${pickedFile[0]!.name}';
     final file1= File(pickedFile[0]!.path!);
 
     final ref1=FirebaseStorage.instance.ref().child(path1);
-    ref1.putFile(file1);
+    uploadTask =ref1.putFile(file1);
+
+    final snapshot1 = await uploadTask!.whenComplete(() {
+      
+    });
+
+    urlDownload[0]=await snapshot1.ref.getDownloadURL();
+    
     //file 2
     final path2='files/${pickedFile[1]!.name}';
     final file2= File(pickedFile[1]!.path!);
 
     final ref2=FirebaseStorage.instance.ref().child(path2);
-    ref2.putFile(file2);
+    uploadTask =ref2.putFile(file2);
+
+    final snapshot2 = await uploadTask!.whenComplete(() {
+      
+    });
+
+    urlDownload[1]=await snapshot2.ref.getDownloadURL();
     // file 3
     final path3='files/${pickedFile[2]!.name}';
     final file3= File(pickedFile[2]!.path!);
 
     final ref3=FirebaseStorage.instance.ref().child(path3);
-    ref3.putFile(file3);
+    uploadTask =ref3.putFile(file3);
+
+    final snapshot3 = await uploadTask!.whenComplete(() {
+      
+    });
+
+    urlDownload[2]=await snapshot3.ref.getDownloadURL();
   }
 
   Future selectFile(int i) async{
@@ -677,9 +697,9 @@ final priceField = TextFormField(
                                 borderRadius: BorderRadius.circular(5.0),
                               ),
                             ),
-                            onPressed: () {
-                             // uploadFile();
-                            sendDataToDB();
+                            onPressed: () async {
+                             await uploadFile();
+                            await sendDataToDB();
                             Navigator.of(context).pop();},
                             child: Text('Save',
                                 style: AppStyle.txtMulishSemiBold16WhiteA700
@@ -735,11 +755,12 @@ final priceField = TextFormField(
   // }
   
   sendDataToDB() async {
-final imageArray = <String, String>{
-  "0": 'files/${pickedFile[0]!.name}',
-  "1": 'files/${pickedFile[1]!.name}',
-  "2": 'files/${pickedFile[2]!.name}'
-};
+
+final imageArray = [
+  '${await urlDownload[0].toString()}',
+  '${await urlDownload[1].toString()}',
+  '${await urlDownload[2].toString()}',
+];
 CollectionReference _collectionReferance =
     FirebaseFirestore.instance.collection("vendors").doc("${UserPreferences.getUserID()}").collection("services");
 return _collectionReferance

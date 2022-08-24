@@ -28,26 +28,48 @@ class VendorEditingAExistingServiceScreen extends StatefulWidget {
 }
 
 class _VendorEditingAExistingServiceScreenState extends State<VendorEditingAExistingServiceScreen> {
+
    List<PlatformFile?> pickedFile=List.filled(3, null, growable: false);
+   UploadTask? uploadTask;
+   List<String> urlDownload  =List.filled(3, "", growable: false);
   
   Future uploadFile() async{
     final path1='files/${pickedFile[0]!.name}';
     final file1= File(pickedFile[0]!.path!);
 
     final ref1=FirebaseStorage.instance.ref().child(path1);
-    ref1.putFile(file1);
+    uploadTask =ref1.putFile(file1);
+
+    final snapshot1 = await uploadTask!.whenComplete(() {
+      
+    });
+
+    urlDownload[0]=await snapshot1.ref.getDownloadURL();
+    
     //file 2
     final path2='files/${pickedFile[1]!.name}';
     final file2= File(pickedFile[1]!.path!);
 
     final ref2=FirebaseStorage.instance.ref().child(path2);
-    ref2.putFile(file2);
+    uploadTask =ref2.putFile(file2);
+
+    final snapshot2 = await uploadTask!.whenComplete(() {
+      
+    });
+
+    urlDownload[1]=await snapshot2.ref.getDownloadURL();
     // file 3
     final path3='files/${pickedFile[2]!.name}';
     final file3= File(pickedFile[2]!.path!);
 
     final ref3=FirebaseStorage.instance.ref().child(path3);
-    ref3.putFile(file3);
+    uploadTask =ref3.putFile(file3);
+
+    final snapshot3 = await uploadTask!.whenComplete(() {
+      
+    });
+
+    urlDownload[2]=await snapshot3.ref.getDownloadURL();
   }
 
   Future selectFile(int i) async{
@@ -78,6 +100,7 @@ class _VendorEditingAExistingServiceScreenState extends State<VendorEditingAExis
 
   @override
   Widget build(BuildContext context) {
+    
     //first name field
     final nameField = TextFormField(
       
@@ -574,6 +597,7 @@ final priceField = TextFormField(
 
     //height of the sizedBox
     double h=30;
+    
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -610,6 +634,7 @@ final priceField = TextFormField(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      
                            SizedBox(height: h), 
                            nameField, 
                            SizedBox(height: h), 
@@ -675,9 +700,9 @@ final priceField = TextFormField(
                                 borderRadius: BorderRadius.circular(5.0),
                               ),
                             ),
-                            onPressed: () {
-                             // uploadFile();
-                            sendDataToDB();
+                            onPressed: () async {
+                            await uploadFile();
+                            await sendDataToDB();
                             Navigator.of(context).pop();},
                             child: Text('Save',
                                 style: AppStyle.txtMulishSemiBold16WhiteA700
@@ -699,50 +724,32 @@ final priceField = TextFormField(
                     
   }
 
-  imgPickButton(int i) {
-     return Container(decoration: BoxDecoration(
-                                    color: Color(0xffD9D9D9),
-                                    borderRadius: BorderRadius.circular(10),
-                                    
-                                    ),
-                        child: SizedBox(width: 100, height: 100,
-                          child: IconButton(alignment: Alignment.center,
-                                 onPressed:()=>selectFile(i),
-                                 icon: Icon(
-                                 Icons.add_rounded,
-                                 size: 80.0,
-                                 color: Colors.black,
-                                 ),
-                                   ),
-                        ),
-                                           );
-                     
+
+  imgPickButton(int i)  {
+      
+     return InkWell(onTap:() =>  selectFile(i),
+       child: Container(width: 100, height: 100,decoration: BoxDecoration(
+                                      color: Color(0xffD9D9D9),
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(image:Image.network("${widget.user.images[i]}").image,fit: BoxFit.cover
+                                      ),
+                       
+                        )),
+     );
+                  
   }
 
-  // void save(String firstName, String email, String nic, String address,
-  //     String phoneNumber) async {
-  //   if (_formKey.currentState!.validate()) {
-  //     await _auth
-  //         .createUserWithEmailAndPassword(
-  //             email: email, password: passwordEditingController.text)
-  //         .then((value) => {postDetailsToFirestore()})
-  //         .catchError((e) {
-  //       Fluttertoast.showToast(msg: e!.message);
-  //     });
-  //   }
-  // }
+
   
   sendDataToDB() async {
-final imageArray = <String, String>{
-  "0": 'files/${pickedFile[0]!.name}',
-  "1": 'files/${pickedFile[1]!.name}',
-  "2": 'files/${pickedFile[2]!.name}'
-};
-CollectionReference _collectionReferance =
-    FirebaseFirestore.instance.collection("vendors").doc("${UserPreferences.getUserID()}").collection("services");
-return _collectionReferance
-    .doc()
-    .set({
+final imageArray = [
+  '${await urlDownload[0].toString()}',
+  '${await urlDownload[1].toString()}',
+  '${await urlDownload[2].toString()}',
+];
+
+    
+    widget.docEntry.update({
       "name": nameEditingController.text,
       "category": dropdownValue,
       "address": addressEditingController.text,
@@ -756,40 +763,6 @@ return _collectionReferance
     .catchError((error) => Fluttertoast.showToast(msg: "something wrong"));
   
   }
-
-  // postDetailsToFirestore() async {
-
-
-  //   //calling our firestore
-  //   //calling our user model
-  //   //sending these values
-
-
-
-  //   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  //   User? user = _auth.currentUser;
-
-  //   UserModel userModel = UserModel();
-
-  //   //Writing all the values
-  //   userModel.name = nameEditingController.text;
-  //   userModel.nic = nicEditingController.text;
-  //   userModel.email = user!.email;
-  //   userModel.address = addressEditingController.text;
-  //   userModel.phoneNumber = phoneNumberEditingController.text;
-
-  //   await firebaseFirestore
-  //       .collection("users")
-  //       .doc(user.uid)
-  //       .set(userModel.tomap());
-
-  //   Fluttertoast.showToast(msg: "Account Created Sucessfully.");
-
-  //   Navigator.pushAndRemoveUntil(
-  //       (context),
-  //       MaterialPageRoute(builder: (context) => LoginScreen()),
-  //       (route) => false);
-  // }
 
   onTapImgArrowleft() {
     Get.back();
