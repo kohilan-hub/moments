@@ -44,47 +44,24 @@ Future<void> main() async {
   });
 }
 
-
-
-// Future<void> main() async {
-  
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await UserPreferences.init();
-//   await Firebase.initializeApp();
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       theme:
-//           ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
-//       //initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
-//       home: LoginScreen(),
-//     );
-//   }
-// }
-
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
-      // initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
-      // routes: {
-      //   'onboard': (context) => OnboardingScreen1Screen(),
-      //   'home': (UserPreferences.getUserID() == null)
-      //       ? (context) => LoginScreen()
-      //       : (UserPreferences.getRoleState()==true)?
+      initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
+      routes: {
+        'onboard': (context) => OnboardingScreen1Screen(),
+        'home': (UserPreferences.getUserID() == null)
+            ? (context) => LoginScreen()
+            : (UserPreferences.getRoleState()==true)?
             
-      //          (context) => VendorHomeScreen()
-      //       :  (context) => UserHomeScreen()      
-      // },
+               (context) => VendorHomeScreen()
+            :  (context) => UserHomeScreen()      
+      },
 
        //testing  
-            home: LoginScreen(),
+            // home: LoginScreen(),
     
     );
   }

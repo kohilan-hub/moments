@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -10,7 +9,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moments/core/utils/user_preferences.dart';
 import 'package:moments/pages/choose_role_screen.dart';
-import 'package:moments/pages/signup_screen.dart';
 import 'package:moments/pages/user_home_screen.dart';
 import 'package:moments/pages/vendor_home_screen.dart';
 

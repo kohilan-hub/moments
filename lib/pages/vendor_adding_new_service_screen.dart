@@ -4,13 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moments/core/app_export.dart';
 import 'package:moments/core/utils/user_preferences.dart';
-import 'package:moments/widgets/custom_button.dart';
-import 'package:moments/widgets/custom_icon_button.dart';
 
 class VendorAddingNewServiceScreen extends StatefulWidget {
   @override
