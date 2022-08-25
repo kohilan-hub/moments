@@ -60,7 +60,7 @@ class OnboardingScreen1Screen extends StatelessWidget {
                         shape: ButtonShape.RoundedBorder8,
                         padding: ButtonPadding.PaddingAll14,
                         fontStyle: ButtonFontStyle.PoppinsRegular13WhiteA700,
-                        onTap: () => Navigator.of(context).pushReplacement(
+                        onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
                                 builder: (_) => OnboardingScreen2Screen()))),
                   )

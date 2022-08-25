@@ -112,7 +112,7 @@ class RegisterScreen extends StatelessWidget {
                                 shape: ButtonShape.CircleBorder17,
                                 fontStyle: ButtonFontStyle.PoppinsRegular14,
                                 onTap: () => Navigator.of(context)
-                                    .pushReplacement(MaterialPageRoute(
+                                    .push(MaterialPageRoute(
                                         builder: (_) => ChooseRoleScreen()))),
                             GestureDetector(
                                 child: Container(

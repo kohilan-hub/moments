@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moments/core/utils/user_preferences.dart';
@@ -25,26 +26,66 @@ import 'pages/vendor_home_screen.dart';
 import 'pages/vendor_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-// 
-
-
-
+late int? initScreen;
 Future<void> main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
-  await UserPreferences.init();
   await Firebase.initializeApp();
-  runApp(MyApp());
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  initScreen = await prefs.getInt("initScreen");
+  await prefs.setInt("initScreen", 1);
+  print('initScreen ${initScreen}');
+
+  //SharedPreferences.setMockInitialValues({});
+  await UserPreferences.init();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(MyApp());
+  });
 }
+
+
+
+// Future<void> main() async {
+  
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await UserPreferences.init();
+//   await Firebase.initializeApp();
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       theme:
+//           ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
+//       //initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
+//       home: LoginScreen(),
+//     );
+//   }
+// }
+
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme:
-          ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
-      //initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
-      home: LoginScreen(),
+      theme: ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
+      // initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
+      // routes: {
+      //   'onboard': (context) => OnboardingScreen1Screen(),
+      //   'home': (UserPreferences.getUserID() == null)
+      //       ? (context) => LoginScreen()
+      //       : (UserPreferences.getRoleState()==true)?
+            
+      //          (context) => VendorHomeScreen()
+      //       :  (context) => UserHomeScreen()      
+      // },
+
+       //testing  
+            home: LoginScreen(),
+    
     );
   }
 }

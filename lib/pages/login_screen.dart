@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -121,158 +122,164 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     return SafeArea(
-      child: Scaffold(
-        body: Center(
-          child: Container(
-            child: Column(
-              children: [
-                Stack(
-                  children: [
-                    RichText(
-                        text: TextSpan(children: [
-                          TextSpan(
-                              text: "M",
-                              style: TextStyle(
-                                  color: ColorConstant.red901,
-                                  fontSize: getFontSize(35),
-                                  fontFamily: 'KyivType Sans',
-                                  fontWeight: FontWeight.bold)),
-                          TextSpan(
-                              text: "oments",
-                              style: TextStyle(
-                                  color: ColorConstant.red901,
-                                  fontSize: getFontSize(25),
-                                  fontFamily: 'KyivType Sans',
-                                  fontWeight: FontWeight.w400))
-                        ]),
-                        textAlign: TextAlign.center),
-                    Positioned(
-                      left: 36.5,
-                      top: 19,
-                      child: SizedBox(
-                        height: 27,
-                        width: 27,
-                        child: SvgPicture.asset(
-                          'assets/icons/ring.svg',
+      child: ScreenUtilInit(
+        builder: ((context, child) => 
+         Scaffold(
+          body: Center(
+            child: Container(
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text: "M",
+                                style: TextStyle(
+                                    color: ColorConstant.red901,
+                                    fontSize: getFontSize(35),
+                                    fontFamily: 'KyivType Sans',
+                                    fontWeight: FontWeight.bold)),
+                            TextSpan(
+                                text: "oments",
+                                style: TextStyle(
+                                    color: ColorConstant.red901,
+                                    fontSize: getFontSize(25),
+                                    fontFamily: 'KyivType Sans',
+                                    fontWeight: FontWeight.w400))
+                          ]),
+                          textAlign: TextAlign.center),
+                      Positioned(
+                        left: 26.7.w,
+                        top: 14.5.h,
+                        child: SizedBox(
+                          height: 27,
+                          width: 27,
+                          child: SvgPicture.asset(
+                            'assets/icons/ring.svg',
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(26.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(3.0, 0),
-                              ),
-                              BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(-3.0, 0),
-                              ),
-                              BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(0, 0),
-                              ),
-                              BoxShadow(
-                                  color: Colors.white,
-                                  spreadRadius: 2,
-                                  blurRadius: 4.0,
-                                  offset: Offset(0, 7)),
-                            ],
-                          ),
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(20, 50, 20, 30),
-                            child: Column(
-                              children: [
-                                emailField,
-                                SizedBox(
-                                  height: 25,
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(26.0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(3.0, 0),
                                 ),
-                                passwordField,
-                                SizedBox(height: 30),
-                                loginButton,
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(-3.0, 0),
+                                ),
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(0, 0),
+                                ),
+                                BoxShadow(
+                                    color: Colors.white,
+                                    spreadRadius: 2,
+                                    blurRadius: 4.0,
+                                    offset: Offset(0, 7)),
                               ],
                             ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(20, 50, 20, 30),
+                              child: Column(
+                                children: [
+                                  emailField,
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                  passwordField,
+                                  SizedBox(height: 30),
+                                  loginButton,
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Forget password?",
-                          style: GoogleFonts.poppins(fontSize: 14,color: Colors.black,letterSpacing: 0.5,fontWeight: FontWeight.w500)
-                        ),
-                        SizedBox(
-                          height: 35,
-                        ),
-                        Text(
-                          "Or continue with",
-                          style: GoogleFonts.roboto(fontSize: 14,color: Color(0xff64748B))
-                        ),
-                        SizedBox(
-                          height: 35,
-                        ),
-                        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [SignInButton(
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Forget password?",
+                            style: GoogleFonts.poppins(fontSize: 14,color: Colors.black,letterSpacing: 0.5,fontWeight: FontWeight.w500)
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+                          Text(
+                            "Or continue with",
+                            style: GoogleFonts.roboto(fontSize: 14,color: Color(0xff64748B))
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+                          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [SignInButton(
     Buttons.Google,
     onPressed: () {},
     //text: "Google",
   
   ),SizedBox(
-                          height: 8,
-                        ),
-          SignInButton(
+                            height: 8,
+                          ),
+            SignInButton(
     Buttons.Facebook,
     onPressed: () {},
     //text: "Facebook",
    
   ),
-          
-          ],
-        ),
-                        SizedBox(
-                          height: 45,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ChooseRoleScreen()));
-                          },
-                          child: RichText(
-                        text: TextSpan(children: [
-                          TextSpan(
-                          text: "Don't have account? ",
-                          style: GoogleFonts.poppins(fontSize: 14,color: Color(0xff828282))),
-                          TextSpan(
-                          text: "Create now",
-                          style: GoogleFonts.poppins(fontSize: 14,color: Color(0xffAF0B2C),fontWeight: FontWeight.w600))
-                        ]),
-                        ),
-                        
-                        ),
-                      ],
+            
+            ],
+          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ChooseRoleScreen()));
+                            },
+                            child: RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                            text: "Don't have account? ",
+                            style: GoogleFonts.poppins(fontSize: 14,color: Color(0xff828282))),
+                            TextSpan(
+                            text: "Create now",
+                            style: GoogleFonts.poppins(fontSize: 14,color: Color(0xffAF0B2C),fontWeight: FontWeight.w600))
+                          ]),
+                          ),
+                          
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        
+      )
+    ),
+    designSize: const Size(320, 568),
+      )
     );
   }
 

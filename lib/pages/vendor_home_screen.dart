@@ -14,6 +14,9 @@ Future<void> userDetailFetchSharedPreference() async {
   var name;
   var email;
   var phoneNumber;
+  var roleState;
+  
+  
   
   await FirebaseFirestore.instance
       .collection('vendors')
@@ -24,11 +27,13 @@ Future<void> userDetailFetchSharedPreference() async {
       name = (DocumentSnapshot.data()!['name'].toString());
       email = (DocumentSnapshot.data()!['email'].toString());
       phoneNumber = (DocumentSnapshot.data()!['phoneNumber'].toString());
+      roleState = (DocumentSnapshot.data()!['roleState']);
     },
   );
   await UserPreferences.setUserName(name);
   await UserPreferences.setEmail(email);
   await UserPreferences.setPhoneNumber(phoneNumber);
+  await UserPreferences.setRoleState(roleState); 
 }
 
 class VendorHomeScreen extends StatefulWidget {
@@ -57,7 +62,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
           },
         );
     
-    print("hijkl: $docId");
+   
 
     final docEntry = await FirebaseFirestore.instance
         .collection('vendors')

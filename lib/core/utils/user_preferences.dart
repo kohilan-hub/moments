@@ -24,14 +24,14 @@ class UserPreferences {
   static Future setPhoneNumber(String value) async =>
       await _preferences.setString(_keyUserPhoneNumber, value);
 
-  static Future setRoleState(String value) async =>
-      await _preferences.setString(_keyUserRoleState, value);
+  static Future setRoleState(bool value) async =>
+      await _preferences.setBool(_keyUserRoleState, value);
 
   static  String? getUserID() => _preferences.getString(_keyUserID);
   static  String? getUserName() => _preferences.getString(_keyUserName);
   static  String? getEmail() => _preferences.getString(_keyUserEmail);
   static  String? getPhoneNumber() => _preferences.getString(_keyUserPhoneNumber);
-  static  String? getRoleState() => _preferences.getString(_keyUserRoleState);
+  static  bool? getRoleState() => _preferences.getBool(_keyUserRoleState);
 }
   // static const myUser=User(
   //   name:,
