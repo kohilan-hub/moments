@@ -282,6 +282,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void sigIn(String email, String password) async {
+    FocusScope.of(context).unfocus();
     var roleState;
     if (_formKey.currentState!.validate()) {
       await _auth
