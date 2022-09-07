@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(appBarTheme: AppBarTheme(color: const Color(0xff950320))),
       initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
       routes: {
