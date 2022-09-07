@@ -102,61 +102,53 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 Expanded(
                   child: Column(mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
-                        child: GridView(
-                          shrinkWrap: true,
-                          // addAutomaticKeepAlives: false,
-                          // addRepaintBoundaries: false,
-                          // addSemanticIndexes: false,
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                childAspectRatio: 1.5,
-                                mainAxisSpacing: 10.h,
-                                crossAxisSpacing: 10.w,
-                                  crossAxisCount: 2,
-                                 mainAxisExtent: 90.h
-                                  ),
+                      Expanded(
+                        child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        
                                   
-                          children: <Widget>[
-                            Container(
-                              //margin: const EdgeInsets.all(15.0),
-                              padding: const EdgeInsets.all(3.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.black),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                        10.0) //                 <--- border radius here
-                                    ),
-                              ),
-                              child: InkWell(
-                                onTap: () => Navigator.of(context).push(
+                          children:[
+                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  width: 120.w,
+                                  //margin: const EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(3.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                            10.0) //                 <--- border radius here
+                                        ),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(builder: 
                       (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Makeup Artist',))),
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      Image(
-                                          width: 70.w,
-                                          height: 60.h,
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              'assets/images/Makeup Artist.png')),
-                                      Text("Makeup Artist",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12.sp,
-                                              fontFamily: 'Poppins',
-                                              fontWeight:
-                                                  FontWeight.w400))
-                                    ],
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          Image(
+                                              width: 70.w,
+                                              height: 60.h,
+                                              fit: BoxFit.contain,
+                                              image: AssetImage(
+                                                  'assets/images/Makeup Artist.png')),
+                                          Text("Makeup Artist",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 12.sp,
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight:
+                                                      FontWeight.w400))
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                              
                             Container(
+                                  width: 120.w,
                               //margin: const EdgeInsets.all(15.0),
                               padding: const EdgeInsets.all(3.0),
                               decoration: BoxDecoration(
@@ -192,43 +184,50 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                 ),
                               ),
                             ),
-                            Container(
-                              
-                              padding: const EdgeInsets.all(3.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.black),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                        10.0) //                 <--- border radius here
-                                    ),
-                              ),
-                              child: InkWell(
-                                onTap: () => Navigator.of(context).push(
+                            ],
+                            ),
+                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  width: 120.w,
+                                  
+                                  padding: const EdgeInsets.all(3.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                            10.0) //                 <--- border radius here
+                                        ),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(builder: 
                       (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Venue',))),
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      Image(
-                                          width: 70.w,
-                                          height: 60.h,
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              'assets/images/Venue.png')),
-                                      Text("Venue",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12.sp,
-                                              fontFamily: 'Poppins',
-                                              fontWeight:
-                                                  FontWeight.w400))
-                                    ],
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          Image(
+                                              width: 70.w,
+                                              height: 60.h,
+                                              fit: BoxFit.contain,
+                                              image: AssetImage(
+                                                  'assets/images/Venue.png')),
+                                          Text("Venue",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 12.sp,
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight:
+                                                      FontWeight.w400))
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                             
                             Container(
+                                  width: 120.w,
                               
                               padding: const EdgeInsets.all(3.0),
                               decoration: BoxDecoration(
@@ -264,43 +263,50 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                 ),
                               ),
                             ),
-                            Container(
-                              
-                              padding: const EdgeInsets.all(3.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.black),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                        10.0) //                 <--- border radius here
-                                    ),
-                              ),
-                              child: InkWell(
-                                onTap: () => Navigator.of(context).push(
+                            ],
+                            ),
+                            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  width: 120.w,
+                                  
+                                  padding: const EdgeInsets.all(3.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(
+                                            10.0) //                 <--- border radius here
+                                        ),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(builder: 
                       (_) => UserVenueOptionSelectedScreen(selectedCategory: 'Cake',))),
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      Image(
-                                          width: 70.w,
-                                          height: 60.h,
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              'assets/images/Cake.png')),
-                                      Text("Cake",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12.sp,
-                                              fontFamily: 'Poppins',
-                                              fontWeight:
-                                                  FontWeight.w400))
-                                    ],
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          Image(
+                                              width: 70.w,
+                                              height: 60.h,
+                                              fit: BoxFit.contain,
+                                              image: AssetImage(
+                                                  'assets/images/Cake.png')),
+                                          Text("Cake",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 12.sp,
+                                                  fontFamily: 'Poppins',
+                                                  fontWeight:
+                                                      FontWeight.w400))
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                              
                             Container(
+                                  width: 120.w,
                               
                               padding: const EdgeInsets.all(3.0),
                               decoration: BoxDecoration(
@@ -335,6 +341,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                   ),
                                 ),
                               ),
+                            ),
+                            ],
                             ),
                           ],
                         ),
